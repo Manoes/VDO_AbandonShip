@@ -36,52 +36,81 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 wallCheckSize = new Vector2(0.10f, 0.9f);
     [SerializeField] private float checkDistance = 0.05f;
 
-    Rigidbody2D rigidbody;
-    Collider2D collider;
+    Rigidbody2D rb;
+    Collider2D col;
+    JetpackAbility jetpack;
 
-    // Jump Parameters
     float coyoteTimer;
     float jumpBufferTimer;
     float holdJumpTimer;
     bool isJumping;
 
-    // Jump States
     bool isGrounded;
     bool onWallLeft;
     bool onWallRight;
 
-    // Wall Jump Parameters
     float wallJumpLockTimer;
     int wallDirection;
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        jetpack = GetComponent<JetpackAbility>();
     }
 
     void Update()
     {
         UpdateCollisionStates();
 
-        // Timers 
-        if(isGrounded) coyoteTimer = coyoteTime;
+        // Timers
+        if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
 
-        if(Input.GetButtonDown("Jump")) jumpBufferTimer = jumpBufferTime;
-        else jumpBufferTimer -= Time.deltaTime;
-
-        // Jump Out (release)
-        if(Input.GetButtonUp("Jump") && rigidbody.linearVelocity.y > 0f)
+        // Jump Input
+        if (Input.GetButtonDown("Jump"))
         {
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.y * jumpCutMultiplier);
+            // If we are NOT in a Normal Jumpable State, try Jetpack first
+            bool canNormalJumpSoon = coyoteTimer > 0f;
+            bool canWallJump = enableWallJump && !isGrounded && wallDirection != 0;
+
+            if (!canNormalJumpSoon && !canWallJump && jetpack != null)
+            {
+                if (jetpack.TryBoost(isGrounded))
+                {
+                    // Don't Buffer a Normal Jump; this press was used for boost
+                    jumpBufferTimer = 0f;
+                }
+                else
+                {
+                    jumpBufferTimer = jumpBufferTime;
+                }
+            }
+            else
+            {
+                jumpBufferTimer = jumpBufferTime;
+            }
+        }
+        else
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
+        // Jump Cut (release)
+        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
 
         // Decide Jump
         TryConsumeJump();
 
-        // Stop "Jumping" State when we Start Falling or Touch Ground
-        if(isGrounded || rigidbody.linearVelocity.y <= 0f)
+        // Ground Notify (optional)
+        if (isGrounded && jetpack != null)
+            jetpack.OnGrounded();
+
+        // Stop "Jumping" State
+        if (isGrounded || rb.linearVelocity.y <= 0f)
         {
             isJumping = false;
             holdJumpTimer = 0f;
@@ -89,20 +118,18 @@ public class PlayerMovement : MonoBehaviour
         else if (isJumping)
         {
             holdJumpTimer -= Time.deltaTime;
-            if(holdJumpTimer <= 0f) isJumping = false;
+            if (holdJumpTimer <= 0f) isJumping = false;
         }
 
         // Wall Slide Clamp
-        if(enableWallJump && !isGrounded && wallDirection != 0 && rigidbody.linearVelocity.y < 0f)
+        if (enableWallJump && !isGrounded && wallDirection != 0 && rb.linearVelocity.y < 0f)
         {
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, Mathf.Max(rigidbody.linearVelocity.y, -wallSlideMaxFallSpeed));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideMaxFallSpeed));
         }
 
-        // Gravity Shaping + Fall Clamp
         ApplyGravityFeel();
 
-        // Wall Jump Lock Timer
-        if(wallJumpLockTimer > 0f) 
+        if (wallJumpLockTimer > 0f)
             wallJumpLockTimer -= Time.deltaTime;
     }
 
@@ -114,38 +141,33 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveHorizontally(float inputX)
     {
-        // While Locked after Wall Jump, ignore Input so you don't Cancel the Launch
-        if(wallJumpLockTimer > 0f) 
+        if (wallJumpLockTimer > 0f)
             inputX = 0f;
-        
+
         float targetSpeed = inputX * maxSpeed;
-        float speedDiff = targetSpeed - rigidbody.linearVelocity.x;
+        float speedDiff = targetSpeed - rb.linearVelocity.x;
 
         bool accelerating = Mathf.Abs(targetSpeed) > 0.01f;
-        float accelRate;
+        float accelRate = isGrounded
+            ? (accelerating ? groundAcceleration : groundDeceleration)
+            : (accelerating ? airAcceleration : airDeceleration);
 
-        if(isGrounded)
-            accelRate = accelerating ? groundAcceleration : groundDeceleration;
-        else   
-            accelRate = accelerating ? airAcceleration : airDeceleration;
-        
         float movement = accelRate * speedDiff;
-        rigidbody.AddForce(new Vector2(movement, 0f), ForceMode2D.Force);
+        rb.AddForce(new Vector2(movement, 0f), ForceMode2D.Force);
 
-        // Clamp X Speed
-        float clampedX = Mathf.Clamp(rigidbody.linearVelocity.x, -maxSpeed, maxSpeed);
-        rigidbody.linearVelocity = new Vector2(clampedX, rigidbody.linearVelocity.y);
+        float clampedX = Mathf.Clamp(rb.linearVelocity.x, -maxSpeed, maxSpeed);
+        rb.linearVelocity = new Vector2(clampedX, rb.linearVelocity.y);
     }
 
     void TryConsumeJump()
     {
-        if(jumpBufferTimer <= 0f) return;
+        if (jumpBufferTimer <= 0f) return;
 
         // Ground Jump
-        if(coyoteTimer > 0f)
+        if (coyoteTimer > 0f)
         {
             DoJump(jumpVelocity);
-            
+
             isJumping = true;
             holdJumpTimer = maxHoldJumpTime;
 
@@ -155,11 +177,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wall Jump
-        if(enableWallJump && !isGrounded && wallDirection != 0)
+        if (enableWallJump && !isGrounded && wallDirection != 0)
         {
-            // Launch away from the Wall
             float launchX = -wallDirection * wallJumpXVelocity;
-            rigidbody.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
+            rb.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
 
             isJumping = true;
             holdJumpTimer = maxHoldJumpTime;
@@ -172,43 +193,37 @@ public class PlayerMovement : MonoBehaviour
 
     void DoJump(float velY)
     {
-        rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, velY);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, velY);
     }
 
     void ApplyGravityFeel()
     {
-        // Mario-like Jump: while Rising + Holding Jump + within Hold Window => Lighter Gravity
         bool holdingJump = Input.GetButton("Jump");
-        if(isJumping && holdingJump && rigidbody.linearVelocity.y > 0f)
+        if (isJumping && holdingJump && rb.linearVelocity.y > 0f)
         {
-            // Add Upward Force Equal to Reducing Gravity
-            float extraUp = Physics2D.gravity.y * (holdJumpGravityMultiplier - 1f) * rigidbody.mass;
-            rigidbody.AddForce(Vector2.up * extraUp);
-            return; // Skip other Garvity Shaping this Frame
+            float extraUp = Physics2D.gravity.y * (holdJumpGravityMultiplier - 1f) * rb.mass;
+            rb.AddForce(Vector2.up * extraUp);
+            return;
         }
 
-        // Extra Gravity when Falling
-        if(rigidbody.linearVelocity.y < 0f)
+        if (rb.linearVelocity.y < 0f)
         {
-            rigidbody.AddForce(Vector2.up * Physics2D.gravity.y * (fallGravityMultiplier - 1f) * rigidbody.mass);
+            rb.AddForce(Vector2.up * Physics2D.gravity.y * (fallGravityMultiplier - 1f) * rb.mass);
         }
 
-        // Clamp Fall Speed
-        if(rigidbody.linearVelocity.y < -maxFallSpeed)
+        if (rb.linearVelocity.y < -maxFallSpeed)
         {
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, -maxFallSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
         }
     }
 
     void UpdateCollisionStates()
     {
-        Bounds bounds = collider.bounds;
+        Bounds bounds = col.bounds;
 
-        // Ground Check Box under Collider
         Vector2 groundCenter = new Vector2(bounds.center.x, bounds.min.y - checkDistance);
         isGrounded = Physics2D.OverlapBox(groundCenter, groundCheckSize, 0f, groundMask);
 
-        // Wall Checks
         Vector2 leftCenter = new Vector2(bounds.min.x - checkDistance, bounds.center.y);
         Vector2 rightCenter = new Vector2(bounds.max.x + checkDistance, bounds.center.y);
 
@@ -218,17 +233,17 @@ public class PlayerMovement : MonoBehaviour
         wallDirection = 0;
         if (!isGrounded)
         {
-            if(onWallLeft) wallDirection = -1;
-            else if(onWallRight) wallDirection = +1;
+            if (onWallLeft) wallDirection = -1;
+            else if (onWallRight) wallDirection = +1;
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        if(!collider) collider = GetComponent<Collider2D>();
-        if(!collider) return;
+        if (!col) col = GetComponent<Collider2D>();
+        if (!col) return;
 
-        Bounds bounds = collider.bounds;
+        Bounds bounds = col.bounds;
 
         Gizmos.color = Color.green;
         Vector2 groundCenter = new Vector2(bounds.center.x, bounds.min.y - checkDistance);

@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Score = 0f;
         cam = Camera.main;
 
         var playerGO = GameObject.FindGameObjectWithTag("Player");
@@ -52,8 +53,6 @@ public class GameManager : MonoBehaviour
         }
         else
             Debug.LogError("[GameManager] Missing References after Scene loaded.");
-        
-        Score = 0f;
     }
 
     void Update()

@@ -7,7 +7,6 @@ public class PlatformManager : MonoBehaviour
 
     [Header("Spawn Height")]
     [SerializeField] private float spawnAhead = 14f; // How Far the Platforms spawn above the Player
-    [SerializeField] private float startBelowPlayer = 8f; // Initial Fill below Start
     [SerializeField] private float despawnBelowDeathWall = 6f;
 
     [Header("Vertical Gaps")]
@@ -34,6 +33,19 @@ public class PlatformManager : MonoBehaviour
     [Header("Spawn Safety")]
     [SerializeField] private float platformUnderPlayerYOffset = 1.0f;
     [SerializeField] private float minUnderPlayerWidth = 6.0f;
+
+    [Header("Difficulty: Falling Platforms")]
+    [SerializeField] private float fallingStartAtScore = 15f;
+    [SerializeField] private float fallingRampDuration = 45f;
+    [SerializeField] private float fallingMaxChance = 0.35f;
+
+    [Header("Pickups: Jetpack")]
+    [SerializeField] private GameObject jetpackPickupPrefab;
+    [SerializeField] private float jetpackSpawnYOffset = 1.2f;
+
+    [SerializeField] private float jetpackChanceStart = 0.70f;
+    [SerializeField] private float jetpackChanceMin = 0.2f;
+    [SerializeField] private float jetpackChanceDecayScore = 120f;
 
     readonly List<Transform> platforms = new List<Transform>();
 
@@ -143,6 +155,25 @@ public class PlatformManager : MonoBehaviour
         platform.transform.localScale = new Vector3(width, 1f, 1f);
         platform.layer = LayerMask.NameToLayer("Ground");
         platforms.Add(platform.transform);
+
+        // Enable/Disable the Fallingplatform Component if present
+        if(platform.TryGetComponent<FallingPlatform>(out var fallingPlatform))
+        {
+            float chance = GetFallingChance();
+            bool armed = Random.value < chance;
+            fallingPlatform.SetArmed(armed);
+        }
+
+        // Jetpack Spawn (Decreasing Chance with Score)
+        if(jetpackPickupPrefab != null)
+        {
+            float chance = GetJetPackChance();
+            if(Random.value < chance)
+            {
+                Vector3 position = new Vector3(x, y + jetpackSpawnYOffset, 0f);
+                Instantiate(jetpackPickupPrefab, position, Quaternion.identity);
+            }
+        }
     }
 
     void SpawnPlatformUnderPlayer()
@@ -169,6 +200,29 @@ public class PlatformManager : MonoBehaviour
         // Ensure Future Rows Spawn Above this, not Below it
         float camBottomY = cam.transform.position.y - cam.orthographicSize;
         nextRowY = Mathf.Min(y, camBottomY - 1f);
+    }
+
+    float GetFallingChance()
+    {
+        float score = 0f;
+        if(GameManager.Instance != null)
+            score = GameManager.Instance.Score;
+        
+        if(score < fallingStartAtScore) return 0f;
+
+        float t = (score - fallingStartAtScore) / Mathf.Max(0.0001f, fallingRampDuration);
+        t = Mathf.Clamp01(t);
+
+        return Mathf.Lerp(0f, fallingMaxChance, t);
+    }
+
+    float GetJetPackChance()
+    {
+        float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
+
+        // Linear Decay from Start -> Min over jetpackChanceDecayScore Seconds
+        float time = Mathf.Clamp01(score / Mathf.Max(0.0001f, jetpackChanceDecayScore));
+        return Mathf.Lerp(jetpackChanceStart, jetpackChanceMin, time);
     }
 
     public void ResetRun()
