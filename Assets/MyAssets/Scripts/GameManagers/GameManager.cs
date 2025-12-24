@@ -73,6 +73,14 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Freeze game, Show Death Screen, Animations...
         Debug.Log($"Player Died: {reason}, score={Score}.");
+
+        // Stop any Lingering Particles on the Current Player before Load
+        if (player)
+        {
+            var jetpack = player.GetComponent<JetpackAbility>();
+            if(jetpack) jetpack.StopVFX();
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

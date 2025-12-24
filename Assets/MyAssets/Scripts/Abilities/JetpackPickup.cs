@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class JetpackPickup : MonoBehaviour
 {
-    [SerializeField] private int chargesGranted = 1;
+    [SerializeField] private int charges = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
-        var thruster = collision.GetComponent<JetpackAbility>();
-        if (thruster != null)
-            thruster.AddCharges(chargesGranted);
+        var jetpack = collision.GetComponent<JetpackAbility>();
+        if (jetpack != null)
+            jetpack.AddCharges(charges);
 
         Destroy(gameObject);
     }

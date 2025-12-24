@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 wallCheckSize = new Vector2(0.10f, 0.9f);
     [SerializeField] private float checkDistance = 0.05f;
 
-    Rigidbody2D rb;
+    [Header("Anti Double-Jump")]
+    [SerializeField] private float ignoreGroundedAfterJump = 0.08f;
+
+    Rigidbody2D rigidbody;
     Collider2D col;
     JetpackAbility jetpack;
 
@@ -46,71 +49,49 @@ public class PlayerMovement : MonoBehaviour
     bool isJumping;
 
     bool isGrounded;
+    bool rawGrounded;
     bool onWallLeft;
     bool onWallRight;
 
     float wallJumpLockTimer;
     int wallDirection;
 
+    float ignoreGroundedTimer;
+
+    public bool IsGrounded => isGrounded;
+    public bool IsOnWall => !isGrounded && wallDirection != 0;
+    public int LastJumpFrame { get; private set; } = -9999;
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         jetpack = GetComponent<JetpackAbility>();
     }
 
     void Update()
     {
+        if(ignoreGroundedTimer > 0f) ignoreGroundedTimer -= Time.deltaTime;
+
         UpdateCollisionStates();
 
         // Timers
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
 
-        // Jump Input
-        if (Input.GetButtonDown("Jump"))
-        {
-            // If we are NOT in a Normal Jumpable State, try Jetpack first
-            bool canNormalJumpSoon = coyoteTimer > 0f;
-            bool canWallJump = enableWallJump && !isGrounded && wallDirection != 0;
-
-            if (!canNormalJumpSoon && !canWallJump && jetpack != null)
-            {
-                if (jetpack.TryBoost(isGrounded))
-                {
-                    // Don't Buffer a Normal Jump; this press was used for boost
-                    jumpBufferTimer = 0f;
-                }
-                else
-                {
-                    jumpBufferTimer = jumpBufferTime;
-                }
-            }
-            else
-            {
-                jumpBufferTimer = jumpBufferTime;
-            }
-        }
-        else
-        {
-            jumpBufferTimer -= Time.deltaTime;
-        }
+        // Jump Buffer (Only set on ButtonDown)
+        if(Input.GetButtonDown("Jump")) jumpBufferTimer = jumpBufferTime;
+        else jumpBufferTimer -= Time.deltaTime;
 
         // Jump Cut (release)
-        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-        }
+        if (Input.GetButtonUp("Jump") && rigidbody.linearVelocity.y > 0f)
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.y * jumpCutMultiplier);
 
         // Decide Jump
         TryConsumeJump();
 
-        // Ground Notify (optional)
-        if (isGrounded && jetpack != null)
-            jetpack.OnGrounded();
-
         // Stop "Jumping" State
-        if (isGrounded || rb.linearVelocity.y <= 0f)
+        if (isGrounded || rigidbody.linearVelocity.y <= 0f)
         {
             isJumping = false;
             holdJumpTimer = 0f;
@@ -122,10 +103,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wall Slide Clamp
-        if (enableWallJump && !isGrounded && wallDirection != 0 && rb.linearVelocity.y < 0f)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideMaxFallSpeed));
-        }
+        if (enableWallJump && !isGrounded && wallDirection != 0 && rigidbody.linearVelocity.y < 0f)
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, Mathf.Max(rigidbody.linearVelocity.y, -wallSlideMaxFallSpeed));
 
         ApplyGravityFeel();
 
@@ -145,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             inputX = 0f;
 
         float targetSpeed = inputX * maxSpeed;
-        float speedDiff = targetSpeed - rb.linearVelocity.x;
+        float speedDiff = targetSpeed - rigidbody.linearVelocity.x;
 
         bool accelerating = Mathf.Abs(targetSpeed) > 0.01f;
         float accelRate = isGrounded
@@ -153,10 +132,10 @@ public class PlayerMovement : MonoBehaviour
             : (accelerating ? airAcceleration : airDeceleration);
 
         float movement = accelRate * speedDiff;
-        rb.AddForce(new Vector2(movement, 0f), ForceMode2D.Force);
+        rigidbody.AddForce(new Vector2(movement, 0f), ForceMode2D.Force);
 
-        float clampedX = Mathf.Clamp(rb.linearVelocity.x, -maxSpeed, maxSpeed);
-        rb.linearVelocity = new Vector2(clampedX, rb.linearVelocity.y);
+        float clampedX = Mathf.Clamp(rigidbody.linearVelocity.x, -maxSpeed, maxSpeed);
+        rigidbody.linearVelocity = new Vector2(clampedX, rigidbody.linearVelocity.y);
     }
 
     void TryConsumeJump()
@@ -173,6 +152,9 @@ public class PlayerMovement : MonoBehaviour
 
             jumpBufferTimer = 0f;
             coyoteTimer = 0f;
+
+            ignoreGroundedTimer = ignoreGroundedAfterJump;            
+            LastJumpFrame = Time.frameCount;
             return;
         }
 
@@ -180,50 +162,57 @@ public class PlayerMovement : MonoBehaviour
         if (enableWallJump && !isGrounded && wallDirection != 0)
         {
             float launchX = -wallDirection * wallJumpXVelocity;
-            rb.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
+            rigidbody.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
 
             isJumping = true;
             holdJumpTimer = maxHoldJumpTime;
 
             wallJumpLockTimer = wallJumpLockTime;
             jumpBufferTimer = 0f;
+
+            ignoreGroundedTimer = ignoreGroundedAfterJump;
+            LastJumpFrame = Time.frameCount;
             return;
         }
     }
 
     void DoJump(float velY)
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, velY);
+        rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, velY);
     }
 
     void ApplyGravityFeel()
     {
         bool holdingJump = Input.GetButton("Jump");
-        if (isJumping && holdingJump && rb.linearVelocity.y > 0f)
+        if (isJumping && holdingJump && rigidbody.linearVelocity.y > 0f)
         {
-            float extraUp = Physics2D.gravity.y * (holdJumpGravityMultiplier - 1f) * rb.mass;
-            rb.AddForce(Vector2.up * extraUp);
+            float extraUp = Physics2D.gravity.y * (holdJumpGravityMultiplier - 1f) * rigidbody.mass;
+            rigidbody.AddForce(Vector2.up * extraUp);
             return;
         }
 
-        if (rb.linearVelocity.y < 0f)
-        {
-            rb.AddForce(Vector2.up * Physics2D.gravity.y * (fallGravityMultiplier - 1f) * rb.mass);
-        }
+        if (rigidbody.linearVelocity.y < 0f)
+            rigidbody.AddForce(Vector2.up * Physics2D.gravity.y * (fallGravityMultiplier - 1f) * rigidbody.mass);
 
-        if (rb.linearVelocity.y < -maxFallSpeed)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
-        }
+        if (rigidbody.linearVelocity.y < -maxFallSpeed)
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, -maxFallSpeed);
     }
 
     void UpdateCollisionStates()
     {
         Bounds bounds = col.bounds;
 
+        // Always Compute RAW Grounded 
         Vector2 groundCenter = new Vector2(bounds.center.x, bounds.min.y - checkDistance);
-        isGrounded = Physics2D.OverlapBox(groundCenter, groundCheckSize, 0f, groundMask);
+        rawGrounded = Physics2D.OverlapBox(groundCenter, groundCheckSize, 0f, groundMask);
 
+        // If we touch the Ground and not moving Up, Cancel the Ignore Grounded Lockout Immediatly
+        if(rawGrounded && rigidbody.linearVelocity.y <= 0.01f)
+            ignoreGroundedTimer = 0f;
+        
+        isGrounded = rawGrounded && ignoreGroundedTimer <= 0f;
+
+        // Walls
         Vector2 leftCenter = new Vector2(bounds.min.x - checkDistance, bounds.center.y);
         Vector2 rightCenter = new Vector2(bounds.max.x + checkDistance, bounds.center.y);
 

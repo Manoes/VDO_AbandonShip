@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152811380}
+  - component: {fileID: 152811382}
   - component: {fileID: 152811381}
   - component: {fileID: 152811379}
   m_Layer: 0
@@ -165,14 +166,14 @@ MonoBehaviour:
   extraYOffsetJitter: 0.6
   platformUnderPlayerYOffset: 1
   minUnderPlayerWidth: 6
-  fallingStartAtScore: 100
+  fallingStartAtScore: 50
   fallingRampDuration: 45
   fallingMaxChance: 0.65
   jetpackPickupPrefab: {fileID: 2939207992332965085, guid: 46bc1e599d2a6f8418d026c4b0e302d8, type: 3}
   jetpackSpawnYOffset: 1.2
-  jetpackChanceStart: 0.45
-  jetpackChanceMin: 0.02
-  jetpackChanceDecayScore: 120
+  jetpackChanceStart: 0.25
+  jetpackChanceMin: 0.05
+  jetpackChanceDecayScore: 50
 --- !u!4 &152811380
 Transform:
   m_ObjectHideFlags: 0
@@ -201,6 +202,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offscreenDeathMargin: 1
+--- !u!114 &152811382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152811378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238e1bfe6da79a64d800f196fad85d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: e25da78aabffd5d49816c372a46aea9a, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +670,22 @@ PrefabInstance:
     - target: {fileID: 212640277065319752, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: cooldown
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: maxCharges
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: fallingThreshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: requireReleaseBeforeBoost
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455526347943183872, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: m_LocalPosition.x

@@ -102,7 +102,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: af93e4d2b29121c40ac4a6aff0d7fccd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,18 +150,18 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: af93e4d2b29121c40ac4a6aff0d7fccd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -180,27 +180,28 @@ MonoBehaviour:
   maxSpeed: 8
   groundAcceleration: 70
   groundDeceleration: 90
-  airAcceleration: 45
-  airDeceleration: 35
+  airAcceleration: 85
+  airDeceleration: 70
   jumpVelocity: 20
-  coyoteTime: 0.1
+  coyoteTime: 0.3
   jumpBufferTime: 0.1
-  jumpCutMultiplier: 0.55
-  fallGravityMultiplier: 2
-  maxFallSpeed: 22
+  jumpCutMultiplier: 0.45
+  fallGravityMultiplier: 3.4
+  maxFallSpeed: 25
   enableWallJump: 1
-  wallSlideMaxFallSpeed: 4.5
+  wallSlideMaxFallSpeed: 2.5
   wallJumpXVelocity: 9
-  wallJumpYVelocity: 14
-  wallJumpLockTime: 0.12
-  holdJumpGravityMultiplier: 0.55
+  wallJumpYVelocity: 10
+  wallJumpLockTime: 0.2
+  holdJumpGravityMultiplier: 0.35
   maxHoldJumpTime: 0.18
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundCheckSize: {x: 0.65, y: 0.1}
-  wallCheckSize: {x: 0.1, y: 0.9}
-  checkDistance: 0.05
+  wallCheckSize: {x: 0.18, y: 0.9}
+  checkDistance: 0.08
+  ignoreGroundedAfterJump: 0.03
 --- !u!114 &2248130280734625758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,14 +214,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3976b556548d0e04fa7196b7009f74f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostVelocityY: 30
-  maxCharges: 5
+  maxCharges: 1
   cooldown: 0.05
+  boostUpSpeed: 25
   onlyInAir: 1
-  resetChargesOnGround: 0
+  zeroOutDownVelocityOnBoost: 1
   jetpackParticles: {fileID: 1491892378769335841}
-  emitCount: 18
-  vfxStopDelay: 0.08
+  vfxBurstDuration: 0.12
 --- !u!1 &1344404738816214838
 GameObject:
   m_ObjectHideFlags: 0
