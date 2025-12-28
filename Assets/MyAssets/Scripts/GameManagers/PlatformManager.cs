@@ -1,19 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlatformManager : MonoBehaviour
 {
-    [SerializeField] private GameObject platformPrefab;
+    [Header("Tilemap Platform Output")]
+    [Tooltip("Optional. If left empty, we auto-find the platform Tilemap by TilemapCollider2D.")]
+    [SerializeField] private Tilemap platformTilemap;
+    [SerializeField] private TileBase platformTile;
+
+    [Header("Optional: Falling Platform Prefab (kept as prefab)")]
+    [SerializeField] private GameObject fallingPlatformPrefab;
+    [SerializeField] private float fallingPrefabY = 0f;
 
     [Header("Spawn Height")]
-    [SerializeField] private float spawnAhead = 14f; // How Far the Platforms spawn above the Player
+    [SerializeField] private float spawnAhead = 14f;
     [SerializeField] private float despawnBelowDeathWall = 6f;
 
-    [Header("Vertical Gaps")]
+    [Header("Vertical Gaps (world units)")]
     [SerializeField] private float rowMinGapY = 3f;
     [SerializeField] private float rowMaxGapY = 5.5f;
 
-    [Header("Platform Size")]
+    [Header("Platform Size (world units)")]
     [SerializeField] private float minWidth = 2.5f;
     [SerializeField] private float maxWidth = 7f;
 
@@ -28,7 +36,6 @@ public class PlatformManager : MonoBehaviour
     [Header("Extras")]
     [SerializeField] private int extrasPerRow = 2;
     [SerializeField] private float extraMinSeparationX = 3.5f;
-    [SerializeField] private float extraYOffsetJitter = 0.6f;
 
     [Header("Spawn Safety")]
     [SerializeField] private float platformUnderPlayerYOffset = 1.0f;
@@ -38,65 +45,141 @@ public class PlatformManager : MonoBehaviour
     [SerializeField] private GameObject jetpackPickupPrefab;
     [SerializeField] private float jetpackSpawnYOffset = 1.2f;
 
-    readonly List<Transform> platforms = new List<Transform>();
-
-    // References -> GameManager sets these values
+    // Runtime references
     Transform player;
     Transform deathWall;
     Camera cam;
 
-    float nextRowY;
+    int nextRowCellY;
     float lastPathX;
     int dir = 1;
+
+    struct PlacedSpan
+    {
+        public int yCell;
+        public int xMin;
+        public int xMax;
+        public float worldY;
+        public bool wasPrefab;
+        public Transform prefabTransform;
+    }
+
+    readonly List<PlacedSpan> spans = new List<PlacedSpan>();
+
+    float CellSizeX => platformTilemap ? platformTilemap.cellSize.x : 1f;
+    float CellSizeY => platformTilemap ? platformTilemap.cellSize.y : 1f;
+
+    // ------------------------------
+    // Key fix: rebind after reload
+    // ------------------------------
+    bool EnsureTilemapBound()
+    {
+        // Unity fake-null handles MissingReference too
+        if (platformTilemap && platformTilemap.gameObject.scene.IsValid())
+            return true;
+
+        // Auto-find a platform tilemap (prefer one with TilemapCollider2D)
+        var all = FindObjectsByType<Tilemap>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        Tilemap best = null;
+
+        for (int i = 0; i < all.Length; i++)
+        {
+            var tm = all[i];
+            if (!tm) continue;
+
+            // Prefer the tilemap that actually collides (platforms)
+            if (tm.GetComponent<TilemapCollider2D>() != null)
+            {
+                // If there are multiple, prefer name contains "platform"
+                if (best == null) best = tm;
+                else
+                {
+                    string n = tm.gameObject.name.ToLowerInvariant();
+                    string b = best.gameObject.name.ToLowerInvariant();
+                    if (n.Contains("platform") && !b.Contains("platform"))
+                        best = tm;
+                }
+            }
+        }
+
+        // Fallback if none have collider (still better than null)
+        if (best == null && all.Length > 0)
+            best = all[0];
+
+        platformTilemap = best;
+
+        if (!platformTilemap)
+        {
+            Debug.LogError("[PlatformManager] Could not bind platform Tilemap in this scene.");
+            return false;
+        }
+
+        return true;
+    }
 
     public void Init(Transform playerRef, Transform deathWallRef, Camera camRef)
     {
         player = playerRef;
         deathWall = deathWallRef;
         cam = camRef;
+
+        EnsureTilemapBound();
     }
 
     void Update()
     {
-        if (!player || !deathWall || !cam || !platformPrefab) return;
+        if (!player || !deathWall || !cam) return;
+        if (!EnsureTilemapBound()) return;
+        if (platformTile == null) return;
 
-        // Spawn Platforms as Player Clims
         float camTopY = cam.transform.position.y + cam.orthographicSize;
-        float targetTop = camTopY + spawnAhead;
-        while (nextRowY < targetTop)
+        float targetTopY = camTopY + spawnAhead;
+        int targetTopCellY = platformTilemap.WorldToCell(new Vector3(0f, targetTopY, 0f)).y;
+
+        while (nextRowCellY < targetTopCellY)
             SpawnRow();
 
-        // Despawn Platforms when Consumed by Exploding Ship (Death Wall)
         float killLine = deathWall.position.y - despawnBelowDeathWall;
 
-        for (int i = platforms.Count - 1; i >= 0; i--)
+        int removeCount = 0;
+        for (int i = 0; i < spans.Count; i++)
         {
-            Transform transform = platforms[i];
-            if (transform == null)
+            if (spans[i].worldY >= killLine)
+                break;
+
+            var s = spans[i];
+
+            if (s.wasPrefab)
             {
-                platforms.RemoveAt(i);
-                continue;
+                if (s.prefabTransform) Destroy(s.prefabTransform.gameObject);
+            }
+            else
+            {
+                for (int x = s.xMin; x <= s.xMax; x++)
+                    platformTilemap.SetTile(new Vector3Int(x, s.yCell, 0), null);
             }
 
-            if (transform.position.y < killLine)
-            {
-                Destroy(transform.gameObject);
-                platforms.RemoveAt(i);
-            }
+            removeCount++;
         }
+
+        if (removeCount > 0)
+            spans.RemoveRange(0, removeCount);
     }
 
     void SpawnRow()
     {
         float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
 
-        // Update Gap Range from Difficulty
-        if(DifficultyManager.Instance)
+        if (DifficultyManager.Instance)
             DifficultyManager.Instance.GetGapRange(score, out rowMinGapY, out rowMaxGapY);
 
-        nextRowY += Random.Range(rowMinGapY, rowMaxGapY);
+        int gapCells = Mathf.Max(
+            1,
+            Mathf.RoundToInt(Random.Range(rowMinGapY, rowMaxGapY) / Mathf.Max(0.0001f, CellSizeY))
+        );
 
-        // Compute Camera World Bounds at this Row's Y
+        nextRowCellY += gapCells;
+
         float halfHeight = cam.orthographicSize;
         float halfWidth = halfHeight * cam.aspect;
         float camX = cam.transform.position.x;
@@ -104,39 +187,106 @@ public class PlatformManager : MonoBehaviour
         float minX = camX - halfWidth + edgePadding;
         float maxX = camX + halfWidth - edgePadding;
 
-        float delta = Random.Range(minStepX, maxStepX) * dir;
+        List<(int xMin, int xMax)> occupied = new List<(int, int)>();
 
+        float delta = Random.Range(minStepX, maxStepX) * dir;
         if (alternateDirection && Random.value < 0.55f) dir *= -1;
 
         float pathX = Mathf.Clamp(lastPathX + delta, minX, maxX);
         float pathWidth = Random.Range(minWidth, maxWidth);
         pathX = ClampInsideBounds(pathX, pathWidth, minX, maxX);
 
-        SpawnPlatformAt(pathX, nextRowY, pathWidth);
+        PlacePlatformNoOverlap(pathX, nextRowCellY, pathWidth, occupied);
         lastPathX = pathX;
 
         for (int i = 0; i < extrasPerRow; i++)
         {
             float extraWidth = Random.Range(minWidth, maxWidth);
 
-            // Try a few times to find a good separated X
-            float extraX = pathX;
-            for (int tries = 0; tries < 6; tries++)
+            bool placed = false;
+            for (int tries = 0; tries < 10; tries++)
             {
-                extraX = Random.Range(minX, maxX);
-                if (Mathf.Abs(extraX - pathX) >= extraMinSeparationX) break;
+                float extraX = Random.Range(minX, maxX);
+
+                if (Mathf.Abs(extraX - pathX) < extraMinSeparationX)
+                    continue;
+
+                extraX = ClampInsideBounds(extraX, extraWidth, minX, maxX);
+
+                if (PlacePlatformNoOverlap(extraX, nextRowCellY, extraWidth, occupied))
+                {
+                    placed = true;
+                    break;
+                }
             }
 
-            // Clamp to bounds with platform width considered
-            extraX = ClampInsideBounds(extraX, extraWidth, minX, maxX);
+            if (!placed) { }
+        }
+    }
 
-            // Slight vertical jitter so it doesn't feel like “one flat row”
-            float extraY = nextRowY + Random.Range(-extraYOffsetJitter, extraYOffsetJitter);
+    bool PlacePlatformNoOverlap(float xWorld, int yCell, float widthWorld, List<(int xMin, int xMax)> occupied)
+    {
+        float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
 
-            SpawnPlatformAt(extraX, extraY, extraWidth);
+        float fallingChance = DifficultyManager.Instance ? DifficultyManager.Instance.GetFallingChance(score) : 0f;
+        float jetpackChance = DifficultyManager.Instance ? DifficultyManager.Instance.GetJetpackChance(score) : 0f;
+
+        bool spawnFallingPrefab = (fallingPlatformPrefab != null) && (Random.value < fallingChance);
+
+        float tileW = Mathf.Max(0.0001f, CellSizeX);
+        int tiles = Mathf.Max(1, Mathf.RoundToInt(widthWorld / tileW));
+
+        float yWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(0, yCell, 0)).y;
+        int xCenter = platformTilemap.WorldToCell(new Vector3(xWorld, yWorld, 0f)).x;
+
+        int xMin = xCenter - (tiles / 2);
+        int xMax = xMin + tiles - 1;
+
+        for (int i = 0; i < occupied.Count; i++)
+        {
+            var o = occupied[i];
+            bool overlaps = !(xMax < o.xMin || xMin > o.xMax);
+            if (overlaps)
+                return false;
         }
 
-        nextRowY += 0.15f;
+        occupied.Add((xMin, xMax));
+
+        if (spawnFallingPrefab)
+        {
+            Vector3 worldPos = new Vector3(xWorld, yWorld + fallingPrefabY, 0f);
+            GameObject go = Instantiate(fallingPlatformPrefab, worldPos, Quaternion.identity);
+            go.transform.localScale = new Vector3(widthWorld, 1f, 1f);
+
+            spans.Add(new PlacedSpan
+            {
+                wasPrefab = true,
+                prefabTransform = go.transform,
+                worldY = yWorld
+            });
+        }
+        else
+        {
+            for (int tx = xMin; tx <= xMax; tx++)
+                platformTilemap.SetTile(new Vector3Int(tx, yCell, 0), platformTile);
+
+            spans.Add(new PlacedSpan
+            {
+                yCell = yCell,
+                xMin = xMin,
+                xMax = xMax,
+                worldY = yWorld,
+                wasPrefab = false
+            });
+        }
+
+        if (jetpackPickupPrefab != null && Random.value < jetpackChance)
+        {
+            Vector3 pos = new Vector3(xWorld, yWorld + jetpackSpawnYOffset, 0f);
+            Instantiate(jetpackPickupPrefab, pos, Quaternion.identity);
+        }
+
+        return true;
     }
 
     float ClampInsideBounds(float x, float width, float minX, float maxX)
@@ -145,45 +295,8 @@ public class PlatformManager : MonoBehaviour
         return Mathf.Clamp(x, minX + half, maxX - half);
     }
 
-    void SpawnPlatformAt(float x, float y, float width)
-    {
-        GameObject platform = Instantiate(platformPrefab);
-        platform.transform.position = new Vector3(x, y, 0);
-        platform.transform.localScale = new Vector3(width, 1f, 1f);
-        platform.layer = LayerMask.NameToLayer("Ground");
-        platforms.Add(platform.transform);
-
-        float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
-
-        float fallingChance = DifficultyManager.Instance
-            ? DifficultyManager.Instance.GetFallingChance(score)
-            : 0f;
-        
-        float jetpackChance = DifficultyManager.Instance
-            ? DifficultyManager.Instance.GetJetpackChance(score)
-            : 0f;
-
-        // Enable/Disable the Fallingplatform Component if present
-        if(platform.TryGetComponent<FallingPlatform>(out var fallingPlatform))
-        {
-            bool armed = Random.value < fallingChance;
-            fallingPlatform.SetArmed(armed);
-        }
-
-        // Jetpack Spawn (Decreasing Chance with Score)
-        if(jetpackPickupPrefab != null)
-        {
-            if(Random.value < jetpackChance)
-            {
-                Vector3 position = new Vector3(x, y + jetpackSpawnYOffset, 0f);
-                Instantiate(jetpackPickupPrefab, position, Quaternion.identity);
-            }
-        }
-    }
-
     void SpawnPlatformUnderPlayer()
     {
-        // Compute Camera World Bounds at this Row's Y
         float halfHeight = cam.orthographicSize;
         float halfWidth = halfHeight * cam.aspect;
         float camX = cam.transform.position.x;
@@ -191,43 +304,49 @@ public class PlatformManager : MonoBehaviour
         float minX = camX - halfWidth + edgePadding;
         float maxX = camX + halfWidth - edgePadding;
 
-        float y = player.position.y - platformUnderPlayerYOffset;
+        float yWorld = player.position.y - platformUnderPlayerYOffset;
+        int yCell = platformTilemap.WorldToCell(new Vector3(0f, yWorld, 0f)).y;
 
         float width = Mathf.Max(minUnderPlayerWidth, Random.Range(minWidth, maxWidth));
-        float x = Mathf.Clamp(player.position.x, minX, maxX);
-        x = ClampInsideBounds(x, width, minX, maxX);
+        float xWorld = Mathf.Clamp(player.position.x, minX, maxX);
+        xWorld = ClampInsideBounds(xWorld, width, minX, maxX);
 
-        SpawnPlatformAt(x, y, width);
+        var occupied = new List<(int, int)>();
+        PlacePlatformNoOverlap(xWorld, yCell, width, occupied);
 
-        // Make the Path Start from here
-        lastPathX = x;
+        lastPathX = xWorld;
 
-        // Ensure Future Rows Spawn Above this, not Below it
         float camBottomY = cam.transform.position.y - cam.orthographicSize;
-        nextRowY = Mathf.Min(y, camBottomY - 1f);
+        int camBottomCell = platformTilemap.WorldToCell(new Vector3(0f, camBottomY, 0f)).y;
+
+        nextRowCellY = Mathf.Min(yCell, camBottomCell - 2);
     }
 
     public void ResetRun()
     {
+        if (!player || !cam) return;
+        if (!EnsureTilemapBound()) return;
 
-        // Destroy Existing Platforms
-        for (int i = platforms.Count - 1; i >= 0; i--)
+        platformTilemap.ClearAllTiles();
+
+        for (int i = 0; i < spans.Count; i++)
         {
-            if (platforms[i] != null)
-                Destroy(platforms[i].gameObject);
+            if (spans[i].wasPrefab && spans[i].prefabTransform)
+                Destroy(spans[i].prefabTransform.gameObject);
         }
-        platforms.Clear();
+        spans.Clear();
 
-        // Reset Generation State
         dir = 1;
 
-        // Always Guarantee a Platform under Player
+        nextRowCellY = platformTilemap.WorldToCell(new Vector3(0f, player.position.y, 0f)).y - 10;
+
         SpawnPlatformUnderPlayer();
 
-        // Spawn Initial Set
         float camTopY = cam.transform.position.y + cam.orthographicSize;
-        float targetTop = camTopY + spawnAhead;
-        while (nextRowY < targetTop)
+        float targetTopY = camTopY + spawnAhead;
+        int targetTopCellY = platformTilemap.WorldToCell(new Vector3(0f, targetTopY, 0f)).y;
+
+        while (nextRowCellY < targetTopCellY)
             SpawnRow();
     }
 }
