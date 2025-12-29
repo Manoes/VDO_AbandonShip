@@ -132,7 +132,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 172
+      y: 204
       width: 32
       height: 32
     spriteID: 4c0493969c81c4c4c85b7086c2bb1e99
@@ -143,7 +143,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 172}
+    uvTransform: {x: 4, y: 204}
   - name: Ship Haul Type 1_Alarm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -152,8 +152,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 44
-      y: 172
+      x: 4
+      y: 244
       width: 32
       height: 32
     spriteID: b21f186b181209e46b049b6e1c3b0337
@@ -164,7 +164,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 172}
+    uvTransform: {x: 4, y: 244}
   - name: Ship Haul Type 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -173,7 +173,7 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
+      x: 84
       y: 204
       width: 28
       height: 32
@@ -185,7 +185,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 204}
+    uvTransform: {x: 84, y: 204}
   - name: Ship Haul Type 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -194,8 +194,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 180
-      y: 4
+      x: 84
+      y: 244
       width: 28
       height: 32
     spriteID: 044ae29be8391c344a8e3ede1e0670b5
@@ -206,7 +206,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 180, y: 4}
+    uvTransform: {x: 84, y: 244}
   - name: Ship Window_Corner_LefTop_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -215,8 +215,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 84
-      y: 172
+      x: 4
+      y: 284
       width: 32
       height: 32
     spriteID: 9e476cccbbde45444a63715df56f076a
@@ -227,7 +227,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 172}
+    uvTransform: {x: 4, y: 284}
   - name: Ship Window_Corner_LefBottom_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -237,7 +237,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 212
+      y: 324
       width: 32
       height: 32
     spriteID: 0b2032702efbc3941b04679950edf373
@@ -248,7 +248,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 212}
+    uvTransform: {x: 4, y: 324}
   - name: Ship Window_Corner_RightTop_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -257,8 +257,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 44
-      y: 212
+      x: 4
+      y: 364
       width: 32
       height: 32
     spriteID: b806b1c07ed7af743a45a2f2ef391056
@@ -269,7 +269,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 212}
+    uvTransform: {x: 4, y: 364}
   - name: Ship Window_Corner_RightBottom_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -278,8 +278,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 84
-      y: 212
+      x: 4
+      y: 404
       width: 32
       height: 32
     spriteID: fb58672518c48ae4483527098c30f7eb
@@ -290,7 +290,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 212}
+    uvTransform: {x: 4, y: 404}
   - name: Ship Window_Side_Right_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -299,8 +299,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
-      y: 4
+      x: 4
+      y: 444
       width: 32
       height: 32
     spriteID: 3adab34d392102b41a820aef07766f44
@@ -311,7 +311,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 4}
+    uvTransform: {x: 4, y: 444}
   - name: Ship Window_Side_Left_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -320,8 +320,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
-      y: 44
+      x: 44
+      y: 204
       width: 32
       height: 32
     spriteID: 58aa0f9eb6b54234fb8085d17b8851a4
@@ -332,7 +332,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 44}
+    uvTransform: {x: 44, y: 204}
   - name: Ship Window_Side_Top_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -341,8 +341,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
-      y: 84
+      x: 44
+      y: 244
       width: 32
       height: 32
     spriteID: 4ebe544bbc01bb341b72c365302e68ae
@@ -353,7 +353,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 84}
+    uvTransform: {x: 44, y: 244}
   - name: Ship Window_Side_Bottom_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -362,8 +362,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
-      y: 124
+      x: 44
+      y: 284
       width: 32
       height: 32
     spriteID: a29a92f7310687142bd8218d3bc4fd90
@@ -374,7 +374,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 124}
+    uvTransform: {x: 44, y: 284}
   - name: Ship Window_Middle_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -383,8 +383,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 140
-      y: 164
+      x: 44
+      y: 324
       width: 32
       height: 32
     spriteID: f6554cc7813d2e741b85787f267310ef
@@ -395,7 +395,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 140, y: 164}
+    uvTransform: {x: 44, y: 324}
   - name: Platform_Falling_Tile3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -404,8 +404,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 4
+      x: 4
+      y: 484
       width: 32
       height: 23
     spriteID: b740cfd95af102c478d271fe7eaa41c0
@@ -416,7 +416,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 4}
+    uvTransform: {x: 4, y: 484}
   - name: Platform_Falling_Tile2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -425,8 +425,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 35
+      x: 44
+      y: 484
       width: 32
       height: 23
     spriteID: 5e78e99ed88e67b46bc2417a7c835a35
@@ -437,7 +437,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 35}
+    uvTransform: {x: 44, y: 484}
   - name: Platform_Falling_Tile1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -446,8 +446,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 66
+      x: 84
+      y: 284
       width: 32
       height: 23
     spriteID: 8869be6cd87799c439a321b54372956d
@@ -458,7 +458,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 66}
+    uvTransform: {x: 84, y: 284}
   - name: Platform_Normal_Tile1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -467,8 +467,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 97
+      x: 84
+      y: 315
       width: 32
       height: 23
     spriteID: 503e6d6c15d7e1f4cb54009c380a765b
@@ -479,7 +479,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 97}
+    uvTransform: {x: 84, y: 315}
   - name: Platform_Normal_Tile2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -488,8 +488,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 128
+      x: 84
+      y: 346
       width: 32
       height: 23
     spriteID: 14d7156ef94c4604a886014de8b74a28
@@ -500,7 +500,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 128}
+    uvTransform: {x: 84, y: 346}
   - name: Platform_Normal_Tile3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -509,8 +509,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 216
-      y: 159
+      x: 84
+      y: 377
       width: 32
       height: 23
     spriteID: 5d44bf69c39d55d4dba6eb464d35a307
@@ -521,7 +521,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 216, y: 159}
+    uvTransform: {x: 84, y: 377}
   - name: Layer 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -533,7 +533,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 128
-      height: 160
+      height: 192
     spriteID: 62f0b38df020e5e4398f5dfe18959c2c
     spriteBone: []
     spriteOutline: []
@@ -543,9 +543,114 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Ship Haul Type 1_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 364
+      width: 32
+      height: 32
+    spriteID: 678bd52d1ae8b8e4d87e45cf41b1f5af
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 364}
+  - name: Ship Haul Type 1_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 404
+      width: 32
+      height: 32
+    spriteID: 09f7c426bca6a3745aea89ff6a10b44c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 404}
+  - name: Ship Haul Type 1_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 444
+      width: 32
+      height: 32
+    spriteID: d8a1a5d8a13852243ad106c004faac21
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 444}
+  - name: Spikes/Electrical Cords
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 435
+      width: 20
+      height: 9
+    spriteID: 4f5c8197ff8f6a2458af5426e9d28f00
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 435}
+  - name: Laser
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 408
+      width: 27
+      height: 19
+    spriteID: 4cf68184829965c44a97c6ebca3c2091
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 408}
   spriteSheetImportData: []
   asepriteLayers:
-  - layerIndex: 2
+  - layerIndex: 5
     uuid:
       value0: 880143639
       value1: 0
@@ -568,7 +673,7 @@ ScriptedImporter:
       spriteId: 4c0493969c81c4c4c85b7086c2bb1e99
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 3
+  - layerIndex: 6
     uuid:
       value0: 2167197239
       value1: 0
@@ -591,7 +696,7 @@ ScriptedImporter:
       spriteId: b21f186b181209e46b049b6e1c3b0337
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 4
+  - layerIndex: 9
     uuid:
       value0: 2446227580
       value1: 0
@@ -607,14 +712,14 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 34
+        x: 66
         y: 288
         width: 28
         height: 32
       spriteId: 223a4ceab6c330c458dc219f477d174c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 5
+  - layerIndex: 10
     uuid:
       value0: 4012311521
       value1: 0
@@ -630,14 +735,14 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 34
+        x: 66
         y: 256
         width: 28
         height: 32
       spriteId: 044ae29be8391c344a8e3ede1e0670b5
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 6
+  - layerIndex: 11
     uuid:
       value0: 2523127342
       value1: 0
@@ -651,7 +756,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 7
+  - layerIndex: 12
     uuid:
       value0: 2736848361
       value1: 0
@@ -673,8 +778,8 @@ ScriptedImporter:
         height: 32
       spriteId: 9e476cccbbde45444a63715df56f076a
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 8
+    parentIndex: 11
+  - layerIndex: 13
     uuid:
       value0: 3333610145
       value1: 0
@@ -696,8 +801,8 @@ ScriptedImporter:
         height: 32
       spriteId: 0b2032702efbc3941b04679950edf373
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 9
+    parentIndex: 11
+  - layerIndex: 14
     uuid:
       value0: 4150365840
       value1: 0
@@ -719,8 +824,8 @@ ScriptedImporter:
         height: 32
       spriteId: b806b1c07ed7af743a45a2f2ef391056
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 10
+    parentIndex: 11
+  - layerIndex: 15
     uuid:
       value0: 1754977932
       value1: 0
@@ -742,8 +847,8 @@ ScriptedImporter:
         height: 32
       spriteId: fb58672518c48ae4483527098c30f7eb
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 11
+    parentIndex: 11
+  - layerIndex: 16
     uuid:
       value0: 1612002865
       value1: 0
@@ -765,8 +870,8 @@ ScriptedImporter:
         height: 32
       spriteId: 3adab34d392102b41a820aef07766f44
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 12
+    parentIndex: 11
+  - layerIndex: 17
     uuid:
       value0: 4112326990
       value1: 0
@@ -788,8 +893,8 @@ ScriptedImporter:
         height: 32
       spriteId: 58aa0f9eb6b54234fb8085d17b8851a4
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 13
+    parentIndex: 11
+  - layerIndex: 18
     uuid:
       value0: 1040539476
       value1: 0
@@ -811,8 +916,8 @@ ScriptedImporter:
         height: 32
       spriteId: 4ebe544bbc01bb341b72c365302e68ae
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 14
+    parentIndex: 11
+  - layerIndex: 19
     uuid:
       value0: 1025108104
       value1: 0
@@ -834,8 +939,8 @@ ScriptedImporter:
         height: 32
       spriteId: a29a92f7310687142bd8218d3bc4fd90
     linkedCells: []
-    parentIndex: 6
-  - layerIndex: 15
+    parentIndex: 11
+  - layerIndex: 20
     uuid:
       value0: 1814148714
       value1: 0
@@ -857,7 +962,7 @@ ScriptedImporter:
         height: 32
       spriteId: f6554cc7813d2e741b85787f267310ef
     linkedCells: []
-    parentIndex: 6
+    parentIndex: 11
   - layerIndex: 1
     uuid:
       value0: 4287466680
@@ -877,11 +982,11 @@ ScriptedImporter:
         x: 192
         y: 64
         width: 128
-        height: 160
+        height: 192
       spriteId: 62f0b38df020e5e4398f5dfe18959c2c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 16
+  - layerIndex: 21
     uuid:
       value0: 1538260931
       value1: 0
@@ -895,7 +1000,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 17
+  - layerIndex: 22
     uuid:
       value0: 4269160539
       value1: 0
@@ -917,8 +1022,8 @@ ScriptedImporter:
         height: 23
       spriteId: b740cfd95af102c478d271fe7eaa41c0
     linkedCells: []
-    parentIndex: 16
-  - layerIndex: 18
+    parentIndex: 21
+  - layerIndex: 23
     uuid:
       value0: 4269160540
       value1: 0
@@ -940,8 +1045,8 @@ ScriptedImporter:
         height: 23
       spriteId: 5e78e99ed88e67b46bc2417a7c835a35
     linkedCells: []
-    parentIndex: 16
-  - layerIndex: 19
+    parentIndex: 21
+  - layerIndex: 24
     uuid:
       value0: 4269160537
       value1: 0
@@ -963,8 +1068,8 @@ ScriptedImporter:
         height: 23
       spriteId: 8869be6cd87799c439a321b54372956d
     linkedCells: []
-    parentIndex: 16
-  - layerIndex: 20
+    parentIndex: 21
+  - layerIndex: 25
     uuid:
       value0: 3595951515
       value1: 0
@@ -978,7 +1083,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 21
+  - layerIndex: 26
     uuid:
       value0: 3473681033
       value1: 0
@@ -1000,8 +1105,8 @@ ScriptedImporter:
         height: 23
       spriteId: 503e6d6c15d7e1f4cb54009c380a765b
     linkedCells: []
-    parentIndex: 20
-  - layerIndex: 22
+    parentIndex: 25
+  - layerIndex: 27
     uuid:
       value0: 3473681036
       value1: 0
@@ -1023,8 +1128,8 @@ ScriptedImporter:
         height: 23
       spriteId: 14d7156ef94c4604a886014de8b74a28
     linkedCells: []
-    parentIndex: 20
-  - layerIndex: 23
+    parentIndex: 25
+  - layerIndex: 28
     uuid:
       value0: 3473681035
       value1: 0
@@ -1046,7 +1151,122 @@ ScriptedImporter:
         height: 23
       spriteId: 5d44bf69c39d55d4dba6eb464d35a307
     linkedCells: []
-    parentIndex: 20
+    parentIndex: 25
+  - layerIndex: 2
+    uuid:
+      value0: 2018028614
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_4
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      spriteId: 678bd52d1ae8b8e4d87e45cf41b1f5af
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 3
+    uuid:
+      value0: 1258513727
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_3
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 288
+        width: 32
+        height: 32
+      spriteId: 09f7c426bca6a3745aea89ff6a10b44c
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 4
+    uuid:
+      value0: 2824597668
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      spriteId: d8a1a5d8a13852243ad106c004faac21
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 7
+    uuid:
+      value0: 1012198567
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Spikes/Electrical Cords
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Spikes/Electrical Cords
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 229
+        y: 288
+        width: 20
+        height: 9
+      spriteId: 4f5c8197ff8f6a2458af5426e9d28f00
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 8
+    uuid:
+      value0: 2515812557
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laser
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 261
+        y: 294
+        width: 27
+        height: 19
+      spriteId: 4cf68184829965c44a97c6ebca3c2091
+    linkedCells: []
+    parentIndex: -1
   platformSettings:
   - name: Default
     overridden: 0
@@ -1088,4 +1308,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 320, y: 320}
-  previousTextureSize: {x: 256, y: 256}
+  previousTextureSize: {x: 256, y: 512}

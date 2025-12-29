@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Platform_Falling
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -1013057417416701684, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
-  m_DefaultGameObject: {fileID: 6458077221640094631, guid: a64543433cd221042890d6063e7c6356, type: 3}
+  m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: -4615053748826969789, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
-    m_GameObject: {fileID: 6458077221640094631, guid: a64543433cd221042890d6063e7c6356, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -33,7 +33,7 @@ MonoBehaviour:
   - m_Id: 2
     m_Sprites:
     - {fileID: -3323821728063543554, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
-    m_GameObject: {fileID: 6458077221640094631, guid: a64543433cd221042890d6063e7c6356, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -47,7 +47,7 @@ MonoBehaviour:
   - m_Id: 1
     m_Sprites:
     - {fileID: -1013057417416701684, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
-    m_GameObject: {fileID: 6458077221640094631, guid: a64543433cd221042890d6063e7c6356, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
