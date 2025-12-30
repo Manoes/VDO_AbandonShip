@@ -40,6 +40,26 @@ public class DifficultyManager : MonoBehaviour
         maxGap = Mathf.Lerp(profile.GapMaxStart, profile.GapMaxEnd, time);
     }
 
+    public float GetSpikesChance(float score)
+    {
+        if(!profile) return 0f;
+        if(score < profile.SpikesStartScore) return 0f;
+
+        float time = (score - profile.SpikesStartScore) / Mathf.Max(0.0001f, profile.SpikesRampDuration);
+        time = Mathf.Clamp01(time);
+        return Mathf.Lerp(0f, profile.SpikesMaxChance, time);
+    }
+
+    public float GetLaserChance(float score)
+    {
+        if(!profile) return 0f;
+        if(score < profile.LaserStartScore) return 0f;
+
+        float time = (score - profile.LaserStartScore) / Mathf.Max(0.0001f, profile.LaserRampDuration);
+        time = Mathf.Clamp01(time);
+        return Mathf.Lerp(0f, profile.LaserMaxChance, time);
+    }
+
     public bool SpikesEnabled(float score) => profile && score >= profile.SpikesStartScore;
     public bool LaserEnabled(float score) => profile && score >= profile.LaserStartScore;
 }

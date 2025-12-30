@@ -615,9 +615,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 435
-      width: 20
-      height: 9
+      y: 462
+      width: 22
+      height: 13
     spriteID: 4f5c8197ff8f6a2458af5426e9d28f00
     spriteBone: []
     spriteOutline: []
@@ -626,11 +626,11 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 435}
-  - name: Laser
+    uvTransform: {x: 84, y: 462}
+  - name: Laser_Right
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0, y: 0.52}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -639,7 +639,7 @@ ScriptedImporter:
       y: 408
       width: 27
       height: 19
-    spriteID: 4cf68184829965c44a97c6ebca3c2091
+    spriteID: 8445d71178cc13d4eb982430969ec341
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -648,6 +648,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 84, y: 408}
+  - name: Laser_Left
+    originalName: 
+    pivot: {x: 1.0000002, y: 0.52}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 435
+      width: 27
+      height: 19
+    spriteID: f0b529136c45d7344bdd071ca3f7edb8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 435}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 5
@@ -696,7 +717,7 @@ ScriptedImporter:
       spriteId: b21f186b181209e46b049b6e1c3b0337
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 9
+  - layerIndex: 10
     uuid:
       value0: 2446227580
       value1: 0
@@ -719,7 +740,7 @@ ScriptedImporter:
       spriteId: 223a4ceab6c330c458dc219f477d174c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 10
+  - layerIndex: 11
     uuid:
       value0: 4012311521
       value1: 0
@@ -742,7 +763,7 @@ ScriptedImporter:
       spriteId: 044ae29be8391c344a8e3ede1e0670b5
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 11
+  - layerIndex: 12
     uuid:
       value0: 2523127342
       value1: 0
@@ -756,7 +777,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 12
+  - layerIndex: 13
     uuid:
       value0: 2736848361
       value1: 0
@@ -778,8 +799,8 @@ ScriptedImporter:
         height: 32
       spriteId: 9e476cccbbde45444a63715df56f076a
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 13
+    parentIndex: 12
+  - layerIndex: 14
     uuid:
       value0: 3333610145
       value1: 0
@@ -801,8 +822,8 @@ ScriptedImporter:
         height: 32
       spriteId: 0b2032702efbc3941b04679950edf373
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 14
+    parentIndex: 12
+  - layerIndex: 15
     uuid:
       value0: 4150365840
       value1: 0
@@ -824,8 +845,8 @@ ScriptedImporter:
         height: 32
       spriteId: b806b1c07ed7af743a45a2f2ef391056
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 15
+    parentIndex: 12
+  - layerIndex: 16
     uuid:
       value0: 1754977932
       value1: 0
@@ -847,8 +868,8 @@ ScriptedImporter:
         height: 32
       spriteId: fb58672518c48ae4483527098c30f7eb
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 16
+    parentIndex: 12
+  - layerIndex: 17
     uuid:
       value0: 1612002865
       value1: 0
@@ -870,8 +891,8 @@ ScriptedImporter:
         height: 32
       spriteId: 3adab34d392102b41a820aef07766f44
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 17
+    parentIndex: 12
+  - layerIndex: 18
     uuid:
       value0: 4112326990
       value1: 0
@@ -893,8 +914,8 @@ ScriptedImporter:
         height: 32
       spriteId: 58aa0f9eb6b54234fb8085d17b8851a4
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 18
+    parentIndex: 12
+  - layerIndex: 19
     uuid:
       value0: 1040539476
       value1: 0
@@ -916,8 +937,8 @@ ScriptedImporter:
         height: 32
       spriteId: 4ebe544bbc01bb341b72c365302e68ae
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 19
+    parentIndex: 12
+  - layerIndex: 20
     uuid:
       value0: 1025108104
       value1: 0
@@ -939,8 +960,8 @@ ScriptedImporter:
         height: 32
       spriteId: a29a92f7310687142bd8218d3bc4fd90
     linkedCells: []
-    parentIndex: 11
-  - layerIndex: 20
+    parentIndex: 12
+  - layerIndex: 21
     uuid:
       value0: 1814148714
       value1: 0
@@ -962,7 +983,7 @@ ScriptedImporter:
         height: 32
       spriteId: f6554cc7813d2e741b85787f267310ef
     linkedCells: []
-    parentIndex: 11
+    parentIndex: 12
   - layerIndex: 1
     uuid:
       value0: 4287466680
@@ -986,7 +1007,7 @@ ScriptedImporter:
       spriteId: 62f0b38df020e5e4398f5dfe18959c2c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 21
+  - layerIndex: 22
     uuid:
       value0: 1538260931
       value1: 0
@@ -1000,7 +1021,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 22
+  - layerIndex: 23
     uuid:
       value0: 4269160539
       value1: 0
@@ -1022,8 +1043,8 @@ ScriptedImporter:
         height: 23
       spriteId: b740cfd95af102c478d271fe7eaa41c0
     linkedCells: []
-    parentIndex: 21
-  - layerIndex: 23
+    parentIndex: 22
+  - layerIndex: 24
     uuid:
       value0: 4269160540
       value1: 0
@@ -1045,8 +1066,8 @@ ScriptedImporter:
         height: 23
       spriteId: 5e78e99ed88e67b46bc2417a7c835a35
     linkedCells: []
-    parentIndex: 21
-  - layerIndex: 24
+    parentIndex: 22
+  - layerIndex: 25
     uuid:
       value0: 4269160537
       value1: 0
@@ -1068,8 +1089,8 @@ ScriptedImporter:
         height: 23
       spriteId: 8869be6cd87799c439a321b54372956d
     linkedCells: []
-    parentIndex: 21
-  - layerIndex: 25
+    parentIndex: 22
+  - layerIndex: 26
     uuid:
       value0: 3595951515
       value1: 0
@@ -1083,7 +1104,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 26
+  - layerIndex: 27
     uuid:
       value0: 3473681033
       value1: 0
@@ -1105,8 +1126,8 @@ ScriptedImporter:
         height: 23
       spriteId: 503e6d6c15d7e1f4cb54009c380a765b
     linkedCells: []
-    parentIndex: 25
-  - layerIndex: 27
+    parentIndex: 26
+  - layerIndex: 28
     uuid:
       value0: 3473681036
       value1: 0
@@ -1128,8 +1149,8 @@ ScriptedImporter:
         height: 23
       spriteId: 14d7156ef94c4604a886014de8b74a28
     linkedCells: []
-    parentIndex: 25
-  - layerIndex: 28
+    parentIndex: 26
+  - layerIndex: 29
     uuid:
       value0: 3473681035
       value1: 0
@@ -1151,7 +1172,7 @@ ScriptedImporter:
         height: 23
       spriteId: 5d44bf69c39d55d4dba6eb464d35a307
     linkedCells: []
-    parentIndex: 25
+    parentIndex: 26
   - layerIndex: 2
     uuid:
       value0: 2018028614
@@ -1237,26 +1258,26 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 229
+        x: 230
         y: 288
-        width: 20
-        height: 9
+        width: 22
+        height: 13
       spriteId: 4f5c8197ff8f6a2458af5426e9d28f00
     linkedCells: []
     parentIndex: -1
   - layerIndex: 8
     uuid:
-      value0: 2515812557
+      value0: 313899972
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Laser
+    name: Laser_Right
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Laser
+    - name: Laser_Right
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -1264,7 +1285,30 @@ ScriptedImporter:
         y: 294
         width: 27
         height: 19
-      spriteId: 4cf68184829965c44a97c6ebca3c2091
+      spriteId: 8445d71178cc13d4eb982430969ec341
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 9
+    uuid:
+      value0: 1207754285
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser_Left
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laser_Left
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 288
+        y: 294
+        width: 27
+        height: 19
+      spriteId: f0b529136c45d7344bdd071ca3f7edb8
     linkedCells: []
     parentIndex: -1
   platformSettings:

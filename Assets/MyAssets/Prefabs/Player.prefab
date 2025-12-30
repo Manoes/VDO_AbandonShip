@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1371982197674623922}
   - component: {fileID: 7425675122821377785}
   - component: {fileID: 2248130280734625758}
+  - component: {fileID: 1193858732356952151}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -223,6 +224,18 @@ MonoBehaviour:
   requireReleaseBeforeBoost: 0
   jetpackParticles: {fileID: 1491892378769335841}
   vfxBurstDuration: 0.12
+--- !u!114 &1193858732356952151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212640277065319752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e515957258432844875df58dec9c59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1344404738816214838
 GameObject:
   m_ObjectHideFlags: 0

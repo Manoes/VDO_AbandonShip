@@ -4,19 +4,36 @@ using UnityEngine.Tilemaps;
 
 public class PlatformManager : MonoBehaviour
 {
-    [Header("Tilemap Platform Output")]
+    [Header("Tilemaps")]
     [Tooltip("Optional. If left empty, we auto-find the platform Tilemap by Tag.")]
     [SerializeField] private Tilemap platformTilemap;
     [Tooltip("Tag on the Platform Tilemap GameObject.")]
     [SerializeField] private string platformTilemapTag = "Platforms";
 
-    [Header("Tiles")]
+    [SerializeField] private Tilemap spikesTileMap;
+    [SerializeField] private string spikesTilemapTag = "Spikes";
+    [SerializeField] private LayerMask hazardMask;
+
+    [Header("Rule Tiles")]
     [SerializeField] private TileBase platformTile;
-    [SerializeField] private TileBase fallingPlatformTile; // <-- FIX #1 (this was missing)
+    [SerializeField] private TileBase fallingPlatformTile; 
+    [SerializeField] private TileBase spikeTile;
 
     [Header("Falling Platforms (Prefab Tilemap Chunk)")]
-    [Tooltip("Prefab root has Rigidbody2D + CompositeCollider2D + FallingTilemapPlatform. Child has Tilemap + TilemapCollider2D (Used By Composite).")]
     [SerializeField] private GameObject fallingTilemapPrefab;
+
+    [Header("Spikes")]
+    [Tooltip("Keep First/Last N Tiles of a Platform Spike-Free")]
+    [SerializeField] private int spikesSafeEdgeTiles = 1;
+    [Tooltip("Never Cover more than the Fraction of a Platform with Spikes ")]
+    [Range(0f, 1f)]
+    [SerializeField] private float spikesMaxCoverage = 0.6f;
+
+    [Header("Laser")]
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private int laserMinTiles = 3;
+    [SerializeField] private int laserMaxTiles = 7;
+    [SerializeField] private float laserYOffset = 0.45f;
 
     [Header("Spawn Height")]
     [SerializeField] private float spawnAhead = 14f;
@@ -71,6 +88,8 @@ public class PlatformManager : MonoBehaviour
 
         public bool isFalling;
         public Transform fallingTransform; // prefab root if isFalling
+
+        public bool hasSpikes;
     }
 
     readonly List<PlacedSpan> spans = new();
@@ -115,6 +134,31 @@ public class PlatformManager : MonoBehaviour
             return false;
         }
 
+        // Spikes TileMap
+        if (!spikesTileMap)
+        {
+            if (!string.IsNullOrWhiteSpace(spikesTilemapTag))
+            {
+                var taggedGO = GameObject.FindGameObjectWithTag(spikesTilemapTag);
+                if(taggedGO) spikesTileMap = taggedGO.GetComponent<Tilemap>();
+
+                if (!spikesTileMap)
+                {
+                    var all = FindObjectsByType<Tilemap>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                    for(int i = 0; i < all.Length; i++)
+                    {
+                        var tm = all[i];
+                        if(!tm) continue;
+                        if (tm.CompareTag(spikesTilemapTag))
+                        {
+                            spikesTileMap = tm;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         return true;
     }
 
@@ -150,6 +194,9 @@ public class PlatformManager : MonoBehaviour
                 break;
 
             var s = spans[i];
+
+            if(s.hasSpikes)
+                ClearSpikesSpan(s);
 
             if (s.isFalling)
             {
@@ -259,22 +306,39 @@ public class PlatformManager : MonoBehaviour
         }
         occupied.Add((xMin, xMax));
 
+        var span = new PlacedSpan
+        {
+            yCell = yCell,
+            xMin = xMin,
+            xMax = xMax,
+            worldY = yWorld,
+            isFalling = false,
+            fallingTransform = null,
+            hasSpikes = false
+        };
+
         if (spawnFalling)
         {
-            // spawn at the exact left-most cell position
+            // Spawn at the Exact Left-Most Cell Position
             Vector3 worldCellOrigin = platformTilemap.GetCellCenterWorld(new Vector3Int(xMin, yCell, 0));
-
             GameObject go = Instantiate(fallingTilemapPrefab, worldCellOrigin, Quaternion.identity);
 
-            // find the tilemap inside prefab
+            // Find the Tilemap Inside Prefab
             Tilemap tm = go.GetComponentInChildren<Tilemap>(true);
+            if (!tm)
+            {
+                Debug.LogError("[PlatformManager] FallingTilemapPrefab needs a Tilemap in Children.");
+                Destroy(go);
+                return false;
+            }
+
             tm.ClearAllTiles();
 
-            // paint horizontally starting at local cell (0,0)
+            // Paint Horizontally starting at Local Cell (0,0)
             for (int i = 0; i < tiles; i++)
                 tm.SetTile(new Vector3Int(i, 0, 0), fallingPlatformTile);
 
-            // IMPORTANT: remove the original tiles from the main platform tilemap
+            // Remove the Original Tiles from the Main Platform Tilemap
             for (int x = xMin; x <= xMax; x++)
                 platformTilemap.SetTile(new Vector3Int(x, yCell, 0), null);
 
@@ -284,47 +348,149 @@ public class PlatformManager : MonoBehaviour
 
             var tmc = tm.GetComponent<TilemapCollider2D>();
             if (tmc) { tmc.enabled = false; tmc.enabled = true; }
-
             Physics2D.SyncTransforms();
 
-            // reset physics script
+            // Reset Physics Script
             var falling = go.GetComponent<FallingTilemapPlatform>();
             if (falling) falling.ResetPlatform();
 
-            spans.Add(new PlacedSpan
-            {
-                yCell = yCell,
-                xMin = xMin,
-                xMax = xMax,
-                worldY = yWorld,
-                isFalling = true,
-                fallingTransform = go.transform
-            });
+            span.isFalling = true;
+            span.fallingTransform = go.transform;
         }
         else
         {
             for (int tx = xMin; tx <= xMax; tx++)
                 platformTilemap.SetTile(new Vector3Int(tx, yCell, 0), platformTile);
-
-            spans.Add(new PlacedSpan
-            {
-                yCell = yCell,
-                xMin = xMin,
-                xMax = xMax,
-                worldY = yWorld,
-                isFalling = false,
-                fallingTransform = null
-            });
         }
+
+        // Spawn Spikes -> Only on Non-Falling Platforms
+        if (!span.isFalling)
+        {
+            if(TryPlaceSpikesOnSpan(ref span, score))
+            {
+                
+            }
+        }
+
+        if(!span.isFalling && !span.hasSpikes)
+        {
+            TrySpawnLaserOnSpan(yCell, xMin, xMax);
+        }
+
+        spans.Add(span);
 
         // Jetpack
         if (jetpackPickupPrefab != null && Random.value < jetpackChance)
         {
             Vector3 pos = new Vector3(xWorld, yWorld + jetpackSpawnYOffset, 0f);
-            Instantiate(jetpackPickupPrefab, pos, Quaternion.identity);
+
+            if(IsJetPackCellClear(pos))
+                Instantiate(jetpackPickupPrefab, pos, Quaternion.identity);
         }
 
         return true;
+    }
+
+    bool IsJetPackCellClear(Vector3 worldPos)
+    {
+        if (spikesTileMap)
+        {
+            Vector3Int cell = spikesTileMap.WorldToCell(worldPos);
+            if(spikesTileMap.HasTile(cell)) return false;
+        }
+
+        // Reject if Overlaps Hazards
+        Collider2D hit = Physics2D.OverlapCircle(worldPos, 0.2f, hazardMask);         
+        return hit == null;
+    }
+
+    bool TryPlaceSpikesOnSpan(ref PlacedSpan span, float score)
+    {
+        if(spikeTile == null) return false;
+        if(!DifficultyManager.Instance) return false;
+        if(!DifficultyManager.Instance.SpikesEnabled(score)) return false;
+
+        float chance = DifficultyManager.Instance.GetSpikesChance(score);
+        if(chance <= 0f) return false;
+        if(Random.value >= chance) return false;
+
+        int widthTiles = span.xMax - span.xMin + 1;
+
+        // Don't Allow Spikes to be Impossible
+        int safe = Mathf.Max(0, spikesSafeEdgeTiles);
+        int usable = widthTiles - safe * 2;
+        if(usable <= 0) return false;
+
+        int maxCover = Mathf.Clamp(Mathf.FloorToInt(usable * Mathf.Clamp01(spikesMaxCoverage)), 1, usable); 
+
+        // Choose a Contigunous Spike Run Lenght
+        int run = Random.Range(1, maxCover+ 1);
+
+        // Choose Start within Usable Range
+        int startMin = span.xMin + safe;
+        int startMax = span.xMax - safe - run + 1;
+        if(startMax < startMin) return false;
+
+        int start = Random.Range(startMin, startMax + 1);
+        int end = start + run - 1;
+
+        // Spikes are placed on top Row: yCell +1 
+        int spikesY = span.yCell + 1;
+
+        var target = spikesTileMap ? spikesTileMap : platformTilemap;
+
+        for(int x = start; x <= end; x++)
+            target.SetTile(new Vector3Int(x, spikesY, 0), spikeTile);
+        
+        span.hasSpikes = true;
+        return true;
+    }
+
+    void ClearSpikesSpan(PlacedSpan span)
+    {
+        if(spikeTile == null) return;
+
+        var target = spikesTileMap ? spikesTileMap : platformTilemap;
+
+        int spikesY = span.yCell + 1;
+        for(int x = span.xMin; x <= span.xMax; x++)
+            target.SetTile(new Vector3Int(x, spikesY, 0), null);
+    }
+
+    void TrySpawnLaserOnSpan(int yCell, int xMin, int xMax)
+    {
+        if(!laserPrefab) return;
+
+        float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
+        if(!DifficultyManager.Instance || !DifficultyManager.Instance.LaserEnabled(score)) return;
+
+        float chance = DifficultyManager.Instance.GetLaserChance(score);
+        if(chance <= 0f) return;
+        if(Random.value >= chance) return;
+
+        int usableMin = xMin + 1;
+        int usableMax = xMax - 1;
+        if(usableMax - usableMin + 1 < laserMinTiles) return;
+
+        int maxLen = Mathf.Min(laserMaxTiles, usableMax - usableMin + 1);
+        int lenTiles = Random.Range(laserMinTiles, maxLen + 1);
+
+        int startX = Random.Range(usableMin, usableMax - lenTiles + 2);
+        int endX = startX + lenTiles - 1;
+
+        // World Position = Middle of Segment
+        Vector3 startWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(startX, yCell, 0));
+        Vector3 endWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(endX, yCell, 0));
+        Vector3 mid = (startWorld + endWorld) * 0.5f;
+
+        float lenghtWorld = lenTiles * CellSizeX;
+
+        // Place slightly above Platform
+        Vector3 pos = new Vector3(mid.x, startWorld.y + laserYOffset, 0f);
+
+        GameObject go = Instantiate(laserPrefab, pos, Quaternion.identity);
+        var laser = go.GetComponent<LaserHazard>();
+        if(laser) laser.SetLengthWorld(lenghtWorld);
     }
 
     float ClampInsideBounds(float x, float width, float minX, float maxX)
@@ -367,6 +533,7 @@ public class PlatformManager : MonoBehaviour
 
         // clear tiles
         platformTilemap.ClearAllTiles();
+        if(spikesTileMap) spikesTileMap.ClearAllTiles();
 
         // destroy falling prefabs
         for (int i = 0; i < spans.Count; i++)

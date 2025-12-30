@@ -20,9 +20,15 @@ public class DifficultyProfile : ScriptableObject
     [SerializeField] private float gapMaxEnd = 7.0f;
     [SerializeField] private float gapRampScore = 120f;
 
-    [Header("Hazards Unlocked at Score")]
+    [Header("Spikes")]
     [SerializeField] private float spikesStartScore = 80f;
+    [SerializeField] private float spikesRampDuration = 60f;
+    [SerializeField] private float spikesMaxChance = 0.35f;
+
+    [Header("Laser")]
     [SerializeField] private float laserStartScore = 100f;
+    [SerializeField] private float laserRampDuration = 80f;
+    [SerializeField] private float laserMaxChance = 0.20f;
 
     public float FallingStartScore => fallingStartScore; 
     public float FallingRampDuration => fallingRampDuration; 
@@ -36,5 +42,10 @@ public class DifficultyProfile : ScriptableObject
     public float GapMaxEnd => gapMaxEnd; 
     public float GapRampScore => gapRampScore; 
     public float SpikesStartScore => spikesStartScore; 
-    public float LaserStartScore => laserStartScore; 
+    public float SpikesRampDuration => spikesRampDuration; 
+    public float SpikesMaxChance => spikesMaxChance;     
+    public float LaserStartScore => laserStartScore;
+    public float LaserRampDuration => laserRampDuration;
+    public float LaserMaxChance => laserMaxChance;
+    
 }
