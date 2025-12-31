@@ -5,7 +5,6 @@ public class HazardDamage2D : MonoBehaviour
 {
     [SerializeField] private int damage = 1;
     [SerializeField] private bool useTrigger = true;
-    [SerializeField] private string playerTag = "Player";
 
     void Reset()
     {
@@ -27,7 +26,7 @@ public class HazardDamage2D : MonoBehaviour
 
     void TryHit(Collider2D collider)
     {
-        if(!collider.CompareTag(playerTag)) return;
+        if(!collider.CompareTag("Player")) return;
 
         var healh = collider.GetComponentInParent<Health>();
         if(healh) healh.TakeDamage(damage);

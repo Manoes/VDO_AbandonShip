@@ -164,8 +164,8 @@ MonoBehaviour:
   spikesSafeEdgeTiles: 1
   spikesMaxCoverage: 0.6
   laserPrefab: {fileID: 6746841322121651826, guid: 75d199654622db945925d96d9f4ccf56, type: 3}
-  laserMinTiles: 3
-  laserMaxTiles: 7
+  laserMinTiles: 2
+  laserMaxTiles: 4
   laserYOffset: 0.45
   spawnAhead: 12
   despawnBelowDeathWall: 4
@@ -386,15 +386,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.110687025
+    x: -1.4512194
     y: 0
-    width: 1.221374
-    height: 0.99661016
+    width: 3.9024389
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.59375
+  orthographic size: 1.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -956,6 +956,7 @@ GameObject:
   - component: {fileID: 1397691428}
   - component: {fileID: 1397691427}
   - component: {fileID: 1397691426}
+  - component: {fileID: 1397691429}
   m_Layer: 7
   m_Name: Spikes_Tilemap
   m_TagString: Spikes
@@ -1108,6 +1109,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1397691429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397691424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5d74ba4cddaa543a5cd22c93627317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  useTrigger: 1
 --- !u!1001 &1437862174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1181,7 +1196,7 @@ GameObject:
   - component: {fileID: 1819094242}
   - component: {fileID: 1819094241}
   m_Layer: 6
-  m_Name: Grid_Platforms
+  m_Name: Grid_Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1244,7 @@ GameObject:
   - component: {fileID: 1894240921}
   - component: {fileID: 1894240923}
   m_Layer: 6
-  m_Name: Tilemap_Platform
+  m_Name: Platform_Tilemap
   m_TagString: Platforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,6 +1456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1193858732356952151, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 152811379}
     - target: {fileID: 4455526347943183872, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

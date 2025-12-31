@@ -73,6 +73,7 @@ public class PlatformManager : MonoBehaviour
     Camera cam;
 
     int nextRowCellY;
+    int lastSpawnedRowCellY;
     float lastPathX;
     int dir = 1;
 
@@ -86,10 +87,16 @@ public class PlatformManager : MonoBehaviour
         public int xMax;
         public float worldY;
 
+        // Falling Platform
         public bool isFalling;
         public Transform fallingTransform; // prefab root if isFalling
 
+        // Spikes
         public bool hasSpikes;
+
+        // Laser
+        public bool hasLaser;
+        public Transform laserTransform;
     }
 
     readonly List<PlacedSpan> spans = new();
@@ -198,15 +205,13 @@ public class PlatformManager : MonoBehaviour
             if(s.hasSpikes)
                 ClearSpikesSpan(s);
 
-            if (s.isFalling)
-            {
-                if (s.fallingTransform) Destroy(s.fallingTransform.gameObject);
-            }
+            if(s.hasLaser && s.laserTransform)
+                Destroy(s.laserTransform.gameObject);
+            else if (s.isFalling && s.fallingTransform)
+                Destroy(s.fallingTransform.gameObject);           
             else
-            {
                 for (int x = s.xMin; x <= s.xMax; x++)
                     platformTilemap.SetTile(new Vector3Int(x, s.yCell, 0), null);
-            }
 
             removeCount++;
         }
@@ -222,11 +227,13 @@ public class PlatformManager : MonoBehaviour
         if (DifficultyManager.Instance)
             DifficultyManager.Instance.GetGapRange(score, out rowMinGapY, out rowMaxGapY);
 
+        int lowerRowY = lastSpawnedRowCellY;
         int gapCells = Mathf.Max(
             1,
             Mathf.RoundToInt(Random.Range(rowMinGapY, rowMaxGapY) / Mathf.Max(0.0001f, CellSizeY))
         );
         nextRowCellY += gapCells;
+        int upperRowY = nextRowCellY;
 
         // Camera bounds (world)
         float halfHeight = cam.orthographicSize;
@@ -247,7 +254,7 @@ public class PlatformManager : MonoBehaviour
         float pathWidth = Random.Range(minWidth, maxWidth);
         pathX = ClampInsideBounds(pathX, pathWidth, minX, maxX);
 
-        PlacePlatformNoOverlap(pathX, nextRowCellY, pathWidth, occupied);
+        PlacePlatformNoOverlap(pathX, upperRowY, pathWidth, occupied);
         lastPathX = pathX;
 
         // Extras
@@ -274,6 +281,10 @@ public class PlatformManager : MonoBehaviour
 
             _ = placed;
         }
+
+        TrySpawnLaser(lowerRowY, upperRowY, score);
+
+        lastSpawnedRowCellY = upperRowY;
     }
 
     bool PlacePlatformNoOverlap(float xWorld, int yCell, float widthWorld, List<(int xMin, int xMax)> occupied)
@@ -366,15 +377,7 @@ public class PlatformManager : MonoBehaviour
         // Spawn Spikes -> Only on Non-Falling Platforms
         if (!span.isFalling)
         {
-            if(TryPlaceSpikesOnSpan(ref span, score))
-            {
-                
-            }
-        }
-
-        if(!span.isFalling && !span.hasSpikes)
-        {
-            TrySpawnLaserOnSpan(yCell, xMin, xMax);
+            TryPlaceSpikesOnSpan(ref span, score);
         }
 
         spans.Add(span);
@@ -457,40 +460,74 @@ public class PlatformManager : MonoBehaviour
             target.SetTile(new Vector3Int(x, spikesY, 0), null);
     }
 
-    void TrySpawnLaserOnSpan(int yCell, int xMin, int xMax)
+    bool TrySpawnLaser(int lowerRowY, int upperRowY, float score)
     {
-        if(!laserPrefab) return;
-
-        float score = GameManager.Instance ? GameManager.Instance.Score : 0f;
-        if(!DifficultyManager.Instance || !DifficultyManager.Instance.LaserEnabled(score)) return;
+        if(!laserPrefab) return false;
+        if(!DifficultyManager.Instance)  return false;
+        if(!DifficultyManager.Instance.LaserEnabled(score)) return false;         
 
         float chance = DifficultyManager.Instance.GetLaserChance(score);
-        if(chance <= 0f) return;
-        if(Random.value >= chance) return;
+        if(chance <= 0f || Random.value >= chance) return false; 
 
-        int usableMin = xMin + 1;
-        int usableMax = xMax - 1;
-        if(usableMax - usableMin + 1 < laserMinTiles) return;
+        int gapHeight = upperRowY - lowerRowY;
+        if(gapHeight < 2) return false;
 
-        int maxLen = Mathf.Min(laserMaxTiles, usableMax - usableMin + 1);
+        // Pick a y Cell in th Air Gap
+        int laserYCell = Random.Range(lowerRowY +1, upperRowY);
+
+        // Use Camera Bounds to decide X Range
+        float halfHeight = cam.orthographicSize;
+        float halfWidth = halfHeight * cam.aspect;
+        float camX = cam.transform.position.x;
+
+        float minXWorld = camX - halfWidth + edgePadding;
+        float maxXWorld = camX + halfWidth - edgePadding;
+
+        int minXCell = platformTilemap.WorldToCell(new Vector3(minXWorld, 0f, 0f)).x;
+        int maxXCell = platformTilemap.WorldToCell(new Vector3(maxXWorld, 0f, 0f)).x;
+
+        int usableLen = maxXCell - minXCell + 1;
+        if(usableLen < laserMinTiles) return false;
+
+        int maxLen = Mathf.Min(laserMaxTiles, usableLen);
         int lenTiles = Random.Range(laserMinTiles, maxLen + 1);
 
-        int startX = Random.Range(usableMin, usableMax - lenTiles + 2);
+        int startX = Random.Range(minXCell, maxXCell - lenTiles + 2);
         int endX = startX + lenTiles - 1;
-
-        // World Position = Middle of Segment
-        Vector3 startWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(startX, yCell, 0));
-        Vector3 endWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(endX, yCell, 0));
+        
+        Vector3 startWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(startX, laserYCell, 0));
+        Vector3 endWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(endX, laserYCell, 0));
         Vector3 mid = (startWorld + endWorld) * 0.5f;
 
         float lenghtWorld = lenTiles * CellSizeX;
-
-        // Place slightly above Platform
         Vector3 pos = new Vector3(mid.x, startWorld.y + laserYOffset, 0f);
 
+        // Reject if it Overlaps Existing Hazards/Platforms
+        Vector2 boxSize = new Vector2(lenghtWorld, CellSizeY * 0.8f);
+        if(Physics2D.OverlapBox(pos, boxSize, 0f, hazardMask) != null)
+            return false; 
+
         GameObject go = Instantiate(laserPrefab, pos, Quaternion.identity);
+
         var laser = go.GetComponent<LaserHazard>();
         if(laser) laser.SetLengthWorld(lenghtWorld);
+
+        // Store Laser in Span 
+        spans.Add(new PlacedSpan
+        {   
+            yCell = laserYCell,
+            xMin = startX,
+            xMax = endX,
+            worldY = startWorld.y,
+            isFalling = false,
+            fallingTransform = null,
+            hasSpikes = false,
+            hasLaser = true,
+            laserTransform = go.transform
+        });
+        
+        Debug.Log($"[PlatformManager/LaserSpawn] Spawned Laser at: {pos} with Lenght: {lenghtWorld}");
+        return true;
     }
 
     float ClampInsideBounds(float x, float width, float minX, float maxX)
@@ -546,6 +583,7 @@ public class PlatformManager : MonoBehaviour
         dir = 1;
 
         nextRowCellY = platformTilemap.WorldToCell(new Vector3(0f, player.position.y, 0f)).y - 10;
+        lastSpawnedRowCellY = nextRowCellY;
 
         SpawnPlatformUnderPlayer();
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6100164311276615551}
   - component: {fileID: 4457155356710439451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EmitterRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3396771806123064710, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2893252854698386684}
   - component: {fileID: 4756604387229094181}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EmitterLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 4749546599738293458, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -184,9 +184,9 @@ GameObject:
   m_Component:
   - component: {fileID: 985839491231312974}
   - component: {fileID: 3141407302916451644}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,10 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbce6071eb7aeb449b0608e36bd306a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   beam: {fileID: 7630954488387135255}
   leftEmitter: {fileID: 2893252854698386684}
   rightEmitter: {fileID: 6100164311276615551}
-  damageInterval: 0.15
 --- !u!1 &7199187353761063040
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,8 @@ GameObject:
   - component: {fileID: 7630954488387135255}
   - component: {fileID: 2271098815689285255}
   - component: {fileID: 8424974129268862307}
-  m_Layer: 0
+  - component: {fileID: 2040648426142930899}
+  m_Layer: 7
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +254,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 985839491231312974}
@@ -301,7 +302,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -359,3 +360,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2040648426142930899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199187353761063040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5d74ba4cddaa543a5cd22c93627317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  useTrigger: 1

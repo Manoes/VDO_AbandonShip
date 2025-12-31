@@ -236,6 +236,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e515957258432844875df58dec9c59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 3
+  invulnSeconds: 0.6
+  blinkInterval: 0.08
+  renderersToBlink:
+  - {fileID: 8178452218915580052}
+  flashWhileOnHit: 1
+  whiteFlashTime: 0.06
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlatformManager, Assembly-CSharp
+        m_MethodName: ResetRun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1344404738816214838
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,6 @@ MonoBehaviour:
   spikesStartScore: 20
   spikesRampDuration: 60
   spikesMaxChance: 0.65
-  laserStartScore: 30
+  laserStartScore: 40
   laserRampDuration: 80
-  laserMaxChance: 0.3
+  laserMaxChance: 0.45
