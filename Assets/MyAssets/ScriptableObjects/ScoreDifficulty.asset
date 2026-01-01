@@ -28,4 +28,4 @@ MonoBehaviour:
   spikesMaxChance: 0.65
   laserStartScore: 40
   laserRampDuration: 80
-  laserMaxChance: 0.45
+  laserMaxChance: 0.35

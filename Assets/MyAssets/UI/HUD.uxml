@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="RootContainer" style="flex-grow: 1; flex-direction: row; margin-top: 1%; margin-right: 1%; margin-bottom: 1%; margin-left: 1%;">
+        <ui:VisualElement name="PlayerUIContainer" style="flex-grow: 1; height: 21%; width: 50%;">
+            <ui:VisualElement name="HealthIconContainer" style="flex-grow: 1; flex-direction: row; margin-top: 0%; margin-right: 0%; margin-bottom: 0%; margin-left: 0%; padding-top: 0%; padding-right: 0%; padding-bottom: 0%; padding-left: 0%; width: 42%; height: 3%;">
+                <ui:VisualElement name="HealthIcon1" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=-8005382695318401493&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Icon_Health&quot;); padding-top: 1%; padding-right: 1%; padding-bottom: 1%; padding-left: 1%; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="HealthIcon2" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=-8005382695318401493&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Icon_Health&quot;); padding-top: 1%; padding-right: 1%; padding-bottom: 1%; padding-left: 1%; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="HealthIcon3" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=-8005382695318401493&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Icon_Health&quot;); padding-top: 1%; padding-right: 1%; padding-bottom: 1%; padding-left: 1%; -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:Label text="Jetpack Fuel: 3/3" name="JetpackFuel" style="color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ScoreContainer" style="flex-grow: 1; height: 20%; width: 50%;">
+            <ui:Label text="Score: 000000000099999999" name="Score" style="flex-shrink: 1; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255); -unity-text-align: upper-right; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=b976d29c9baf1ca489172636a6632c7e&amp;type=3#NotInter-Regular&quot;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
