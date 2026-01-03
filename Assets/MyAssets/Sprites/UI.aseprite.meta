@@ -131,8 +131,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
+      x: 27
+      y: 28
       width: 12
       height: 16
     spriteID: fffc7805140a18245828492286d9a12d
@@ -143,10 +143,157 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
+    uvTransform: {x: 27, y: 28}
+  - name: Panel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 27
+      y: 52
+      width: 16
+      height: 7
+    spriteID: a1877d79442ddb541af5664aea6de51c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 27, y: 52}
+  - name: Jetpack_Empty
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 15
+      height: 16
+    spriteID: 7641a1b0faa9e904e9dc3e7c71deb994
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Jetpack_1 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 28
+      width: 15
+      height: 16
+    spriteID: 0535b2f4ea34ca14987d959905858bb7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 28}
+  - name: Jetpack_2 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 52
+      width: 15
+      height: 16
+    spriteID: c9bab30c2dfc76e40a16d1909398aec7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 52}
+  - name: Jetpack_3 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 76
+      width: 15
+      height: 16
+    spriteID: e3c1c9ffc2ff0c04eace7f49ba66ab7b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 76}
+  - name: Jetpack_4 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 100
+      width: 15
+      height: 16
+    spriteID: 7d2da57dd6d02d846afdb909a5646b32
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 100}
+  - name: Jetpack_5 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 27
+      y: 4
+      width: 15
+      height: 16
+    spriteID: 6e44d804081aba049ab3d332046a9b2a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 27, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
-  - layerIndex: 1
+  - layerIndex: 8
     uuid:
       value0: 1171430694
       value1: 0
@@ -171,18 +318,179 @@ ScriptedImporter:
     parentIndex: -1
   - layerIndex: 0
     uuid:
-      value0: 1624378896
+      value0: 2515825212
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Jetpack
+    name: Panel
     layerFlags: 3
     layerType: 0
+    blendMode: 0
+    cells:
+    - name: Panel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 48
+        width: 16
+        height: 7
+      spriteId: a1877d79442ddb541af5664aea6de51c
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    uuid:
+      value0: 2847270576
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: JetPack
+    layerFlags: 3
+    layerType: 1
     blendMode: 0
     cells: []
     linkedCells: []
     parentIndex: -1
+  - layerIndex: 2
+    uuid:
+      value0: 3473742789
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_Empty
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_Empty
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 48
+        width: 15
+        height: 16
+      spriteId: 7641a1b0faa9e904e9dc3e7c71deb994
+    linkedCells: []
+    parentIndex: 1
+  - layerIndex: 3
+    uuid:
+      value0: 2258364499
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_1 Fuel
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_1 Fuel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 49
+        y: 48
+        width: 15
+        height: 16
+      spriteId: 0535b2f4ea34ca14987d959905858bb7
+    linkedCells: []
+    parentIndex: 1
+  - layerIndex: 4
+    uuid:
+      value0: 2258363280
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_2 Fuel
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_2 Fuel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 32
+        width: 15
+        height: 16
+      spriteId: c9bab30c2dfc76e40a16d1909398aec7
+    linkedCells: []
+    parentIndex: 1
+  - layerIndex: 5
+    uuid:
+      value0: 2258362321
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_3 Fuel
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_3 Fuel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 17
+        y: 32
+        width: 15
+        height: 16
+      spriteId: e3c1c9ffc2ff0c04eace7f49ba66ab7b
+    linkedCells: []
+    parentIndex: 1
+  - layerIndex: 6
+    uuid:
+      value0: 2258361358
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_4 Fuel
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_4 Fuel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 32
+        width: 15
+        height: 16
+      spriteId: 7d2da57dd6d02d846afdb909a5646b32
+    linkedCells: []
+    parentIndex: 1
+  - layerIndex: 7
+    uuid:
+      value0: 2258360399
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Jetpack_5 Fuel
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Jetpack_5 Fuel
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 49
+        y: 32
+        width: 15
+        height: 16
+      spriteId: 6e44d804081aba049ab3d332046a9b2a
+    linkedCells: []
+    parentIndex: 1
   platformSettings:
   - name: Default
     overridden: 0
@@ -224,4 +532,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 32, y: 32}
+  previousTextureSize: {x: 64, y: 128}

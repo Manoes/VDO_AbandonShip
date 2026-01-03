@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3976b556548d0e04fa7196b7009f74f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCharges: 3
+  maxCharges: 5
   cooldown: 0.15
   boostUpSpeed: 25
   onlyInAir: 1
@@ -224,6 +224,21 @@ MonoBehaviour:
   requireReleaseBeforeBoost: 0
   jetpackParticles: {fileID: 1491892378769335841}
   vfxBurstDuration: 0.12
+  OnFuelChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HudController, Assembly-CSharp
+        m_MethodName: SetFuel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1193858732356952151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +260,19 @@ MonoBehaviour:
   whiteFlashTime: 0.06
   OnHealthChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HudController, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:

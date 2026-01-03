@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class JetpackAbility : MonoBehaviour
@@ -20,6 +21,12 @@ public class JetpackAbility : MonoBehaviour
     [SerializeField] private ParticleSystem jetpackParticles;
     [SerializeField] private float vfxBurstDuration = 0.12f;
 
+    [Header("Events")]
+    public UnityEvent<int> OnFuelChanged;
+
+    public int CurrentCharges => charges;
+    public int MaxCharges => maxCharges;
+
     Rigidbody2D rb;
     PlayerMovement movement;
 
@@ -34,6 +41,8 @@ public class JetpackAbility : MonoBehaviour
         charges = maxCharges;
         releaseArmed = true;
         cooldownTimer = 0f;
+
+        OnFuelChanged?.Invoke(charges);
     }
 
     void Awake()
@@ -70,13 +79,17 @@ public class JetpackAbility : MonoBehaviour
 
     public void AddCharges(int amount)
     {
+        int before = charges;
         charges = Mathf.Clamp(charges + amount, 0, maxCharges);
+
+        if(charges != before)
+            OnFuelChanged?.Invoke(charges);
     }
 
     bool TryBoost()
     {
-        if (charges <= 0) { Debug.Log("Jetpack: blocked - no charges"); return false; }
-        if (cooldownTimer > 0f) { Debug.Log("Jetpack: blocked - cooldown"); return false; }
+        if (charges <= 0) return false; 
+        if (cooldownTimer > 0f) return false; 
 
         if (requireReleaseBeforeBoost && !releaseArmed)
         {
@@ -86,11 +99,11 @@ public class JetpackAbility : MonoBehaviour
 
         if (movement != null)
         {
-            if (onlyInAir && movement.IsGrounded) { Debug.Log("Jetpack: blocked - grounded"); return false; }
-            if (blockWhileOnWall && movement.IsOnWall) { Debug.Log("Jetpack: blocked - on wall"); return false; }
+            if (onlyInAir && movement.IsGrounded) return false; 
+            if (blockWhileOnWall && movement.IsOnWall) return false; 
 
             // This is the KEY: don’t let the same press do jump/walljump AND jetpack.
-            if (movement.LastJumpFrame == Time.frameCount) { Debug.Log("Jetpack: blocked - same frame as jump"); return false; }
+            if (movement.LastJumpFrame == Time.frameCount) return false; 
         }
 
         Vector2 v = rb.linearVelocity;
@@ -108,6 +121,8 @@ public class JetpackAbility : MonoBehaviour
 
         if (requireReleaseBeforeBoost)
             releaseArmed = false;
+        
+        OnFuelChanged?.Invoke(charges);
 
         if (jetpackParticles)
         {

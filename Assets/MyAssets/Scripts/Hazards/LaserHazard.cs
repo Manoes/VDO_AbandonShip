@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class LaserHazard : MonoBehaviour
 {    
-    [SerializeField] private int damage = 1;
-
     [Header("References")]
     [SerializeField] private Transform beam;
     [SerializeField] private Transform leftEmitter;

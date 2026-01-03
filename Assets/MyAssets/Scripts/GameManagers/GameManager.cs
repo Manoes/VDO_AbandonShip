@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,14 +9,23 @@ public class GameManager : MonoBehaviour
     [Header("Camera as DeathLine")]
     [SerializeField] private float offscreenDeathMargin = 0.5f;
 
+    [Header("Score")]
+    [SerializeField] private float scoreEventInterval = 0.1f;
+    const string HighScoreKey = "HIGHSCORE";
+
     // Getters (and Setters -> Private)
     public float Score { get; private set; }
+    public float HighScore { get; private set; }
+
+    public UnityEvent<float, float> OnScoreChanged;
 
     // References 
     Transform player;
     Camera cam;
     DeathWall deathWall;
     PlatformManager platformManager;
+
+    float scoreEventTimer;
 
     void Awake()
     {
@@ -24,9 +34,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        HighScore = PlayerPrefs.GetFloat(HighScoreKey, 0f);
     }
 
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -35,6 +46,8 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Score = 0f;
+        scoreEventTimer = scoreEventInterval;
+
         cam = Camera.main;
 
         var playerGO = GameObject.FindGameObjectWithTag("Player");
@@ -53,20 +66,36 @@ public class GameManager : MonoBehaviour
         }
         else
             Debug.LogError("[GameManager] Missing References after Scene loaded.");
+
+        // Push Initial Score to UI
+        OnScoreChanged?.Invoke(Score, HighScore);
     }
 
     void Update()
     {
         Score += Time.deltaTime;
 
+        // Update Highscore Life
+        if(Score > HighScore)
+        {
+            HighScore = Score;
+            PlayerPrefs.SetFloat(HighScoreKey, HighScore);
+        }
+
+        // Update UI
+        scoreEventTimer -= Time.deltaTime;
+        if(scoreEventTimer <= 0f)
+        {
+            scoreEventTimer = Mathf.Max(0.02f, scoreEventInterval);
+            OnScoreChanged?.Invoke(Score, HighScore);
+        }
+
         if (!player || !cam) return;
 
         float camBottomY = cam.transform.position.y - cam.orthographicSize;
 
         if (player.position.y < camBottomY - offscreenDeathMargin)
-        {
             KillPlayer("Offscreen");
-        }
     }
 
     public void KillPlayer(string reason = "")

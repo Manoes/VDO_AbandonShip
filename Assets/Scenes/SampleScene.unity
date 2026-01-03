@@ -242,6 +242,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offscreenDeathMargin: 1
+  scoreEventInterval: 1
+  OnScoreChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 158732815}
+        m_TargetAssemblyTypeName: HudController, Assembly-CSharp
+        m_MethodName: SetScoreLabels
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &152811382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +271,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: e25da78aabffd5d49816c372a46aea9a, type: 2}
+--- !u!1 &158732814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158732816}
+  - component: {fileID: 158732815}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158732815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158732814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c69b479f6228fd4780994055a5e092b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 523158922}
+--- !u!4 &158732816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158732814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &336661569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,8 +480,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99999994
-    height: 0.9989627
+    width: 1
+    height: 0.9994834
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -1542,6 +1603,22 @@ PrefabInstance:
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 152811379}
+    - target: {fileID: 1193858732356952151, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193858732356952151, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 158732815}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248130280734625758, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: OnFuelChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 158732815}
     - target: {fileID: 4455526347943183872, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1606,4 +1683,5 @@ SceneRoots:
   - {fileID: 1437862174}
   - {fileID: 529820315}
   - {fileID: 51246993}
+  - {fileID: 158732816}
   - {fileID: 523158923}

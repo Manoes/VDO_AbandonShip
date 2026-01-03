@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     public int CurrentHP { get; private set; }
     public bool IsDead => CurrentHP <= 0;
 
-    public UnityEvent<int, int> OnHealthChanged;
+    public UnityEvent<int> OnHealthChanged;
     public UnityEvent OnDeath;
 
     float invulnTimer;
@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
     {
         CurrentHP = maxHP;
         invulnTimer = 0f;
-        OnHealthChanged?.Invoke(CurrentHP, maxHP);
+        OnHealthChanged?.Invoke(CurrentHP);
     }
 
     public bool TakeDamage(int amount)
@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
         CurrentHP = Mathf.Max(0, CurrentHP - Mathf.Max(1, amount));
         invulnTimer = invulnSeconds;
 
-        OnHealthChanged?.Invoke(CurrentHP, maxHP);
+        OnHealthChanged?.Invoke(CurrentHP);
 
         Debug.Log($"[Health] Player taking Damage for {amount} Damage. {CurrentHP}/{maxHP}");
 
@@ -113,6 +113,6 @@ public class Health : MonoBehaviour
     {
         if(IsDead) return;
         CurrentHP = Mathf.Min(maxHP, CurrentHP + Mathf.Max(1, amount));
-        OnHealthChanged?.Invoke(CurrentHP, maxHP);
+        OnHealthChanged?.Invoke(CurrentHP);
     }
 }
