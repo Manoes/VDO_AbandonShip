@@ -13,6 +13,18 @@ public class HudController : MonoBehaviour
     private Label scoreLabel;
     private Label highscoreLabel;
 
+    void OnEnable()
+    {
+        if(GameManager.Instance)
+            GameManager.Instance.OnScoreChanged.AddListener(SetScoreLabels);
+    }
+
+    void OnDisable()
+    {
+        if(GameManager.Instance)
+            GameManager.Instance.OnScoreChanged.RemoveListener(SetScoreLabels);
+    }
+
     void Awake()
     {
         var root = document.rootVisualElement;
@@ -71,8 +83,8 @@ public class HudController : MonoBehaviour
     // --- Score ---
     public void SetScoreLabels(float score, float highscore)
     {
-        int score10 = Mathf.CeilToInt(score * 10);
-        int highscore10 = Mathf.CeilToInt(highscore * 10);
+        int score10 = Mathf.RoundToInt(score * 10);
+        int highscore10 = Mathf.RoundToInt(highscore * 10);
 
         scoreLabel.text = score10.ToString("D8");
         highscoreLabel.text = highscore10.ToString("D8");

@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -3396771806123064710, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+  m_Sprite: {fileID: 8188793731346440057, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.84375, y: 0.59375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -163,12 +163,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 4749546599738293458, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+  m_Sprite: {fileID: 5649319942740144750, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.84375, y: 0.59375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbce6071eb7aeb449b0608e36bd306a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   beam: {fileID: 7630954488387135255}
   leftEmitter: {fileID: 2893252854698386684}
   rightEmitter: {fileID: 6100164311276615551}
@@ -303,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -5760953867583583554, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8933140657501474695}
   - component: {fileID: 5966013078829272962}
   - component: {fileID: 1650635006608681666}
+  - component: {fileID: -6702777913660955259}
   m_Layer: 0
   m_Name: JetpackPickup
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.12691349, g: 0.8679245, b: 0.80344814, a: 1}
+  m_Sprite: {fileID: 2120326093261396048, guid: 09fe715744fcbea4db987261f8dfa3e0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,3 +139,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charges: 1
+--- !u!114 &-6702777913660955259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2939207992332965085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a85e2e4e590e54c9683493d97cc783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cyclesPerSecond: 0.7
+  minScaleX: 0.15
+  flipSpriteAtBackface: 1

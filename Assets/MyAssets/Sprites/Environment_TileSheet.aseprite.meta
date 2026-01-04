@@ -174,7 +174,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 204
+      y: 244
       width: 28
       height: 32
     spriteID: 223a4ceab6c330c458dc219f477d174c
@@ -185,7 +185,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 204}
+    uvTransform: {x: 84, y: 244}
   - name: Ship Haul Type 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -195,7 +195,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 244
+      y: 284
       width: 28
       height: 32
     spriteID: 044ae29be8391c344a8e3ede1e0670b5
@@ -206,7 +206,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 244}
+    uvTransform: {x: 84, y: 284}
   - name: Ship Window_Corner_LefTop_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -447,7 +447,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 284
+      y: 324
       width: 32
       height: 23
     spriteID: 8869be6cd87799c439a321b54372956d
@@ -458,7 +458,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 284}
+    uvTransform: {x: 84, y: 324}
   - name: Platform_Normal_Tile1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -468,7 +468,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 315
+      y: 355
       width: 32
       height: 23
     spriteID: 503e6d6c15d7e1f4cb54009c380a765b
@@ -479,7 +479,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 315}
+    uvTransform: {x: 84, y: 355}
   - name: Platform_Normal_Tile2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -489,7 +489,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 346
+      y: 386
       width: 32
       height: 23
     spriteID: 14d7156ef94c4604a886014de8b74a28
@@ -500,7 +500,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 346}
+    uvTransform: {x: 84, y: 386}
   - name: Platform_Normal_Tile3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -510,7 +510,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 84
-      y: 377
+      y: 417
       width: 32
       height: 23
     spriteID: 5d44bf69c39d55d4dba6eb464d35a307
@@ -521,7 +521,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 377}
+    uvTransform: {x: 84, y: 417}
   - name: Layer 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -614,8 +614,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 84
-      y: 462
+      x: 140
+      y: 4
       width: 22
       height: 13
     spriteID: 4f5c8197ff8f6a2458af5426e9d28f00
@@ -626,20 +626,41 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 462}
+    uvTransform: {x: 140, y: 4}
+  - name: Laserbeam
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 204
+      width: 32
+      height: 32
+    spriteID: e797aa1e210e4fb4da6d1c9f0cc43bfb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 204}
   - name: Laser_Right
     originalName: 
-    pivot: {x: 0, y: 0.52}
+    pivot: {x: 0, y: 0.53}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 84
-      y: 408
+      y: 448
       width: 27
       height: 19
-    spriteID: 8445d71178cc13d4eb982430969ec341
+    spriteID: 19d790009fdf4e14f9dbaead610fba2f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -647,20 +668,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 408}
+    uvTransform: {x: 84, y: 448}
   - name: Laser_Left
     originalName: 
-    pivot: {x: 1.0000002, y: 0.52}
+    pivot: {x: 1, y: 0.53}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 84
-      y: 435
+      y: 475
       width: 27
       height: 19
-    spriteID: f0b529136c45d7344bdd071ca3f7edb8
+    spriteID: 2fa60b7d6c88e9e46b1a2fe79f92d778
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -668,7 +689,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 84, y: 435}
+    uvTransform: {x: 84, y: 475}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 5
@@ -717,7 +738,7 @@ ScriptedImporter:
       spriteId: b21f186b181209e46b049b6e1c3b0337
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 10
+  - layerIndex: 12
     uuid:
       value0: 2446227580
       value1: 0
@@ -740,7 +761,7 @@ ScriptedImporter:
       spriteId: 223a4ceab6c330c458dc219f477d174c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 11
+  - layerIndex: 13
     uuid:
       value0: 4012311521
       value1: 0
@@ -763,7 +784,7 @@ ScriptedImporter:
       spriteId: 044ae29be8391c344a8e3ede1e0670b5
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 12
+  - layerIndex: 14
     uuid:
       value0: 2523127342
       value1: 0
@@ -777,7 +798,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 13
+  - layerIndex: 15
     uuid:
       value0: 2736848361
       value1: 0
@@ -799,8 +820,8 @@ ScriptedImporter:
         height: 32
       spriteId: 9e476cccbbde45444a63715df56f076a
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 14
+    parentIndex: 14
+  - layerIndex: 16
     uuid:
       value0: 3333610145
       value1: 0
@@ -822,8 +843,8 @@ ScriptedImporter:
         height: 32
       spriteId: 0b2032702efbc3941b04679950edf373
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 15
+    parentIndex: 14
+  - layerIndex: 17
     uuid:
       value0: 4150365840
       value1: 0
@@ -845,8 +866,8 @@ ScriptedImporter:
         height: 32
       spriteId: b806b1c07ed7af743a45a2f2ef391056
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 16
+    parentIndex: 14
+  - layerIndex: 18
     uuid:
       value0: 1754977932
       value1: 0
@@ -868,8 +889,8 @@ ScriptedImporter:
         height: 32
       spriteId: fb58672518c48ae4483527098c30f7eb
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 17
+    parentIndex: 14
+  - layerIndex: 19
     uuid:
       value0: 1612002865
       value1: 0
@@ -891,8 +912,8 @@ ScriptedImporter:
         height: 32
       spriteId: 3adab34d392102b41a820aef07766f44
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 18
+    parentIndex: 14
+  - layerIndex: 20
     uuid:
       value0: 4112326990
       value1: 0
@@ -914,8 +935,8 @@ ScriptedImporter:
         height: 32
       spriteId: 58aa0f9eb6b54234fb8085d17b8851a4
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 19
+    parentIndex: 14
+  - layerIndex: 21
     uuid:
       value0: 1040539476
       value1: 0
@@ -937,8 +958,8 @@ ScriptedImporter:
         height: 32
       spriteId: 4ebe544bbc01bb341b72c365302e68ae
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 20
+    parentIndex: 14
+  - layerIndex: 22
     uuid:
       value0: 1025108104
       value1: 0
@@ -960,8 +981,8 @@ ScriptedImporter:
         height: 32
       spriteId: a29a92f7310687142bd8218d3bc4fd90
     linkedCells: []
-    parentIndex: 12
-  - layerIndex: 21
+    parentIndex: 14
+  - layerIndex: 23
     uuid:
       value0: 1814148714
       value1: 0
@@ -983,7 +1004,7 @@ ScriptedImporter:
         height: 32
       spriteId: f6554cc7813d2e741b85787f267310ef
     linkedCells: []
-    parentIndex: 12
+    parentIndex: 14
   - layerIndex: 1
     uuid:
       value0: 4287466680
@@ -1007,7 +1028,7 @@ ScriptedImporter:
       spriteId: 62f0b38df020e5e4398f5dfe18959c2c
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 22
+  - layerIndex: 24
     uuid:
       value0: 1538260931
       value1: 0
@@ -1021,7 +1042,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 23
+  - layerIndex: 25
     uuid:
       value0: 4269160539
       value1: 0
@@ -1043,8 +1064,8 @@ ScriptedImporter:
         height: 23
       spriteId: b740cfd95af102c478d271fe7eaa41c0
     linkedCells: []
-    parentIndex: 22
-  - layerIndex: 24
+    parentIndex: 24
+  - layerIndex: 26
     uuid:
       value0: 4269160540
       value1: 0
@@ -1066,8 +1087,8 @@ ScriptedImporter:
         height: 23
       spriteId: 5e78e99ed88e67b46bc2417a7c835a35
     linkedCells: []
-    parentIndex: 22
-  - layerIndex: 25
+    parentIndex: 24
+  - layerIndex: 27
     uuid:
       value0: 4269160537
       value1: 0
@@ -1089,8 +1110,8 @@ ScriptedImporter:
         height: 23
       spriteId: 8869be6cd87799c439a321b54372956d
     linkedCells: []
-    parentIndex: 22
-  - layerIndex: 26
+    parentIndex: 24
+  - layerIndex: 28
     uuid:
       value0: 3595951515
       value1: 0
@@ -1104,7 +1125,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 27
+  - layerIndex: 29
     uuid:
       value0: 3473681033
       value1: 0
@@ -1126,8 +1147,8 @@ ScriptedImporter:
         height: 23
       spriteId: 503e6d6c15d7e1f4cb54009c380a765b
     linkedCells: []
-    parentIndex: 26
-  - layerIndex: 28
+    parentIndex: 28
+  - layerIndex: 30
     uuid:
       value0: 3473681036
       value1: 0
@@ -1149,8 +1170,8 @@ ScriptedImporter:
         height: 23
       spriteId: 14d7156ef94c4604a886014de8b74a28
     linkedCells: []
-    parentIndex: 26
-  - layerIndex: 29
+    parentIndex: 28
+  - layerIndex: 31
     uuid:
       value0: 3473681035
       value1: 0
@@ -1172,7 +1193,7 @@ ScriptedImporter:
         height: 23
       spriteId: 5d44bf69c39d55d4dba6eb464d35a307
     linkedCells: []
-    parentIndex: 26
+    parentIndex: 28
   - layerIndex: 2
     uuid:
       value0: 2018028614
@@ -1267,7 +1288,44 @@ ScriptedImporter:
     parentIndex: -1
   - layerIndex: 8
     uuid:
-      value0: 313899972
+      value0: 2515812557
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 9
+    uuid:
+      value0: 3160128730
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laserbeam
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laserbeam
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 256
+        y: 256
+        width: 32
+        height: 32
+      spriteId: e797aa1e210e4fb4da6d1c9f0cc43bfb
+    linkedCells: []
+    parentIndex: 8
+  - layerIndex: 10
+    uuid:
+      value0: 4113851816
       value1: 0
       value2: 0
       value3: 0
@@ -1285,12 +1343,12 @@ ScriptedImporter:
         y: 294
         width: 27
         height: 19
-      spriteId: 8445d71178cc13d4eb982430969ec341
+      spriteId: 19d790009fdf4e14f9dbaead610fba2f
     linkedCells: []
-    parentIndex: -1
-  - layerIndex: 9
+    parentIndex: 8
+  - layerIndex: 11
     uuid:
-      value0: 1207754285
+      value0: 2739426371
       value1: 0
       value2: 0
       value3: 0
@@ -1308,9 +1366,9 @@ ScriptedImporter:
         y: 294
         width: 27
         height: 19
-      spriteId: f0b529136c45d7344bdd071ca3f7edb8
+      spriteId: 2fa60b7d6c88e9e46b1a2fe79f92d778
     linkedCells: []
-    parentIndex: -1
+    parentIndex: 8
   platformSettings:
   - name: Default
     overridden: 0

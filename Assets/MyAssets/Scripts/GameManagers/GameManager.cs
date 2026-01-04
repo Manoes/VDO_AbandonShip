@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        HighScore = PlayerPrefs.GetFloat(HighScoreKey, 0f);
+        HighScore = Mathf.Round(PlayerPrefs.GetFloat(HighScoreKey, 0f));
     }
 
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -68,6 +69,14 @@ public class GameManager : MonoBehaviour
             Debug.LogError("[GameManager] Missing References after Scene loaded.");
 
         // Push Initial Score to UI
+        OnScoreChanged?.Invoke(Score, HighScore);
+
+        StartCoroutine(NotifyScoreNextFrame());
+    }
+
+    IEnumerator NotifyScoreNextFrame()
+    {
+        yield return null;  
         OnScoreChanged?.Invoke(Score, HighScore);
     }
 
