@@ -18,12 +18,14 @@ MonoBehaviour:
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -4615053748826969789, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: 5040200685151826167, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: 218385708098737453, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: 1067623863246705361, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
     m_GameObject: {fileID: 0}
-    m_MinAnimationSpeed: 1
-    m_MaxAnimationSpeed: 1
+    m_MinAnimationSpeed: 2
+    m_MaxAnimationSpeed: 2
     m_PerlinScale: 0.5
-    m_Output: 0
+    m_Output: 2
     m_ColliderType: 1
     m_RandomTransform: 0
     m_Neighbors: 02000000
@@ -32,12 +34,14 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 2
     m_Sprites:
-    - {fileID: -3323821728063543554, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: 1521529501602055563, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: -3650532277332879214, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: -8045213991550863377, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
     m_GameObject: {fileID: 0}
-    m_MinAnimationSpeed: 1
-    m_MaxAnimationSpeed: 1
+    m_MinAnimationSpeed: 1.5
+    m_MaxAnimationSpeed: 1.5
     m_PerlinScale: 0.5
-    m_Output: 0
+    m_Output: 2
     m_ColliderType: 1
     m_RandomTransform: 0
     m_Neighbors: 02000000
@@ -46,12 +50,14 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 1
     m_Sprites:
-    - {fileID: -1013057417416701684, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: -8291337047655973396, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: -5826909165450241998, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+    - {fileID: -7502646236067682843, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
     m_GameObject: {fileID: 0}
-    m_MinAnimationSpeed: 1
-    m_MaxAnimationSpeed: 1
+    m_MinAnimationSpeed: 2.5
+    m_MaxAnimationSpeed: 2.5
     m_PerlinScale: 0.5
-    m_Output: 0
+    m_Output: 2
     m_ColliderType: 1
     m_RandomTransform: 0
     m_Neighbors: 0100000001000000

@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float inputX = Input.GetAxisRaw("Horizontal");
         MoveHorizontally(inputX);
+        GetComponent<PlayerAnimation>()?.SetFacingFromInput(inputX);
     }
 
     void MoveHorizontally(float inputX)

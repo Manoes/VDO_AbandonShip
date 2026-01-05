@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639031167593855034
+  platformSettingsDirtyTick: 639032290574318945
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -131,11 +131,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 27
-      y: 28
+      x: 28
+      y: 52
       width: 14
       height: 16
-    spriteID: 1d216e0b4c42858448ed1b5d92e29c94
+    spriteID: c5367eeaaddc87f49b78cc62381801c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -143,29 +143,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 28}
-  - name: Panel
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 27
-      y: 76
-      width: 16
-      height: 7
-    spriteID: f4bb45b108837a84a933fc6ae6152f1f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 27, y: 76}
-  - name: Jetpack_Empty
+    uvTransform: {x: 28, y: 52}
+  - name: Panel_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -175,9 +154,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
+      width: 16
       height: 16
-    spriteID: a3f71e813ff8e454fa33fd11ec046b96
+    spriteID: bc20a1d7b416390439ae7cd312ad6880
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -186,7 +165,28 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Jetpack_1 Fuel
+  - name: Panel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 100
+      width: 16
+      height: 7
+    spriteID: e3680c607284f8b42b74c4520745ba5a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 100}
+  - name: Jetpack_Empty
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -198,7 +198,7 @@ ScriptedImporter:
       y: 28
       width: 15
       height: 16
-    spriteID: f49be4e86a5bf274586943dcbafbdb53
+    spriteID: dec5a03820877fa40b3142a806403da4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -207,7 +207,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 28}
-  - name: Jetpack_2 Fuel
+  - name: Jetpack_1 Fuel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -219,7 +219,7 @@ ScriptedImporter:
       y: 52
       width: 15
       height: 16
-    spriteID: eba22901fdd42654a92b5e6732000a06
+    spriteID: 9ccf469f66e649a44b4426733399a0a1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -228,7 +228,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 52}
-  - name: Jetpack_3 Fuel
+  - name: Jetpack_2 Fuel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -240,7 +240,7 @@ ScriptedImporter:
       y: 76
       width: 15
       height: 16
-    spriteID: ac21fb3ec9c46be408de5bd0074540b6
+    spriteID: ee9a82f0a8a74cb459bda1e3292b4b42
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -249,7 +249,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 76}
-  - name: Jetpack_4 Fuel
+  - name: Jetpack_3 Fuel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -261,7 +261,7 @@ ScriptedImporter:
       y: 100
       width: 15
       height: 16
-    spriteID: 801592676760a634caa2fb1502c3e8ca
+    spriteID: 1ba3eadbb02447941b7177fb50c0a299
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -270,6 +270,27 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 100}
+  - name: Jetpack_4 Fuel
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 4
+      width: 15
+      height: 16
+    spriteID: 94189c850308ac5459f3e23d8ec5897c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 4}
   - name: Jetpack_5 Fuel
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -278,11 +299,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 27
-      y: 4
+      x: 28
+      y: 28
       width: 15
       height: 16
-    spriteID: 0fad3d4663495754d80848a65e1a25e3
+    spriteID: 4a109d486c50f6a49ade5cff496bcec6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -290,7 +311,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 4}
+    uvTransform: {x: 28, y: 28}
   - name: Icon_Health
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -299,11 +320,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 27
-      y: 52
+      x: 28
+      y: 76
       width: 12
       height: 16
-    spriteID: 815c148a8395efa49a171a872481e696
+    spriteID: 82e727c5d83b344498d5a2a1970ca2b8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -311,7 +332,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 52}
+    uvTransform: {x: 28, y: 76}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -334,10 +355,33 @@ ScriptedImporter:
         y: 16
         width: 14
         height: 16
-      spriteId: 1d216e0b4c42858448ed1b5d92e29c94
+      spriteId: c5367eeaaddc87f49b78cc62381801c0
     linkedCells: []
     parentIndex: -1
   - layerIndex: 1
+    uuid:
+      value0: 2439490299
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Panel_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Panel_2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      spriteId: bc20a1d7b416390439ae7cd312ad6880
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
     uuid:
       value0: 2515825212
       value1: 0
@@ -357,10 +401,10 @@ ScriptedImporter:
         y: 48
         width: 16
         height: 7
-      spriteId: f4bb45b108837a84a933fc6ae6152f1f
+      spriteId: e3680c607284f8b42b74c4520745ba5a
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 2
+  - layerIndex: 3
     uuid:
       value0: 2847270576
       value1: 0
@@ -374,7 +418,7 @@ ScriptedImporter:
     cells: []
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 3
+  - layerIndex: 4
     uuid:
       value0: 3473742789
       value1: 0
@@ -394,10 +438,10 @@ ScriptedImporter:
         y: 48
         width: 15
         height: 16
-      spriteId: a3f71e813ff8e454fa33fd11ec046b96
+      spriteId: dec5a03820877fa40b3142a806403da4
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 4
+    parentIndex: 3
+  - layerIndex: 5
     uuid:
       value0: 2258364499
       value1: 0
@@ -417,10 +461,10 @@ ScriptedImporter:
         y: 48
         width: 15
         height: 16
-      spriteId: f49be4e86a5bf274586943dcbafbdb53
+      spriteId: 9ccf469f66e649a44b4426733399a0a1
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 5
+    parentIndex: 3
+  - layerIndex: 6
     uuid:
       value0: 2258363280
       value1: 0
@@ -440,10 +484,10 @@ ScriptedImporter:
         y: 32
         width: 15
         height: 16
-      spriteId: eba22901fdd42654a92b5e6732000a06
+      spriteId: ee9a82f0a8a74cb459bda1e3292b4b42
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 6
+    parentIndex: 3
+  - layerIndex: 7
     uuid:
       value0: 2258362321
       value1: 0
@@ -463,10 +507,10 @@ ScriptedImporter:
         y: 32
         width: 15
         height: 16
-      spriteId: ac21fb3ec9c46be408de5bd0074540b6
+      spriteId: 1ba3eadbb02447941b7177fb50c0a299
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 7
+    parentIndex: 3
+  - layerIndex: 8
     uuid:
       value0: 2258361358
       value1: 0
@@ -486,10 +530,10 @@ ScriptedImporter:
         y: 32
         width: 15
         height: 16
-      spriteId: 801592676760a634caa2fb1502c3e8ca
+      spriteId: 94189c850308ac5459f3e23d8ec5897c
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 8
+    parentIndex: 3
+  - layerIndex: 9
     uuid:
       value0: 2258360399
       value1: 0
@@ -509,10 +553,10 @@ ScriptedImporter:
         y: 32
         width: 15
         height: 16
-      spriteId: 0fad3d4663495754d80848a65e1a25e3
+      spriteId: 4a109d486c50f6a49ade5cff496bcec6
     linkedCells: []
-    parentIndex: 2
-  - layerIndex: 9
+    parentIndex: 3
+  - layerIndex: 10
     uuid:
       value0: 1171430694
       value1: 0
@@ -532,7 +576,7 @@ ScriptedImporter:
         y: 48
         width: 12
         height: 16
-      spriteId: 815c148a8395efa49a171a872481e696
+      spriteId: 82e727c5d83b344498d5a2a1970ca2b8
     linkedCells: []
     parentIndex: -1
   platformSettings:
