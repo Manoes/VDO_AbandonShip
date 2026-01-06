@@ -18,7 +18,6 @@ public class Health : MonoBehaviour
     public bool IsDead => CurrentHP <= 0;
 
     public UnityEvent<int> OnHealthChanged;
-    public UnityEvent OnDeath;
 
     float invulnTimer;
     bool invuln;
@@ -54,10 +53,8 @@ public class Health : MonoBehaviour
 
         OnHealthChanged?.Invoke(CurrentHP);
 
-        Debug.Log($"[Health] Player taking Damage for {amount} Damage. {CurrentHP}/{maxHP}");
-
         if(CurrentHP <= 0)
-            OnDeath?.Invoke();
+            GameManager.Instance.KillPlayer();
 
         if(blinkCo != null) StopCoroutine(blinkCo);
         blinkCo = StartCoroutine(InvulnBlink());

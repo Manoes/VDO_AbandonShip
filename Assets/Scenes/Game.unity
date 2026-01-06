@@ -243,6 +243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offscreenDeathMargin: 1
   scoreEventInterval: 1
+  ui: {fileID: 0}
+  fallbackDeathAnimSeconds: 0.7
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls:
@@ -480,7 +482,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99929225
+    width: 0.99784946
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
