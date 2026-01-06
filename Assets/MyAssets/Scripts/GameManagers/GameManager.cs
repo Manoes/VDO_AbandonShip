@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
         scoreEventTimer = scoreEventInterval;
 
         cam = Camera.main;
+        if(!cam)
+            cam = FindFirstObjectByType<Camera>(FindObjectsInactive.Include);
 
         var playerGO = GameObject.FindGameObjectWithTag("Player");
         player = playerGO ? playerGO.transform : null;
@@ -119,19 +121,40 @@ public class GameManager : MonoBehaviour
 
         platformManager = FindFirstObjectByType<PlatformManager>();
 
+        if(playerRigidbody) playerRigidbody.simulated = false;
+        if(playerMovement) playerMovement.enabled = false;
+        if(playerJetpack) playerJetpack.enabled = false;
+
         // Push References into PlatformManager and Reset Platforms
         if(platformManager && player && deathWall && cam)
         {
+            if(!cam) return;
+
             platformManager.Init(player, deathWall.transform, cam);
             platformManager.ResetRun();
         }
-        else
-            Debug.LogError("[GameManager] Missing References after Scene loaded.");
+
+        StartCoroutine(EnablePlayerAfterPhysicsStep());
 
         // Push Initial Score to UI
         OnScoreChanged?.Invoke(Score, HighScore);
-
         StartCoroutine(NotifyScoreNextFrame());
+    }
+
+    IEnumerator EnablePlayerAfterPhysicsStep()
+    {
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+
+        if (playerRigidbody)
+        {
+            playerRigidbody.linearVelocity = Vector2.zero;
+            playerRigidbody.angularVelocity = 0f;
+            playerRigidbody.simulated = true;
+        }
+
+        if(playerMovement) playerMovement.enabled = true;
+        if(playerJetpack) playerJetpack.enabled = true;
     }
 
     IEnumerator NotifyScoreNextFrame()

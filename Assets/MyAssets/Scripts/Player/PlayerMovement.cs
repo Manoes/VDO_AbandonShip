@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -41,7 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rigidbody;
     Collider2D col;
-    JetpackAbility jetpack;
+    PlayerAnimation playerAnimation;
+
+    float inputX;
+
+    bool jumpPressedThisFrame;
+    bool jumpReleasedThisFrame;
+    bool jumpHeld;
+
+    bool wantJumpCut;
+    bool wantJump;
+    bool wantWallJump;
 
     float coyoteTimer;
     float jumpBufferTimer;
@@ -66,12 +77,21 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-        jetpack = GetComponent<JetpackAbility>();
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     void Update()
     {
-        if(ignoreGroundedTimer > 0f) ignoreGroundedTimer -= Time.deltaTime;
+        inputX = Input.GetAxisRaw("Horizontal");
+
+        jumpPressedThisFrame = Input.GetButtonDown("Jump");
+        jumpReleasedThisFrame = Input.GetButtonUp("Jump");
+        jumpHeld = Input.GetButton("Jump");
+
+        if (jumpPressedThisFrame) jumpBufferTimer = jumpBufferTime;
+        else jumpBufferTimer -= Time.deltaTime;
+
+        if (ignoreGroundedTimer > 0f) ignoreGroundedTimer -= Time.deltaTime;
 
         UpdateCollisionStates();
 
@@ -79,44 +99,62 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
 
-        // Jump Buffer (Only set on ButtonDown)
-        if(Input.GetButtonDown("Jump")) jumpBufferTimer = jumpBufferTime;
-        else jumpBufferTimer -= Time.deltaTime;
+        wantJumpCut = jumpReleasedThisFrame && rigidbody.linearVelocity.y > 0f;
 
-        // Jump Cut (release)
-        if (Input.GetButtonUp("Jump") && rigidbody.linearVelocity.y > 0f)
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.y * jumpCutMultiplier);
-
-        // Decide Jump
-        TryConsumeJump();
-
-        // Stop "Jumping" State
-        if (isGrounded || rigidbody.linearVelocity.y <= 0f)
-        {
-            isJumping = false;
-            holdJumpTimer = 0f;
-        }
-        else if (isJumping)
-        {
-            holdJumpTimer -= Time.deltaTime;
-            if (holdJumpTimer <= 0f) isJumping = false;
-        }
-
-        // Wall Slide Clamp
-        if (enableWallJump && !isGrounded && wallDirection != 0 && rigidbody.linearVelocity.y < 0f)
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, Mathf.Max(rigidbody.linearVelocity.y, -wallSlideMaxFallSpeed));
-
-        ApplyGravityFeel();
-
-        if (wallJumpLockTimer > 0f)
-            wallJumpLockTimer -= Time.deltaTime;
+        wantJump = jumpBufferTimer > 0f && coyoteTimer > 0f;
+        wantWallJump = jumpBufferTimer > 0f && enableWallJump && !isGrounded && wallDirection != 0;
     }
 
     void FixedUpdate()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
+        UpdateCollisionStates();
+
         MoveHorizontally(inputX);
-        GetComponent<PlayerAnimation>()?.SetFacingFromInput(inputX);
+        if(playerAnimation) playerAnimation.SetFacingFromInput(inputX);
+
+        if (wantJump)
+        {
+            DoJump(jumpVelocity);
+
+            isJumping = true;
+            holdJumpTimer = maxHoldJumpTime;
+
+            jumpBufferTimer = 0f;
+            coyoteTimer = 0f;
+            ignoreGroundedTimer = ignoreGroundedAfterJump;
+            LastJumpFrame = Time.frameCount;
+
+            wantJump = false;
+        }
+        else if (wantWallJump)
+        {
+            float launchX = -wallDirection * wallJumpXVelocity;
+            rigidbody.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
+
+            isJumping = true;
+            holdJumpTimer = maxHoldJumpTime;
+
+            wallJumpLockTimer = wallJumpLockTime;
+            jumpBufferTimer = 0f;
+            ignoreGroundedTimer = ignoreGroundedAfterJump;
+            LastJumpFrame = Time.frameCount;
+
+            wantWallJump = false;
+        }
+
+        if (wantJumpCut)
+        {
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.y * jumpCutMultiplier);
+            wantJumpCut = false;
+        }
+
+        if (enableWallJump && !isGrounded && wallDirection != 0 && rigidbody.linearVelocity.y < 0f)
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, Mathf.Max(rigidbody.linearVelocity.y, -wallSlideMaxFallSpeed));
+
+        ApplyGravityFeel(jumpHeld);
+
+        if (wallJumpLockTimer > 0f)
+            wallJumpLockTimer -= Time.fixedDeltaTime;
     }
 
     void MoveHorizontally(float inputX)
@@ -182,9 +220,8 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, velY);
     }
 
-    void ApplyGravityFeel()
+    void ApplyGravityFeel(bool holdingJump)
     {
-        bool holdingJump = Input.GetButton("Jump");
         if (isJumping && holdingJump && rigidbody.linearVelocity.y > 0f)
         {
             float extraUp = Physics2D.gravity.y * (holdJumpGravityMultiplier - 1f) * rigidbody.mass;

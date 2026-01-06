@@ -16,7 +16,7 @@ public class PlatformManager : MonoBehaviour
 
     [Header("Rule Tiles")]
     [SerializeField] private TileBase platformTile;
-    [SerializeField] private TileBase fallingPlatformTile; 
+    [SerializeField] private TileBase fallingPlatformTile;
     [SerializeField] private TileBase spikeTile;
 
     [Header("Falling Platforms (Prefab Tilemap Chunk)")]
@@ -147,15 +147,15 @@ public class PlatformManager : MonoBehaviour
             if (!string.IsNullOrWhiteSpace(spikesTilemapTag))
             {
                 var taggedGO = GameObject.FindGameObjectWithTag(spikesTilemapTag);
-                if(taggedGO) spikesTileMap = taggedGO.GetComponent<Tilemap>();
+                if (taggedGO) spikesTileMap = taggedGO.GetComponent<Tilemap>();
 
                 if (!spikesTileMap)
                 {
                     var all = FindObjectsByType<Tilemap>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-                    for(int i = 0; i < all.Length; i++)
+                    for (int i = 0; i < all.Length; i++)
                     {
                         var tm = all[i];
-                        if(!tm) continue;
+                        if (!tm) continue;
                         if (tm.CompareTag(spikesTilemapTag))
                         {
                             spikesTileMap = tm;
@@ -177,6 +177,55 @@ public class PlatformManager : MonoBehaviour
         EnsureTilemapBound();
     }
 
+    void RebuildCollidersNow()
+    {
+        // PLATFORM tilemap
+        if (platformTilemap)
+        {
+            var tmc = platformTilemap.GetComponent<TilemapCollider2D>();
+            if (tmc) tmc.ProcessTilemapChanges(); // <-- IMPORTANT
+
+            var comp = platformTilemap.GetComponent<CompositeCollider2D>();
+            if (comp) comp.GenerateGeometry();    // <-- IMPORTANT
+        }
+
+        // SPIKES tilemap (if separate)
+        if (spikesTileMap)
+        {
+            var tmc = spikesTileMap.GetComponent<TilemapCollider2D>();
+            if (tmc) tmc.ProcessTilemapChanges();
+
+            var comp = spikesTileMap.GetComponent<CompositeCollider2D>();
+            if (comp) comp.GenerateGeometry();
+        }
+
+        Physics2D.SyncTransforms();
+    }
+
+
+    void ForceRebuildTilemapCollider(Tilemap tilemap)
+    {
+        if (!tilemap) return;
+
+        tilemap.RefreshAllTiles();
+
+        var tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
+        if (tilemapCollider)
+        {
+            tilemapCollider.enabled = false;
+            tilemapCollider.enabled = true;
+        }
+
+        var compositCollider = tilemap.GetComponent<CompositeCollider2D>();
+        if (compositCollider)
+        {
+            compositCollider.enabled = false;
+            compositCollider.enabled = true;
+        }
+
+        Physics2D.SyncTransforms();
+    }
+
     void Update()
     {
         if (!player || !deathWall || !cam) return;
@@ -188,8 +237,15 @@ public class PlatformManager : MonoBehaviour
         float targetTopY = camTopY + spawnAhead;
         int targetTopCellY = platformTilemap.WorldToCell(new Vector3(0f, targetTopY, 0f)).y;
 
+        bool spawnedAny = false;
         while (nextRowCellY < targetTopCellY)
+        {
             SpawnRow();
+            spawnedAny = true;
+        }
+
+        if(spawnedAny)
+            RebuildCollidersNow();            
 
         // Despawn below death wall
         float killLine = deathWall.position.y - despawnBelowDeathWall;
@@ -202,13 +258,13 @@ public class PlatformManager : MonoBehaviour
 
             var s = spans[i];
 
-            if(s.hasSpikes)
+            if (s.hasSpikes)
                 ClearSpikesSpan(s);
 
-            if(s.hasLaser && s.laserTransform)
+            if (s.hasLaser && s.laserTransform)
                 Destroy(s.laserTransform.gameObject);
             else if (s.isFalling && s.fallingTransform)
-                Destroy(s.fallingTransform.gameObject);           
+                Destroy(s.fallingTransform.gameObject);
             else
                 for (int x = s.xMin; x <= s.xMax; x++)
                     platformTilemap.SetTile(new Vector3Int(x, s.yCell, 0), null);
@@ -217,7 +273,10 @@ public class PlatformManager : MonoBehaviour
         }
 
         if (removeCount > 0)
+        {
             spans.RemoveRange(0, removeCount);
+            RebuildCollidersNow();
+        }            
     }
 
     void SpawnRow()
@@ -387,7 +446,7 @@ public class PlatformManager : MonoBehaviour
         {
             Vector3 pos = new Vector3(xWorld, yWorld + jetpackSpawnYOffset, 0f);
 
-            if(IsJetPackCellClear(pos))
+            if (IsJetPackCellClear(pos))
                 Instantiate(jetpackPickupPrefab, pos, Quaternion.identity);
         }
 
@@ -399,40 +458,40 @@ public class PlatformManager : MonoBehaviour
         if (spikesTileMap)
         {
             Vector3Int cell = spikesTileMap.WorldToCell(worldPos);
-            if(spikesTileMap.HasTile(cell)) return false;
+            if (spikesTileMap.HasTile(cell)) return false;
         }
 
         // Reject if Overlaps Hazards
-        Collider2D hit = Physics2D.OverlapCircle(worldPos, 0.2f, hazardMask);         
+        Collider2D hit = Physics2D.OverlapCircle(worldPos, 0.2f, hazardMask);
         return hit == null;
     }
 
     bool TryPlaceSpikesOnSpan(ref PlacedSpan span, float score)
     {
-        if(spikeTile == null) return false;
-        if(!DifficultyManager.Instance) return false;
-        if(!DifficultyManager.Instance.SpikesEnabled(score)) return false;
+        if (spikeTile == null) return false;
+        if (!DifficultyManager.Instance) return false;
+        if (!DifficultyManager.Instance.SpikesEnabled(score)) return false;
 
         float chance = DifficultyManager.Instance.GetSpikesChance(score);
-        if(chance <= 0f) return false;
-        if(Random.value >= chance) return false;
+        if (chance <= 0f) return false;
+        if (Random.value >= chance) return false;
 
         int widthTiles = span.xMax - span.xMin + 1;
 
         // Don't Allow Spikes to be Impossible
         int safe = Mathf.Max(0, spikesSafeEdgeTiles);
         int usable = widthTiles - safe * 2;
-        if(usable <= 0) return false;
+        if (usable <= 0) return false;
 
-        int maxCover = Mathf.Clamp(Mathf.FloorToInt(usable * Mathf.Clamp01(spikesMaxCoverage)), 1, usable); 
+        int maxCover = Mathf.Clamp(Mathf.FloorToInt(usable * Mathf.Clamp01(spikesMaxCoverage)), 1, usable);
 
         // Choose a Contigunous Spike Run Lenght
-        int run = Random.Range(1, maxCover+ 1);
+        int run = Random.Range(1, maxCover + 1);
 
         // Choose Start within Usable Range
         int startMin = span.xMin + safe;
         int startMax = span.xMax - safe - run + 1;
-        if(startMax < startMin) return false;
+        if (startMax < startMin) return false;
 
         int start = Random.Range(startMin, startMax + 1);
         int end = start + run - 1;
@@ -442,38 +501,38 @@ public class PlatformManager : MonoBehaviour
 
         var target = spikesTileMap ? spikesTileMap : platformTilemap;
 
-        for(int x = start; x <= end; x++)
+        for (int x = start; x <= end; x++)
             target.SetTile(new Vector3Int(x, spikesY, 0), spikeTile);
-        
+
         span.hasSpikes = true;
         return true;
     }
 
     void ClearSpikesSpan(PlacedSpan span)
     {
-        if(spikeTile == null) return;
+        if (spikeTile == null) return;
 
         var target = spikesTileMap ? spikesTileMap : platformTilemap;
 
         int spikesY = span.yCell + 1;
-        for(int x = span.xMin; x <= span.xMax; x++)
+        for (int x = span.xMin; x <= span.xMax; x++)
             target.SetTile(new Vector3Int(x, spikesY, 0), null);
     }
 
     bool TrySpawnLaser(int lowerRowY, int upperRowY, float score)
     {
-        if(!laserPrefab) return false;
-        if(!DifficultyManager.Instance)  return false;
-        if(!DifficultyManager.Instance.LaserEnabled(score)) return false;         
+        if (!laserPrefab) return false;
+        if (!DifficultyManager.Instance) return false;
+        if (!DifficultyManager.Instance.LaserEnabled(score)) return false;
 
         float chance = DifficultyManager.Instance.GetLaserChance(score);
-        if(chance <= 0f || Random.value >= chance) return false; 
+        if (chance <= 0f || Random.value >= chance) return false;
 
         int gapHeight = upperRowY - lowerRowY;
-        if(gapHeight < 2) return false;
+        if (gapHeight < 2) return false;
 
         // Pick a y Cell in th Air Gap
-        int laserYCell = Random.Range(lowerRowY +1, upperRowY);
+        int laserYCell = Random.Range(lowerRowY + 1, upperRowY);
 
         // Use Camera Bounds to decide X Range
         float halfHeight = cam.orthographicSize;
@@ -487,14 +546,14 @@ public class PlatformManager : MonoBehaviour
         int maxXCell = platformTilemap.WorldToCell(new Vector3(maxXWorld, 0f, 0f)).x;
 
         int usableLen = maxXCell - minXCell + 1;
-        if(usableLen < laserMinTiles) return false;
+        if (usableLen < laserMinTiles) return false;
 
         int maxLen = Mathf.Min(laserMaxTiles, usableLen);
         int lenTiles = Random.Range(laserMinTiles, maxLen + 1);
 
         int startX = Random.Range(minXCell, maxXCell - lenTiles + 2);
         int endX = startX + lenTiles - 1;
-        
+
         Vector3 startWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(startX, laserYCell, 0));
         Vector3 endWorld = platformTilemap.GetCellCenterWorld(new Vector3Int(endX, laserYCell, 0));
         Vector3 mid = (startWorld + endWorld) * 0.5f;
@@ -504,17 +563,17 @@ public class PlatformManager : MonoBehaviour
 
         // Reject if it Overlaps Existing Hazards/Platforms
         Vector2 boxSize = new Vector2(lenghtWorld, CellSizeY * 0.8f);
-        if(Physics2D.OverlapBox(pos, boxSize, 0f, hazardMask) != null)
-            return false; 
+        if (Physics2D.OverlapBox(pos, boxSize, 0f, hazardMask) != null)
+            return false;
 
         GameObject go = Instantiate(laserPrefab, pos, Quaternion.identity);
 
         var laser = go.GetComponent<LaserHazard>();
-        if(laser) laser.SetLengthWorld(lenghtWorld);
+        if (laser) laser.SetLengthWorld(lenghtWorld);
 
         // Store Laser in Span 
         spans.Add(new PlacedSpan
-        {   
+        {
             yCell = laserYCell,
             xMin = startX,
             xMax = endX,
@@ -525,7 +584,7 @@ public class PlatformManager : MonoBehaviour
             hasLaser = true,
             laserTransform = go.transform
         });
-        
+
         Debug.Log($"[PlatformManager/LaserSpawn] Spawned Laser at: {pos} with Lenght: {lenghtWorld}");
         return true;
     }
@@ -570,7 +629,7 @@ public class PlatformManager : MonoBehaviour
 
         // clear tiles
         platformTilemap.ClearAllTiles();
-        if(spikesTileMap) spikesTileMap.ClearAllTiles();
+        if (spikesTileMap) spikesTileMap.ClearAllTiles();
 
         // destroy falling prefabs
         for (int i = 0; i < spans.Count; i++)
@@ -593,5 +652,10 @@ public class PlatformManager : MonoBehaviour
 
         while (nextRowCellY < targetTopCellY)
             SpawnRow();
+
+        RebuildCollidersNow();
+
+        ForceRebuildTilemapCollider(platformTilemap);
+        if (spikesTileMap) ForceRebuildTilemapCollider(spikesTileMap);
     }
 }
