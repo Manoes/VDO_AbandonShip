@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       BindUI(FindFirstObjectByType<GameUIManager>());
+        BindUI(FindFirstObjectByType<GameUIManager>());
 
         Score = 0f;
         scoreEventTimer = scoreEventInterval;

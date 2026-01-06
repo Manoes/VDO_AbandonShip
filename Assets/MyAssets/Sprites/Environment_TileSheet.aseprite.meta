@@ -81,7 +81,7 @@ ScriptedImporter:
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 0
-    generateAnimationClips: 1
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
@@ -94,11 +94,11 @@ ScriptedImporter:
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 0
-    generateAnimationClips: 1
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639032905592683135
+  platformSettingsDirtyTick: 639033111454931540
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,28 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Ship Haul Type 1
+  - name: Space
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 320
+      height: 318
+    spriteID: f24c8bef6cf4daf4789e6292f59c6800
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: DeathWall_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -135,7 +156,7 @@ ScriptedImporter:
       y: 204
       width: 32
       height: 32
-    spriteID: 4c0493969c81c4c4c85b7086c2bb1e99
+    spriteID: cd3f0deaa29599149b9d2ddef98bc551
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,384 +165,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 332, y: 204}
-  - name: Ship Haul Type 1_Alarm
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 244
-      width: 32
-      height: 32
-    spriteID: b21f186b181209e46b049b6e1c3b0337
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 244}
-  - name: Ship Haul Type 2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 412
-      y: 284
-      width: 28
-      height: 32
-    spriteID: 223a4ceab6c330c458dc219f477d174c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 412, y: 284}
-  - name: Ship Haul Type 3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 412
-      y: 324
-      width: 28
-      height: 32
-    spriteID: 044ae29be8391c344a8e3ede1e0670b5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 412, y: 324}
-  - name: Ship Window_Corner_LefTop_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 284
-      width: 32
-      height: 32
-    spriteID: 9e476cccbbde45444a63715df56f076a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 284}
-  - name: Ship Window_Corner_LefBottom_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 324
-      width: 32
-      height: 32
-    spriteID: 0b2032702efbc3941b04679950edf373
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 324}
-  - name: Ship Window_Corner_RightTop_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 364
-      width: 32
-      height: 32
-    spriteID: b806b1c07ed7af743a45a2f2ef391056
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 364}
-  - name: Ship Window_Corner_RightBottom_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 404
-      width: 32
-      height: 32
-    spriteID: fb58672518c48ae4483527098c30f7eb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 404}
-  - name: Ship Window_Side_Right_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 444
-      width: 32
-      height: 32
-    spriteID: 3adab34d392102b41a820aef07766f44
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 444}
-  - name: Ship Window_Side_Left_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 372
-      y: 204
-      width: 32
-      height: 32
-    spriteID: 58aa0f9eb6b54234fb8085d17b8851a4
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 372, y: 204}
-  - name: Ship Window_Side_Top_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 372
-      y: 244
-      width: 32
-      height: 32
-    spriteID: 4ebe544bbc01bb341b72c365302e68ae
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 372, y: 244}
-  - name: Ship Window_Side_Bottom_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 372
-      y: 284
-      width: 32
-      height: 32
-    spriteID: a29a92f7310687142bd8218d3bc4fd90
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 372, y: 284}
-  - name: Ship Window_Middle_Tile
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 372
-      y: 324
-      width: 32
-      height: 32
-    spriteID: f6554cc7813d2e741b85787f267310ef
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 372, y: 324}
-  - name: Platform_Falling_Tile3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 332
-      y: 484
-      width: 32
-      height: 23
-    spriteID: b740cfd95af102c478d271fe7eaa41c0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 332, y: 484}
-  - name: Platform_Falling_Tile2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 412
-      y: 460
-      width: 32
-      height: 23
-    spriteID: 5e78e99ed88e67b46bc2417a7c835a35
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 412, y: 460}
-  - name: Platform_Falling_Tile1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 124
-      y: 330
-      width: 32
-      height: 23
-    spriteID: 8869be6cd87799c439a321b54372956d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 124, y: 330}
-  - name: Platform_Normal_Tile1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 284
-      y: 330
-      width: 32
-      height: 23
-    spriteID: 503e6d6c15d7e1f4cb54009c380a765b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 284, y: 330}
-  - name: Platform_Normal_Tile2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 124
-      y: 361
-      width: 32
-      height: 23
-    spriteID: 14d7156ef94c4604a886014de8b74a28
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 124, y: 361}
-  - name: Platform_Normal_Tile3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 284
-      y: 361
-      width: 32
-      height: 23
-    spriteID: 5d44bf69c39d55d4dba6eb464d35a307
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 284, y: 361}
   - name: Layer 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -534,7 +177,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 192
-    spriteID: 62f0b38df020e5e4398f5dfe18959c2c
+    spriteID: bdbb61117b321a94e94473711d0b9724
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -551,11 +194,347 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
+      x: 332
+      y: 244
+      width: 32
+      height: 32
+    spriteID: c56c07aba7f6bb74989be0c5fbe6db53
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 244}
+  - name: Ship Haul Type 1_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 284
+      width: 32
+      height: 32
+    spriteID: 04a73fe5ef332bb4abcac17a193839e7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 284}
+  - name: Ship Haul Type 1_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 324
+      width: 32
+      height: 32
+    spriteID: 0aadce20f2fac1946be39604033a87b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 324}
+  - name: Ship Haul Type 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 364
+      width: 32
+      height: 32
+    spriteID: 46c7f01f4cec07640a8b5def84ccf483
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 364}
+  - name: Ship Haul Type 1_Alarm
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 404
+      width: 32
+      height: 32
+    spriteID: c5f07dad41f339c409a5f6f9cba570b2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 404}
+  - name: Spikes/Electrical Cords
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 274
+      y: 392
+      width: 22
+      height: 13
+    spriteID: fc38a6fdd5033a14faad738b569db386
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 234, y: 392}
+  - name: Laserbeam_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 444
+      width: 32
+      height: 32
+    spriteID: c6a825518fb52c44898c9f87f344ff72
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 444}
+  - name: Laserbeam_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 441
+      width: 32
+      height: 32
+    spriteID: 1e8b1e84f7e10364da1b6c0a5827ee97
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 412, y: 404}
+  - name: Laserbeam_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 372
+      y: 204
+      width: 32
+      height: 32
+    spriteID: 2f9415fe708ee854da4e107a538ea221
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 372, y: 204}
+  - name: Laser_Right
+    originalName: 
+    pivot: {x: 0.036, y: 0.53}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 392
+      width: 27
+      height: 19
+    spriteID: 005bb662a9e4bbf4fbaf9ffa97e505f4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 392}
+  - name: Laser_Left
+    originalName: 
+    pivot: {x: 0.96, y: 0.53}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 239
+      y: 392
+      width: 27
+      height: 19
+    spriteID: 6ccfab95485e4284cb27c1cd6c3ba666
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 199, y: 392}
+  - name: Ship Haul Type 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 364
+      width: 28
+      height: 32
+    spriteID: 69938daeab02b0a44841bbb37249068d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 412, y: 324}
+  - name: Ship Haul Type 3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 404
+      width: 28
+      height: 32
+    spriteID: 707bff5c3cd30194e92d6a5c7cdf9e69
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 412, y: 364}
+  - name: Ship Window_Corner_LefTop_Tile
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 372
+      y: 244
+      width: 32
+      height: 32
+    spriteID: 8005031872d543540861345655572023
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 372, y: 244}
+  - name: Ship Window_Corner_LefBottom_Tile
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 372
+      y: 284
+      width: 32
+      height: 32
+    spriteID: 82652750cb5e8cb41bb47ee72e87eed2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 372, y: 284}
+  - name: Ship Window_Corner_RightTop_Tile
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 372
+      y: 324
+      width: 32
+      height: 32
+    spriteID: 20708f02f02a80742b7696cef87f0d77
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 372, y: 324}
+  - name: Ship Window_Corner_RightBottom_Tile
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
       x: 372
       y: 364
       width: 32
       height: 32
-    spriteID: 678bd52d1ae8b8e4d87e45cf41b1f5af
+    spriteID: e6e878b3b2598384588d8d81fe6a1868
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -564,7 +543,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 372, y: 364}
-  - name: Ship Haul Type 1_3
+  - name: Ship Window_Side_Right_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -576,7 +555,7 @@ ScriptedImporter:
       y: 404
       width: 32
       height: 32
-    spriteID: 09f7c426bca6a3745aea89ff6a10b44c
+    spriteID: aed2510fe4f71cc4f89a8067f241aa3f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -585,7 +564,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 372, y: 404}
-  - name: Ship Haul Type 1_2
+  - name: Ship Window_Side_Left_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -597,7 +576,7 @@ ScriptedImporter:
       y: 444
       width: 32
       height: 32
-    spriteID: d8a1a5d8a13852243ad106c004faac21
+    spriteID: e6106724b4bc8bc40af9f23eb002bdfc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -606,28 +585,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 372, y: 444}
-  - name: Spikes/Electrical Cords
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 412
-      y: 491
-      width: 22
-      height: 13
-    spriteID: 4f5c8197ff8f6a2458af5426e9d28f00
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 412, y: 491}
-  - name: Laserbeam
+  - name: Ship Window_Side_Top_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -639,7 +597,7 @@ ScriptedImporter:
       y: 204
       width: 32
       height: 32
-    spriteID: e797aa1e210e4fb4da6d1c9f0cc43bfb
+    spriteID: 4c2841ce6e51a794fa1095c7fbd8e5b4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -648,70 +606,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 412, y: 204}
-  - name: Laser_Right
-    originalName: 
-    pivot: {x: 0.035, y: 0.53}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 124
-      y: 392
-      width: 27
-      height: 19
-    spriteID: 19d790009fdf4e14f9dbaead610fba2f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 124, y: 392}
-  - name: Laser_Left
-    originalName: 
-    pivot: {x: 0.96, y: 0.53}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 159
-      y: 392
-      width: 27
-      height: 19
-    spriteID: 2fa60b7d6c88e9e46b1a2fe79f92d778
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 159, y: 392}
-  - name: Laserbeam_Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 412
-      y: 361
-      width: 32
-      height: 32
-    spriteID: 1728d08a839f41c4da0d608cd6618484
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 412, y: 364}
-  - name: Laserbeam_Frame_2
+  - name: Ship Window_Side_Bottom_Tile
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -723,7 +618,7 @@ ScriptedImporter:
       y: 244
       width: 32
       height: 32
-    spriteID: 5a7eca871435b00478c323beb8710256
+    spriteID: bb6843d545f895e499f48325502e91bd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -732,6 +627,48 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 412, y: 244}
+  - name: Ship Window_Middle_Tile
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 284
+      width: 32
+      height: 32
+    spriteID: 83f1f1ba38fecd347a5147b8422d9340
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 412, y: 284}
+  - name: Platform_Falling_Tile3_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 477
+      width: 32
+      height: 23
+    spriteID: cf61faf8af1a02f488816f007f480968
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 484}
   - name: Platform_Falling_Tile3_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -740,11 +677,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 372
+      x: 332
       y: 484
       width: 32
       height: 23
-    spriteID: 9aafe04215351fa4890c0d5462ca0f35
+    spriteID: 569099db4dd51324a9d13acf0da1cdf8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -761,11 +698,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 412
-      y: 398
+      x: 4
+      y: 330
       width: 32
       height: 23
-    spriteID: 18b02de600129c945b8adc7722602b4c
+    spriteID: af3e6e707355ba647a4cdff3f83311b6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -773,7 +710,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 412, y: 398}
+    uvTransform: {x: 412, y: 438}
   - name: Platform_Falling_Tile3_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -782,11 +719,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 412
-      y: 429
+      x: 372
+      y: 484
       width: 32
       height: 23
-    spriteID: 8b0c18312a9c20648a0b9b0b49192c5f
+    spriteID: b1d64ddf7d0790346a48acd2f65c9ff7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -794,8 +731,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 412, y: 429}
-  - name: Platform_Falling_Tile2_Frame_3
+    uvTransform: {x: 412, y: 469}
+  - name: Platform_Falling_Tile2_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -803,11 +740,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
+      x: 164
       y: 330
       width: 32
       height: 23
-    spriteID: 43b8c0d7162bfdd4d838a6c2db4e4e8f
+    spriteID: 8ab4929f5efd8284db9c006600df64a5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -816,7 +753,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 330}
-  - name: Platform_Falling_Tile2_Frame_4
+  - name: Platform_Falling_Tile2_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -828,7 +765,7 @@ ScriptedImporter:
       y: 330
       width: 32
       height: 23
-    spriteID: da427c42a5b22de4380a97e0444c81a7
+    spriteID: 71ccc5dbbd78eee47bc27664c8f53d9e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -837,7 +774,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 44, y: 330}
-  - name: Platform_Falling_Tile2_Frame_5
+  - name: Platform_Falling_Tile2_Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -849,7 +786,7 @@ ScriptedImporter:
       y: 330
       width: 32
       height: 23
-    spriteID: aecc448180a64344dbc80d760a096569
+    spriteID: 50ddad126dc2d724fa6e6039baca906b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -858,7 +795,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 84, y: 330}
-  - name: Platform_Falling_Tile1_Frame_3
+  - name: Platform_Falling_Tile2_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -866,11 +803,32 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 164
+      x: 124
       y: 330
       width: 32
       height: 23
-    spriteID: 7ee93907239340b478eabdf9fdfcdc26
+    spriteID: e0271362c6cc7044380537082ad4ffd1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 330}
+  - name: Platform_Falling_Tile1_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 361
+      width: 32
+      height: 23
+    spriteID: 00d1e8bd63a7c214c81f207d756c13b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -879,7 +837,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 164, y: 330}
-  - name: Platform_Falling_Tile1_Frame_4
+  - name: Platform_Falling_Tile1_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -891,7 +849,7 @@ ScriptedImporter:
       y: 330
       width: 32
       height: 23
-    spriteID: 5ed7957be9b0d004a9c3d0af0be333ba
+    spriteID: 24b58bc4d20c9284f82af3f3cc94dcea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -900,7 +858,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 204, y: 330}
-  - name: Platform_Falling_Tile1_Frame_5
+  - name: Platform_Falling_Tile1_Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -912,7 +870,7 @@ ScriptedImporter:
       y: 330
       width: 32
       height: 23
-    spriteID: fcdf719fb4a39dc45bf8c6873a0c7e6d
+    spriteID: e2fb43a0ecd042a42b51029d914436b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -921,7 +879,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 244, y: 330}
-  - name: Platform_Normal_Tile1_Frame_3
+  - name: Platform_Falling_Tile1_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -929,11 +887,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 361
+      x: 284
+      y: 330
       width: 32
       height: 23
-    spriteID: c30e6a56fa4b47443a88b2db5c624a05
+    spriteID: c2db2af0f6f9a204aae3aa38eebaefed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -941,8 +899,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 361}
-  - name: Platform_Normal_Tile1_Frame_4
+    uvTransform: {x: 284, y: 330}
+  - name: Platform_Normal_Tile3_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -954,7 +912,7 @@ ScriptedImporter:
       y: 361
       width: 32
       height: 23
-    spriteID: b6c718b44622be74cb81f149cbf2c711
+    spriteID: 2864a3ffca1fd2e4d95f2ffc62efafed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -962,8 +920,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 361}
-  - name: Platform_Normal_Tile1_Frame_5
+    uvTransform: {x: 4, y: 361}
+  - name: Platform_Normal_Tile3_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -975,7 +933,28 @@ ScriptedImporter:
       y: 361
       width: 32
       height: 23
-    spriteID: b4e820c3ac9e8484ebb9e8aaa4a683e5
+    spriteID: 54de8cd83fe94944b9c06c10becc9a9b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 361}
+  - name: Platform_Normal_Tile3_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 361
+      width: 32
+      height: 23
+    spriteID: 8923ceffb5a9f014f913f347ee6027b6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -984,7 +963,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 84, y: 361}
-  - name: Platform_Normal_Tile2_Frame_3
+  - name: Platform_Normal_Tile3_Frame_8
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -996,7 +975,7 @@ ScriptedImporter:
       y: 361
       width: 32
       height: 23
-    spriteID: 643f32a34d778a44f96e0d0eea2bea64
+    spriteID: 91a1eba9741191c46942f35132cb0832
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1004,8 +983,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 164, y: 361}
-  - name: Platform_Normal_Tile2_Frame_4
+    uvTransform: {x: 124, y: 361}
+  - name: Platform_Normal_Tile2_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1017,7 +996,7 @@ ScriptedImporter:
       y: 361
       width: 32
       height: 23
-    spriteID: e2bdb359640e1e44092363e2ad3a0c09
+    spriteID: f8717f1d9a1ee3a4dbaefc21b094343c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1025,8 +1004,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 204, y: 361}
-  - name: Platform_Normal_Tile2_Frame_5
+    uvTransform: {x: 164, y: 361}
+  - name: Platform_Normal_Tile2_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1038,7 +1017,28 @@ ScriptedImporter:
       y: 361
       width: 32
       height: 23
-    spriteID: 2343071c94373c14bba8208d7a4236cb
+    spriteID: fb3b2a31c250e884cb8216ee2a7f805e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 361}
+  - name: Platform_Normal_Tile2_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 361
+      width: 32
+      height: 23
+    spriteID: f8d4d2121a05261468957d85d6f24d54
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1047,7 +1047,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 244, y: 361}
-  - name: Platform_Normal_Tile3_Frame_3
+  - name: Platform_Normal_Tile2_Frame_8
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1059,7 +1059,7 @@ ScriptedImporter:
       y: 392
       width: 32
       height: 23
-    spriteID: 96821bc7fa2309b49bb98254b7168319
+    spriteID: a0c1fb98c6bc6504abc7955041960bd3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1067,8 +1067,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 392}
-  - name: Platform_Normal_Tile3_Frame_4
+    uvTransform: {x: 284, y: 361}
+  - name: Platform_Normal_Tile1_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1080,7 +1080,7 @@ ScriptedImporter:
       y: 392
       width: 32
       height: 23
-    spriteID: c768297b60c93cb40b4c0a42f11dd3b7
+    spriteID: 639ed044c149cf9499e89c5e1e37b658
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1088,8 +1088,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 44, y: 392}
-  - name: Platform_Normal_Tile3_Frame_5
+    uvTransform: {x: 4, y: 392}
+  - name: Platform_Normal_Tile1_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1101,7 +1101,28 @@ ScriptedImporter:
       y: 392
       width: 32
       height: 23
-    spriteID: 6c15e727365ffc748be817e2617563d5
+    spriteID: c69a240607d1e3d4da0f9b574764679c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 392}
+  - name: Platform_Normal_Tile1_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 392
+      width: 32
+      height: 23
+    spriteID: 504f2508e001f034db19991e18cea787
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1110,7 +1131,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 84, y: 392}
-  - name: Space
+  - name: Platform_Normal_Tile1_Frame_8
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1118,11 +1139,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 3
-      width: 320
-      height: 320
-    spriteID: 327f594a22a19cb40ac48d758c017cf2
+      x: 164
+      y: 392
+      width: 32
+      height: 23
+    spriteID: 30102c7d6b7a4684daac6116938f4765
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -1130,1258 +1151,30 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 124, y: 392}
+  - name: DeathWall_Tile_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 412
+      y: 324
+      width: 32
+      height: 32
+    spriteID: 8e165a6f76dd8b44ebaca71bc615c08b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 412, y: 324}
   spriteSheetImportData: []
   asepriteLayers:
-  - layerIndex: 5
-    uuid:
-      value0: 880143639
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 1
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 1
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 288
-        width: 32
-        height: 32
-      spriteId: 4c0493969c81c4c4c85b7086c2bb1e99
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 6
-    uuid:
-      value0: 2167197239
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 1_Alarm
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 1_Alarm
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 96
-        y: 288
-        width: 32
-        height: 32
-      spriteId: b21f186b181209e46b049b6e1c3b0337
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 12
-    uuid:
-      value0: 2446227580
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 2
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 2
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 66
-        y: 288
-        width: 28
-        height: 32
-      spriteId: 223a4ceab6c330c458dc219f477d174c
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 13
-    uuid:
-      value0: 4012311521
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 3
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 66
-        y: 256
-        width: 28
-        height: 32
-      spriteId: 044ae29be8391c344a8e3ede1e0670b5
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 14
-    uuid:
-      value0: 2523127342
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Window
-    layerFlags: 35
-    layerType: 1
-    blendMode: 0
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 15
-    uuid:
-      value0: 2736848361
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Corner_LefTop_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Corner_LefTop_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 96
-        y: 192
-        width: 32
-        height: 32
-      spriteId: 9e476cccbbde45444a63715df56f076a
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 16
-    uuid:
-      value0: 3333610145
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Corner_LefBottom_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Corner_LefBottom_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 96
-        y: 128
-        width: 32
-        height: 32
-      spriteId: 0b2032702efbc3941b04679950edf373
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 17
-    uuid:
-      value0: 4150365840
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Corner_RightTop_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Corner_RightTop_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 192
-        width: 32
-        height: 32
-      spriteId: b806b1c07ed7af743a45a2f2ef391056
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 18
-    uuid:
-      value0: 1754977932
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Corner_RightBottom_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Corner_RightBottom_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 128
-        width: 32
-        height: 32
-      spriteId: fb58672518c48ae4483527098c30f7eb
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 19
-    uuid:
-      value0: 1612002865
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Side_Right_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Side_Right_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 160
-        width: 32
-        height: 32
-      spriteId: 3adab34d392102b41a820aef07766f44
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 20
-    uuid:
-      value0: 4112326990
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Side_Left_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Side_Left_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 96
-        y: 160
-        width: 32
-        height: 32
-      spriteId: 58aa0f9eb6b54234fb8085d17b8851a4
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 21
-    uuid:
-      value0: 1040539476
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Side_Top_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Side_Top_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 192
-        width: 32
-        height: 32
-      spriteId: 4ebe544bbc01bb341b72c365302e68ae
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 22
-    uuid:
-      value0: 1025108104
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Side_Bottom_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Side_Bottom_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 128
-        width: 32
-        height: 32
-      spriteId: a29a92f7310687142bd8218d3bc4fd90
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 23
-    uuid:
-      value0: 1814148714
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Window_Middle_Tile
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Window_Middle_Tile
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 160
-        width: 32
-        height: 32
-      spriteId: f6554cc7813d2e741b85787f267310ef
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 14
-  - layerIndex: 1
-    uuid:
-      value0: 4287466680
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 1
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 1
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 64
-        width: 128
-        height: 192
-      spriteId: 62f0b38df020e5e4398f5dfe18959c2c
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 24
-    uuid:
-      value0: 1538260931
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Falling
-    layerFlags: 35
-    layerType: 1
-    blendMode: 0
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 25
-    uuid:
-      value0: 4269160539
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Falling_Tile3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Falling_Tile3_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 260
-        width: 32
-        height: 23
-      spriteId: b740cfd95af102c478d271fe7eaa41c0
-    - name: Platform_Falling_Tile3_Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 9aafe04215351fa4890c0d5462ca0f35
-    - name: Platform_Falling_Tile3_Frame_4
-      frameIndex: 4
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 18b02de600129c945b8adc7722602b4c
-    - name: Platform_Falling_Tile3_Frame_5
-      frameIndex: 5
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 8b0c18312a9c20648a0b9b0b49192c5f
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 24
-  - layerIndex: 26
-    uuid:
-      value0: 4269160540
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Falling_Tile2
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Falling_Tile2_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 5e78e99ed88e67b46bc2417a7c835a35
-    - name: Platform_Falling_Tile2_Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 43b8c0d7162bfdd4d838a6c2db4e4e8f
-    - name: Platform_Falling_Tile2_Frame_4
-      frameIndex: 4
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 260
-        width: 32
-        height: 23
-      spriteId: da427c42a5b22de4380a97e0444c81a7
-    - name: Platform_Falling_Tile2_Frame_5
-      frameIndex: 5
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 260
-        width: 32
-        height: 23
-      spriteId: aecc448180a64344dbc80d760a096569
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 24
-  - layerIndex: 27
-    uuid:
-      value0: 4269160537
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Falling_Tile1
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Falling_Tile1_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 8869be6cd87799c439a321b54372956d
-    - name: Platform_Falling_Tile1_Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 7ee93907239340b478eabdf9fdfcdc26
-    - name: Platform_Falling_Tile1_Frame_4
-      frameIndex: 4
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 260
-        width: 32
-        height: 23
-      spriteId: 5ed7957be9b0d004a9c3d0af0be333ba
-    - name: Platform_Falling_Tile1_Frame_5
-      frameIndex: 5
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 260
-        width: 32
-        height: 23
-      spriteId: fcdf719fb4a39dc45bf8c6873a0c7e6d
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 24
-  - layerIndex: 28
-    uuid:
-      value0: 3595951515
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Normal
-    layerFlags: 35
-    layerType: 1
-    blendMode: 0
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 31
-    uuid:
-      value0: 3473681033
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Normal_Tile1
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Normal_Tile1_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 503e6d6c15d7e1f4cb54009c380a765b
-    - name: Platform_Normal_Tile1_Frame_6
-      frameIndex: 6
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 292
-        width: 32
-        height: 23
-      spriteId: c30e6a56fa4b47443a88b2db5c624a05
-    - name: Platform_Normal_Tile1_Frame_7
-      frameIndex: 7
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 292
-        width: 32
-        height: 23
-      spriteId: b6c718b44622be74cb81f149cbf2c711
-    - name: Platform_Normal_Tile1_Frame_8
-      frameIndex: 8
-      additiveSortOrder: 0
-      cellRect:
-        x: 128
-        y: 292
-        width: 32
-        height: 23
-      spriteId: b4e820c3ac9e8484ebb9e8aaa4a683e5
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    parentIndex: 28
-  - layerIndex: 30
-    uuid:
-      value0: 3473681036
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Normal_Tile2
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Normal_Tile2_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 14d7156ef94c4604a886014de8b74a28
-    - name: Platform_Normal_Tile2_Frame_6
-      frameIndex: 6
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 643f32a34d778a44f96e0d0eea2bea64
-    - name: Platform_Normal_Tile2_Frame_7
-      frameIndex: 7
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 292
-        width: 32
-        height: 23
-      spriteId: e2bdb359640e1e44092363e2ad3a0c09
-    - name: Platform_Normal_Tile2_Frame_8
-      frameIndex: 8
-      additiveSortOrder: 0
-      cellRect:
-        x: 160
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 2343071c94373c14bba8208d7a4236cb
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    parentIndex: 28
-  - layerIndex: 29
-    uuid:
-      value0: 3473681035
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Platform_Normal_Tile3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Platform_Normal_Tile3_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 5d44bf69c39d55d4dba6eb464d35a307
-    - name: Platform_Normal_Tile3_Frame_6
-      frameIndex: 6
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 96821bc7fa2309b49bb98254b7168319
-    - name: Platform_Normal_Tile3_Frame_7
-      frameIndex: 7
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 292
-        width: 32
-        height: 23
-      spriteId: c768297b60c93cb40b4c0a42f11dd3b7
-    - name: Platform_Normal_Tile3_Frame_8
-      frameIndex: 8
-      additiveSortOrder: 0
-      cellRect:
-        x: 192
-        y: 292
-        width: 32
-        height: 23
-      spriteId: 6c15e727365ffc748be817e2617563d5
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    parentIndex: 28
-  - layerIndex: 2
-    uuid:
-      value0: 2018028614
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 1_4
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 1_4
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 32
-        y: 256
-        width: 32
-        height: 32
-      spriteId: 678bd52d1ae8b8e4d87e45cf41b1f5af
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 3
-    uuid:
-      value0: 1258513727
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 1_3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 1_3
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 32
-        y: 288
-        width: 32
-        height: 32
-      spriteId: 09f7c426bca6a3745aea89ff6a10b44c
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 4
-    uuid:
-      value0: 2824597668
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Ship Haul Type 1_2
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Ship Haul Type 1_2
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 256
-        width: 32
-        height: 32
-      spriteId: d8a1a5d8a13852243ad106c004faac21
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 7
-    uuid:
-      value0: 1012198567
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Spikes/Electrical Cords
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Spikes/Electrical Cords
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 230
-        y: 288
-        width: 22
-        height: 13
-      spriteId: 4f5c8197ff8f6a2458af5426e9d28f00
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: -1
-  - layerIndex: 8
-    uuid:
-      value0: 2515812557
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Laser
-    layerFlags: 3
-    layerType: 1
-    blendMode: 0
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 9
-    uuid:
-      value0: 3160128730
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Laserbeam
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Laserbeam_Frame_0
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 256
-        y: 256
-        width: 32
-        height: 32
-      spriteId: e797aa1e210e4fb4da6d1c9f0cc43bfb
-    - name: Laserbeam_Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 256
-        y: 259
-        width: 32
-        height: 26
-      spriteId: 1728d08a839f41c4da0d608cd6618484
-    - name: Laserbeam_Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 256
-        y: 256
-        width: 32
-        height: 32
-      spriteId: 5a7eca871435b00478c323beb8710256
-    linkedCells:
-    - frameIndex: 3
-      linkedToFrame: 2
-    - frameIndex: 4
-      linkedToFrame: 2
-    - frameIndex: 5
-      linkedToFrame: 2
-    - frameIndex: 6
-      linkedToFrame: 2
-    - frameIndex: 7
-      linkedToFrame: 2
-    - frameIndex: 8
-      linkedToFrame: 2
-    parentIndex: 8
-  - layerIndex: 10
-    uuid:
-      value0: 4113851816
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Laser_Right
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Laser_Right
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 261
-        y: 294
-        width: 27
-        height: 19
-      spriteId: 19d790009fdf4e14f9dbaead610fba2f
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 8
-  - layerIndex: 11
-    uuid:
-      value0: 2739426371
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Laser_Left
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Laser_Left
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 288
-        y: 294
-        width: 27
-        height: 19
-      spriteId: 2fa60b7d6c88e9e46b1a2fe79f92d778
-    linkedCells:
-    - frameIndex: 1
-      linkedToFrame: 0
-    - frameIndex: 2
-      linkedToFrame: 0
-    - frameIndex: 3
-      linkedToFrame: 0
-    - frameIndex: 4
-      linkedToFrame: 0
-    - frameIndex: 5
-      linkedToFrame: 0
-    - frameIndex: 6
-      linkedToFrame: 0
-    - frameIndex: 7
-      linkedToFrame: 0
-    - frameIndex: 8
-      linkedToFrame: 0
-    parentIndex: 8
   - layerIndex: 0
     uuid:
       value0: 1144863360
@@ -2402,7 +1195,1334 @@ ScriptedImporter:
         y: 2
         width: 320
         height: 318
-      spriteId: 327f594a22a19cb40ac48d758c017cf2
+      spriteId: f24c8bef6cf4daf4789e6292f59c6800
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 2
+    uuid:
+      value0: 823121097
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: DeathWall_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: DeathWall_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      spriteId: cd3f0deaa29599149b9d2ddef98bc551
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 3
+    uuid:
+      value0: 4287466680
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 1
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 64
+        width: 128
+        height: 192
+      spriteId: bdbb61117b321a94e94473711d0b9724
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 4
+    uuid:
+      value0: 2018028614
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_4
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      spriteId: c56c07aba7f6bb74989be0c5fbe6db53
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 5
+    uuid:
+      value0: 1258513727
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_3
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 288
+        width: 32
+        height: 32
+      spriteId: 04a73fe5ef332bb4abcac17a193839e7
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 6
+    uuid:
+      value0: 2824597668
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      spriteId: 0aadce20f2fac1946be39604033a87b5
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 7
+    uuid:
+      value0: 880143639
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 288
+        width: 32
+        height: 32
+      spriteId: 46c7f01f4cec07640a8b5def84ccf483
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 8
+    uuid:
+      value0: 2167197239
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 1_Alarm
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 1_Alarm
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 96
+        y: 288
+        width: 32
+        height: 32
+      spriteId: c5f07dad41f339c409a5f6f9cba570b2
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 9
+    uuid:
+      value0: 1012198567
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Spikes/Electrical Cords
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Spikes/Electrical Cords
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 230
+        y: 288
+        width: 22
+        height: 13
+      spriteId: fc38a6fdd5033a14faad738b569db386
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 10
+    uuid:
+      value0: 2515812557
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 11
+    uuid:
+      value0: 3160128730
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laserbeam
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laserbeam_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 256
+        y: 256
+        width: 32
+        height: 32
+      spriteId: c6a825518fb52c44898c9f87f344ff72
+    - name: Laserbeam_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 256
+        y: 259
+        width: 32
+        height: 26
+      spriteId: 1e8b1e84f7e10364da1b6c0a5827ee97
+    - name: Laserbeam_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 256
+        y: 256
+        width: 32
+        height: 32
+      spriteId: 2f9415fe708ee854da4e107a538ea221
+    linkedCells:
+    - frameIndex: 3
+      linkedToFrame: 2
+    - frameIndex: 4
+      linkedToFrame: 2
+    - frameIndex: 5
+      linkedToFrame: 2
+    - frameIndex: 6
+      linkedToFrame: 2
+    - frameIndex: 7
+      linkedToFrame: 2
+    - frameIndex: 8
+      linkedToFrame: 2
+    parentIndex: 10
+  - layerIndex: 12
+    uuid:
+      value0: 4113851816
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser_Right
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laser_Right
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 261
+        y: 294
+        width: 27
+        height: 19
+      spriteId: 005bb662a9e4bbf4fbaf9ffa97e505f4
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 10
+  - layerIndex: 13
+    uuid:
+      value0: 2739426371
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Laser_Left
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Laser_Left
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 288
+        y: 294
+        width: 27
+        height: 19
+      spriteId: 6ccfab95485e4284cb27c1cd6c3ba666
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 10
+  - layerIndex: 14
+    uuid:
+      value0: 2446227580
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 66
+        y: 288
+        width: 28
+        height: 32
+      spriteId: 69938daeab02b0a44841bbb37249068d
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 15
+    uuid:
+      value0: 4012311521
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Haul Type 3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Haul Type 3
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 66
+        y: 256
+        width: 28
+        height: 32
+      spriteId: 707bff5c3cd30194e92d6a5c7cdf9e69
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: -1
+  - layerIndex: 16
+    uuid:
+      value0: 2523127342
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Window
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 17
+    uuid:
+      value0: 2736848361
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Corner_LefTop_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Corner_LefTop_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      spriteId: 8005031872d543540861345655572023
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 18
+    uuid:
+      value0: 3333610145
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Corner_LefBottom_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Corner_LefBottom_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      spriteId: 82652750cb5e8cb41bb47ee72e87eed2
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 19
+    uuid:
+      value0: 4150365840
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Corner_RightTop_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Corner_RightTop_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      spriteId: 20708f02f02a80742b7696cef87f0d77
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 20
+    uuid:
+      value0: 1754977932
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Corner_RightBottom_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Corner_RightBottom_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      spriteId: e6e878b3b2598384588d8d81fe6a1868
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 21
+    uuid:
+      value0: 1612002865
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Side_Right_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Side_Right_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      spriteId: aed2510fe4f71cc4f89a8067f241aa3f
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 22
+    uuid:
+      value0: 4112326990
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Side_Left_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Side_Left_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      spriteId: e6106724b4bc8bc40af9f23eb002bdfc
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 23
+    uuid:
+      value0: 1040539476
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Side_Top_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Side_Top_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 192
+        width: 32
+        height: 32
+      spriteId: 4c2841ce6e51a794fa1095c7fbd8e5b4
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 24
+    uuid:
+      value0: 1025108104
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Side_Bottom_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Side_Bottom_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      spriteId: bb6843d545f895e499f48325502e91bd
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 25
+    uuid:
+      value0: 1814148714
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Ship Window_Middle_Tile
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Ship Window_Middle_Tile
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      spriteId: 83f1f1ba38fecd347a5147b8422d9340
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 16
+  - layerIndex: 26
+    uuid:
+      value0: 1538260931
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Falling
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 27
+    uuid:
+      value0: 4269160539
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Falling_Tile3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Falling_Tile3_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 260
+        width: 32
+        height: 23
+      spriteId: cf61faf8af1a02f488816f007f480968
+    - name: Platform_Falling_Tile3_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 569099db4dd51324a9d13acf0da1cdf8
+    - name: Platform_Falling_Tile3_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 260
+        width: 32
+        height: 23
+      spriteId: af3e6e707355ba647a4cdff3f83311b6
+    - name: Platform_Falling_Tile3_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 260
+        width: 32
+        height: 23
+      spriteId: b1d64ddf7d0790346a48acd2f65c9ff7
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 26
+  - layerIndex: 28
+    uuid:
+      value0: 4269160540
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Falling_Tile2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Falling_Tile2_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 8ab4929f5efd8284db9c006600df64a5
+    - name: Platform_Falling_Tile2_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 71ccc5dbbd78eee47bc27664c8f53d9e
+    - name: Platform_Falling_Tile2_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 50ddad126dc2d724fa6e6039baca906b
+    - name: Platform_Falling_Tile2_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 260
+        width: 32
+        height: 23
+      spriteId: e0271362c6cc7044380537082ad4ffd1
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 26
+  - layerIndex: 29
+    uuid:
+      value0: 4269160537
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Falling_Tile1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Falling_Tile1_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 00d1e8bd63a7c214c81f207d756c13b1
+    - name: Platform_Falling_Tile1_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 260
+        width: 32
+        height: 23
+      spriteId: 24b58bc4d20c9284f82af3f3cc94dcea
+    - name: Platform_Falling_Tile1_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 260
+        width: 32
+        height: 23
+      spriteId: e2fb43a0ecd042a42b51029d914436b0
+    - name: Platform_Falling_Tile1_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 260
+        width: 32
+        height: 23
+      spriteId: c2db2af0f6f9a204aae3aa38eebaefed
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 6
+      linkedToFrame: 0
+    - frameIndex: 7
+      linkedToFrame: 0
+    - frameIndex: 8
+      linkedToFrame: 0
+    parentIndex: 26
+  - layerIndex: 30
+    uuid:
+      value0: 3595951515
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Normal
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 31
+    uuid:
+      value0: 3473681035
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Normal_Tile3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Normal_Tile3_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 2864a3ffca1fd2e4d95f2ffc62efafed
+    - name: Platform_Normal_Tile3_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 54de8cd83fe94944b9c06c10becc9a9b
+    - name: Platform_Normal_Tile3_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 8923ceffb5a9f014f913f347ee6027b6
+    - name: Platform_Normal_Tile3_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 192
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 91a1eba9741191c46942f35132cb0832
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    parentIndex: 30
+  - layerIndex: 32
+    uuid:
+      value0: 3473681036
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Normal_Tile2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Normal_Tile2_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 292
+        width: 32
+        height: 23
+      spriteId: f8717f1d9a1ee3a4dbaefc21b094343c
+    - name: Platform_Normal_Tile2_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 292
+        width: 32
+        height: 23
+      spriteId: fb3b2a31c250e884cb8216ee2a7f805e
+    - name: Platform_Normal_Tile2_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 292
+        width: 32
+        height: 23
+      spriteId: f8d4d2121a05261468957d85d6f24d54
+    - name: Platform_Normal_Tile2_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 160
+        y: 292
+        width: 32
+        height: 23
+      spriteId: a0c1fb98c6bc6504abc7955041960bd3
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    parentIndex: 30
+  - layerIndex: 33
+    uuid:
+      value0: 3473681033
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Platform_Normal_Tile1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Platform_Normal_Tile1_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 639ed044c149cf9499e89c5e1e37b658
+    - name: Platform_Normal_Tile1_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 292
+        width: 32
+        height: 23
+      spriteId: c69a240607d1e3d4da0f9b574764679c
+    - name: Platform_Normal_Tile1_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 504f2508e001f034db19991e18cea787
+    - name: Platform_Normal_Tile1_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 292
+        width: 32
+        height: 23
+      spriteId: 30102c7d6b7a4684daac6116938f4765
+    linkedCells:
+    - frameIndex: 1
+      linkedToFrame: 0
+    - frameIndex: 2
+      linkedToFrame: 0
+    - frameIndex: 3
+      linkedToFrame: 0
+    - frameIndex: 4
+      linkedToFrame: 0
+    - frameIndex: 5
+      linkedToFrame: 0
+    parentIndex: 30
+  - layerIndex: 1
+    uuid:
+      value0: 2367775208
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: DeathWall_Tile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: DeathWall_Tile_2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      spriteId: 8e165a6f76dd8b44ebaca71bc615c08b
     linkedCells:
     - frameIndex: 1
       linkedToFrame: 0
