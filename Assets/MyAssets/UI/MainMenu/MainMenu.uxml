@@ -13,7 +13,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="BuildVersionContainer" style="flex-grow: 1; position: absolute; bottom: 2%; left: 2%; width: 20%; height: 10%; -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); font-size: 35%; color: rgb(255, 255, 255); -unity-text-align: lower-left; justify-content: flex-end;">
-            <ui:Label text="V 0.6.0 (Early Build)" name="BuildVersion" emoji-fallback-support="false" />
+            <ui:Label text="V 0.6.1 (Alpha Build)" name="BuildVersion" emoji-fallback-support="false" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
