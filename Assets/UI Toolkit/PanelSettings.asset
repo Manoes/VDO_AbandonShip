@@ -24,7 +24,7 @@ MonoBehaviour:
   m_ReferenceDpi: 96
   m_FallbackDpi: 96
   m_ReferenceResolution: {x: 640, y: 360}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_Match: 1
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   m_VertexBudget: 0
   m_DynamicAtlasSettings:
     m_MinAtlasSize: 32
-    m_MaxAtlasSize: 4096
+    m_MaxAtlasSize: 1024
     m_MaxSubTextureSize: 32
     m_ActiveFilters: -1
   m_AtlasBlitShader: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}

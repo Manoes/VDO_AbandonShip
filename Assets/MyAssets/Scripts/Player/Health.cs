@@ -23,11 +23,19 @@ public class Health : MonoBehaviour
     bool invuln;
     Coroutine blinkCo;
 
+    private PlayerAudio playerAudio;
+
     void Awake()
     {
         CurrentHP = maxHP;
         if(renderersToBlink == null || renderersToBlink.Length == 0)
             renderersToBlink = GetComponentsInChildren<SpriteRenderer>();
+
+        if (!playerAudio)
+        {
+            playerAudio = GetComponent<PlayerAudio>();
+            playerAudio.Init();
+        }
     }
 
     void Update()
@@ -55,6 +63,8 @@ public class Health : MonoBehaviour
 
         if(CurrentHP <= 0)
             GameManager.Instance.KillPlayer();
+        
+        playerAudio.PlayHurtSound();
 
         if(blinkCo != null) StopCoroutine(blinkCo);
         blinkCo = StartCoroutine(InvulnBlink());

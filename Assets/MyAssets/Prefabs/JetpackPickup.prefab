@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charges: 1
+  pickupSFX: {fileID: 8300000, guid: b040263fa34b6d4418ec0d03255168af, type: 3}
 --- !u!114 &-6702777913660955259
 MonoBehaviour:
   m_ObjectHideFlags: 0

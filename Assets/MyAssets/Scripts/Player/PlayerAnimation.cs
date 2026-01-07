@@ -22,6 +22,7 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private string deadParam = "Dead";
 
     private Health health;
+    private PlayerAudio playerAudio;
 
     int speedHash, groundedHash, deadHash;
     bool hasSpeed, hasGrounded, hasDead;
@@ -35,6 +36,11 @@ public class PlayerAnimation : MonoBehaviour
         if(!animator) animator = GetComponent<Animator>();
         if(!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
         if(!health) health = GetComponent<Health>();
+        if(!playerAudio) 
+        {
+            playerAudio = GetComponent<PlayerAudio>();
+            playerAudio.Init();
+        }
 
         speedHash = Animator.StringToHash(speedParam);
         groundedHash = Animator.StringToHash(groundedParam);
@@ -95,5 +101,5 @@ public class PlayerAnimation : MonoBehaviour
         if(Mathf.Abs(inputX) > 0.01f)
             facing = inputX < 0f ? -1 : 1;
         if(spriteRenderer) spriteRenderer.flipX = (facing < 0);
-    }
+    }    
 }

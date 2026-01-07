@@ -1,43 +1,77 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class ParallaxController : MonoBehaviour
 {
-    [Serializable]
-    public class Layer
-    {
-        public Transform transform;
-        [Range(0f, 1f)] 
-        public float factor = 0.25f;
-        public bool effectX = false;
-        public bool effectY = true;
-    }
-
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private Layer[] layers;
-
-    private Vector3 lastCamPos;
+    [SerializeField] private Transform cam;
+    [Tooltip("0 = Move with Camera, 1 = Not Move")]
+    [SerializeField] private float parallaxEffect;
+    [SerializeField] private float wrapMargin = 0.5f;
+    
+    private float startPos, height, camStartY;
 
     void Awake()
     {
-        if(!cameraTransform) cameraTransform = Camera.main.transform;
-        lastCamPos = cameraTransform.position;
+        if(!cam) cam = Camera.main.transform;
     }
 
-    void LateUpdate()
+    void Start()
     {
-        Vector3 camDelta = cameraTransform.position - lastCamPos;
-        for(int i = 0; i < layers.Length; i++)
+        startPos = transform.position.y;
+        camStartY = cam.position.y;
+
+        height = GetWorldHeight(gameObject);
+
+        if(height < 0.0001f) height = 0f;
+    }
+
+    void FixedUpdate()
+    {
+        float camY = cam.position.y;
+
+        // Parallax: Layer follows a Fraction of the Camera's Displacements from Start        
+        float camDelta = camY - camStartY;
+        float layerY = startPos + camDelta * (1f - parallaxEffect);
+
+        transform.position = new Vector3(transform.position.x, layerY, transform.position.z);
+
+        if(height <= 0f) return;
+
+        float difference = camY - transform.position.y;
+
+        // If Background has reached the end of its length, Adjust
+        if(difference > (height * 0.5f + wrapMargin))
         {
-            var layer = layers[i];
-            if(!layer.transform) return;
+            startPos += height;
+        }
+        else if(difference < -(height * 0.5f + wrapMargin))
+        {
+            startPos -= height;
+        }
+    }
 
-            float directionX = layer.effectX ? camDelta.x * layer.factor : 0f;
-            float directionY = layer.effectY ? camDelta.y * layer.factor : 0f;
+    static float GetWorldHeight(GameObject root)
+    {
+        // Sprite: bounds are world-space
+        var sr = root.GetComponentInChildren<SpriteRenderer>();
+        if (sr) return sr.bounds.size.y;
 
-            layer.transform.position += new Vector3(directionX, directionY);
+        // Tilemap: localBounds are local-space -> convert using lossyScale
+        var tm = root.GetComponentInChildren<Tilemap>();
+        if (tm)
+        {
+            tm.CompressBounds();
+            float localY = tm.localBounds.size.y;
+            float scaleY = tm.transform.lossyScale.y;
+            return Mathf.Abs(localY * scaleY);
         }
 
-        lastCamPos = cameraTransform.position;
+        // Any renderer fallback
+        var r = root.GetComponentInChildren<Renderer>();
+        if (r) return r.bounds.size.y;
+
+        return 0f;
     }
 }

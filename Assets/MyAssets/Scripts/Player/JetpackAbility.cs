@@ -29,7 +29,7 @@ public class JetpackAbility : MonoBehaviour
 
     Rigidbody2D rb;
     PlayerMovement movement;
-
+    PlayerAudio playerAudio;
     int charges;
     float cooldownTimer;
     float vfxTimer;
@@ -54,6 +54,12 @@ public class JetpackAbility : MonoBehaviour
 
         if (jetpackParticles)
             jetpackParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        
+        if(!playerAudio) 
+        {
+            playerAudio = GetComponent<PlayerAudio>();
+            playerAudio.Init();
+        }
     }
 
     void Update()
@@ -127,6 +133,7 @@ public class JetpackAbility : MonoBehaviour
         if (jetpackParticles)
         {
             jetpackParticles.Play(true);
+            playerAudio.PlayJetpackSound();
             vfxTimer = vfxBurstDuration;
         }
 

@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameUIManager ui;
     [SerializeField] private float fallbackDeathAnimSeconds = 0.7f;
 
+    [Header("Sound SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip buttonPresSFX;
+
     // Getters (and Setters -> Private)
     public float Score { get; private set; }
     public float HighScore { get; private set; }
@@ -52,11 +56,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        audioSource = GetComponent<AudioSource>();
         HighScore = PlayerPrefs.GetFloat(HighScoreKey, 0f);
     }
 
     void OnEnable()
-    {  
+    {
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         BindUI(ui);
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     void BindUI(GameUIManager newUI)
     {
-        if(ui != null)
+        if (ui != null)
         {
             ui.RestartPressed -= RestartRun;
             ui.MenuPressed -= GoToMenu;
@@ -79,11 +84,16 @@ public class GameManager : MonoBehaviour
 
         ui = newUI;
 
-        if(ui != null)
+        if (ui != null)
         {
             ui.RestartPressed += RestartRun;
             ui.MenuPressed += GoToMenu;
         }
+    }
+
+    public void PlayUIButtonSFX()
+    {        
+        audioSource.PlayOneShot(buttonPresSFX);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -94,7 +104,7 @@ public class GameManager : MonoBehaviour
         scoreEventTimer = scoreEventInterval;
 
         cam = Camera.main;
-        if(!cam)
+        if (!cam)
             cam = FindFirstObjectByType<Camera>(FindObjectsInactive.Include);
 
         var playerGO = GameObject.FindGameObjectWithTag("Player");
@@ -121,14 +131,14 @@ public class GameManager : MonoBehaviour
 
         platformManager = FindFirstObjectByType<PlatformManager>();
 
-        if(playerRigidbody) playerRigidbody.simulated = false;
-        if(playerMovement) playerMovement.enabled = false;
-        if(playerJetpack) playerJetpack.enabled = false;
+        if (playerRigidbody) playerRigidbody.simulated = false;
+        if (playerMovement) playerMovement.enabled = false;
+        if (playerJetpack) playerJetpack.enabled = false;
 
         // Push References into PlatformManager and Reset Platforms
-        if(platformManager && player && deathWall && cam)
+        if (platformManager && player && deathWall && cam)
         {
-            if(!cam) return;
+            if (!cam) return;
 
             platformManager.Init(player, deathWall.transform, cam);
             platformManager.ResetRun();
@@ -153,23 +163,23 @@ public class GameManager : MonoBehaviour
             playerRigidbody.simulated = true;
         }
 
-        if(playerMovement) playerMovement.enabled = true;
-        if(playerJetpack) playerJetpack.enabled = true;
+        if (playerMovement) playerMovement.enabled = true;
+        if (playerJetpack) playerJetpack.enabled = true;
     }
 
     IEnumerator NotifyScoreNextFrame()
     {
-        yield return null;  
+        yield return null;
         OnScoreChanged?.Invoke(Score, HighScore);
     }
 
     void Update()
     {
-        if(scoreRunning)
+        if (scoreRunning)
             Score += Time.deltaTime;
 
         // Update Highscore Life
-        if(Score > HighScore)
+        if (Score > HighScore)
         {
             HighScore = Score;
             PlayerPrefs.SetFloat(HighScoreKey, HighScore);
@@ -177,7 +187,7 @@ public class GameManager : MonoBehaviour
 
         // Update UI
         scoreEventTimer -= Time.deltaTime;
-        if(scoreEventTimer <= 0f)
+        if (scoreEventTimer <= 0f)
         {
             scoreEventTimer = Mathf.Max(0.02f, scoreEventInterval);
             OnScoreChanged?.Invoke(Score, HighScore);
@@ -197,7 +207,7 @@ public class GameManager : MonoBehaviour
         if (player)
         {
             var jetpack = player.GetComponent<JetpackAbility>();
-            if(jetpack) jetpack.StopVFX();
+            if (jetpack) jetpack.StopVFX();
         }
 
         OnPlayerDeath();
@@ -205,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerDeath()
     {
-        if(isDyingOrGameOver) return;
+        if (isDyingOrGameOver) return;
         StartCoroutine(DeathSequence());
     }
 
@@ -214,9 +224,9 @@ public class GameManager : MonoBehaviour
         isDyingOrGameOver = true;
         scoreRunning = false;
 
-        if(playerJetpack) playerJetpack.StopVFX();
-        if(playerMovement) playerMovement.enabled = false;
-        if(playerJetpack) playerJetpack.enabled = false;
+        if (playerJetpack) playerJetpack.StopVFX();
+        if (playerMovement) playerMovement.enabled = false;
+        if (playerJetpack) playerJetpack.enabled = false;
 
         if (playerRigidbody)
         {
@@ -224,30 +234,30 @@ public class GameManager : MonoBehaviour
             playerRigidbody.angularVelocity = 0f;
         }
 
-        if(playerAnimation) playerAnimation.enabled = false;
+        if (playerAnimation) playerAnimation.enabled = false;
 
-        if(playerAnimator)
+        if (playerAnimator)
             playerAnimator.SetBool("Dead", true);
-        
+
         // Wait for the Death Animation to Finish
         float timer = 0f;
         if (playerAnimator)
         {
             yield return null;
-            while(timer < 3f)
+            while (timer < 3f)
             {
                 var state = playerAnimator.GetCurrentAnimatorStateInfo(0);
-                if(state.IsName("Death") && state.normalizedTime >= 1f)
+                if (state.IsName("Death") && state.normalizedTime >= 1f)
                     break;
-                
+
                 timer += Time.deltaTime;
                 yield return null;
             }
         }
         else
             yield return new WaitForSeconds(fallbackDeathAnimSeconds);
-        
-        if(ui) ui.ShowGameOver();
+
+        if (ui) ui.ShowGameOver();
         Time.timeScale = 0f;
     }
 

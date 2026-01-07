@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4927084001814864166}
   - component: {fileID: 2248130280734625758}
   - component: {fileID: 1193858732356952151}
+  - component: {fileID: 4641872496481637711}
+  - component: {fileID: 8642610582924570565}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -151,7 +153,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.03125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47058824, y: 0.53333336}
@@ -161,7 +163,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.53125, y: 0.96875}
+  m_Size: {x: 0.53125, y: 0.9375}
   m_EdgeRadius: 0
 --- !u!50 &1371982197674623922
 Rigidbody2D:
@@ -175,8 +177,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
-  m_LinearDamping: 0
+  m_Mass: 5
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: af93e4d2b29121c40ac4a6aff0d7fccd, type: 2}
@@ -207,18 +209,18 @@ MonoBehaviour:
   groundDeceleration: 90
   airAcceleration: 85
   airDeceleration: 70
-  jumpVelocity: 20
+  jumpVelocity: 18
   coyoteTime: 0.3
   jumpBufferTime: 0.1
   jumpCutMultiplier: 0.45
-  fallGravityMultiplier: 3.4
-  maxFallSpeed: 25
+  fallGravityMultiplier: 2
+  maxFallSpeed: 16
   enableWallJump: 1
   wallSlideMaxFallSpeed: 2.5
   wallJumpXVelocity: 9
   wallJumpYVelocity: 10
   wallJumpLockTime: 0.2
-  holdJumpGravityMultiplier: 0.35
+  holdJumpGravityMultiplier: 0.7
   maxHoldJumpTime: 0.18
   groundMask:
     serializedVersion: 2
@@ -262,12 +264,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCharges: 5
-  cooldown: 0.15
-  boostUpSpeed: 25
+  cooldown: 0.25
+  boostUpSpeed: 20
   onlyInAir: 1
   blockWhileOnWall: 1
   zeroOutDownVelocityOnBoost: 1
-  requireReleaseBeforeBoost: 0
+  requireReleaseBeforeBoost: 1
   jetpackParticles: {fileID: 1491892378769335841}
   vfxBurstDuration: 0.12
   OnFuelChanged:
@@ -319,6 +321,121 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &4641872496481637711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212640277065319752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3259e16a07ccb448a426ee707c1f45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 8642610582924570565}
+  deathSFX: {fileID: 8300000, guid: 8b6e8dc490000b546ae0a0d4611f76e9, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 348e8943063a94844b9ed8bb3de31b61, type: 3}
+  walkSFX: {fileID: 8300000, guid: a547dcadeb6aad149930286ee6fb068f, type: 3}
+  jetpackSFX: {fileID: 8300000, guid: a3222bbe62517314794a8c0fdaa836bf, type: 3}
+  hurtSFX: {fileID: 8300000, guid: 3bd87ce0e5783234b87eeb3afcc5f473, type: 3}
+--- !u!82 &8642610582924570565
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212640277065319752}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1344404738816214838
 GameObject:
   m_ObjectHideFlags: 0

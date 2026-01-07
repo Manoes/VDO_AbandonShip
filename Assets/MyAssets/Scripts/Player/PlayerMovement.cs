@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigidbody;
     Collider2D col;
     PlayerAnimation playerAnimation;
+    PlayerAudio playerAudio;
 
     float inputX;
 
@@ -78,6 +79,12 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         playerAnimation = GetComponent<PlayerAnimation>();
+
+        if (!playerAudio)
+        {
+            playerAudio = GetComponent<PlayerAudio>();
+            playerAudio.Init();
+        }
     }
 
     void Update()
@@ -177,47 +184,10 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.linearVelocity = new Vector2(clampedX, rigidbody.linearVelocity.y);
     }
 
-    void TryConsumeJump()
-    {
-        if (jumpBufferTimer <= 0f) return;
-
-        // Ground Jump
-        if (coyoteTimer > 0f)
-        {
-            DoJump(jumpVelocity);
-
-            isJumping = true;
-            holdJumpTimer = maxHoldJumpTime;
-
-            jumpBufferTimer = 0f;
-            coyoteTimer = 0f;
-
-            ignoreGroundedTimer = ignoreGroundedAfterJump;            
-            LastJumpFrame = Time.frameCount;
-            return;
-        }
-
-        // Wall Jump
-        if (enableWallJump && !isGrounded && wallDirection != 0)
-        {
-            float launchX = -wallDirection * wallJumpXVelocity;
-            rigidbody.linearVelocity = new Vector2(launchX, wallJumpYVelocity);
-
-            isJumping = true;
-            holdJumpTimer = maxHoldJumpTime;
-
-            wallJumpLockTimer = wallJumpLockTime;
-            jumpBufferTimer = 0f;
-
-            ignoreGroundedTimer = ignoreGroundedAfterJump;
-            LastJumpFrame = Time.frameCount;
-            return;
-        }
-    }
-
     void DoJump(float velY)
     {
         rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, velY);
+        playerAudio.PlayJumpSound();
     }
 
     void ApplyGravityFeel(bool holdingJump)

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -6,8 +7,13 @@ public class MainMenuUIManager : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
 
+    [Header("Sound SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip buttonSFX;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         var root = document.rootVisualElement;
 
         // Buttons
@@ -15,9 +21,28 @@ public class MainMenuUIManager : MonoBehaviour
         var quitButton = root.Q<Button>("QuitGame");
 
         if(playButton != null)
-            playButton.clicked += StartGame;
+            playButton.clicked += () => StartCoroutine(PlayAndStartGame());
         if(quitButton != null)
-            quitButton.clicked += QuitGame;
+            quitButton.clicked += () => StartCoroutine(PlayAndQuitGame());
+    }
+
+    IEnumerator PlayAndStartGame()
+    {
+        PlayUISound();
+        yield return new WaitForSecondsRealtime(buttonSFX.length);
+        StartGame();
+    }
+
+    IEnumerator PlayAndQuitGame()
+    {
+        PlayUISound();
+        yield return new WaitForSecondsRealtime(buttonSFX.length);
+        QuitGame();
+    }
+
+    void PlayUISound()
+    {        
+        audioSource.PlayOneShot(buttonSFX);
     }
 
     void StartGame()
@@ -27,11 +52,13 @@ public class MainMenuUIManager : MonoBehaviour
     }
 
     void QuitGame()
-    {
+    {        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
     }
+
+    
 }

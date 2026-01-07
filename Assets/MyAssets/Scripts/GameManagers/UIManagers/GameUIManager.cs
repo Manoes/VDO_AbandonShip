@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
-
+ 
     // --- Root Element ---
     private VisualElement root;
 
@@ -47,7 +47,7 @@ public class GameUIManager : MonoBehaviour
 
     void Awake()
     {
-        root = document.rootVisualElement;
+        root = document.rootVisualElement;        
         CacheHUDRefs();
         CacheGameOverRefs();
         HideGameOver();
@@ -93,11 +93,19 @@ public class GameUIManager : MonoBehaviour
         // --- Game Over - Buttons ---
         var restartButton = gameOverContainer.Q<Button>("Restart");
         if(restartButton != null)
-            restartButton.clicked += () => RestartPressed?.Invoke();
+            restartButton.clicked += () => 
+            {   
+                GameManager.Instance.PlayUIButtonSFX();
+                RestartPressed?.Invoke();
+            };
 
         var menuButton = gameOverContainer.Q<Button>("BackToMenu");
         if(menuButton != null)
-            menuButton.clicked += () => MenuPressed?.Invoke();
+            menuButton.clicked += () => 
+            {   
+                GameManager.Instance.PlayUIButtonSFX();
+                MenuPressed?.Invoke();
+            };
     }
 
     // --- HUD API ---
