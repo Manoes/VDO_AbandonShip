@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Spikes
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 7482447596885703681, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 4041967445832983636, guid: 165c9bde76a788e418f8b9033045c646, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules: []

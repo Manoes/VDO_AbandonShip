@@ -29,18 +29,19 @@ public class GameManager : MonoBehaviour
     public UnityEvent<float, float> OnScoreChanged;
 
     // References 
-    Transform player;
-    Camera cam;
-    DeathWall deathWall;
+    [SerializeField, InspectorReadOnly] Transform player;
+    [SerializeField, InspectorReadOnly] Camera cam;
+    [SerializeField, InspectorReadOnly] DeathWall deathWall;
 
     // Class References
-    Health playerHealth;
-    PlayerMovement playerMovement;
-    JetpackAbility playerJetpack;
-    Rigidbody2D playerRigidbody;
-    Animator playerAnimator;
-    PlayerAnimation playerAnimation;
-    PlatformManager platformManager;
+    [SerializeField, InspectorReadOnly] Health playerHealth;
+    [SerializeField, InspectorReadOnly] PlayerMovement playerMovement;
+    [SerializeField, InspectorReadOnly] JetpackAbility playerJetpack;
+    [SerializeField, InspectorReadOnly] Rigidbody2D playerRigidbody;
+    [SerializeField, InspectorReadOnly] Animator playerAnimator;
+    [SerializeField, InspectorReadOnly] PlayerAnimation playerAnimation;
+    [SerializeField, InspectorReadOnly] PlatformManager platformManager;
+    [SerializeField, InspectorReadOnly] CamShake camShake;
 
     float scoreEventTimer;
     bool isDyingOrGameOver;
@@ -56,7 +57,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        audioSource = GetComponent<AudioSource>();
         HighScore = PlayerPrefs.GetFloat(HighScoreKey, 0f);
     }
 
@@ -105,7 +105,9 @@ public class GameManager : MonoBehaviour
 
         cam = Camera.main;
         if (!cam)
-            cam = FindFirstObjectByType<Camera>(FindObjectsInactive.Include);
+        {            
+            cam = FindFirstObjectByType<Camera>(FindObjectsInactive.Include);            
+        }
 
         var playerGO = GameObject.FindGameObjectWithTag("Player");
         player = playerGO ? playerGO.transform : null;
@@ -115,6 +117,14 @@ public class GameManager : MonoBehaviour
 
         if (ui)
             ui.HideGameOver();
+        
+        if(!audioSource)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        
+        if(camShake == null)
+            camShake = FindFirstObjectByType<CamShake>(FindObjectsInactive.Include);
+        else
+            print("[GameManager] Can't find CamShake in Scene");
 
         if (playerGO)
         {
@@ -124,7 +134,7 @@ public class GameManager : MonoBehaviour
             playerRigidbody = playerGO.GetComponent<Rigidbody2D>();
             playerAnimator = playerGO.GetComponent<Animator>();
             playerAnimation = playerGO.GetComponent<PlayerAnimation>();
-        }
+        }         
 
         var deathWallGO = GameObject.FindGameObjectWithTag("DeathWall");
         deathWall = deathWallGO.GetComponent<DeathWall>();
@@ -208,8 +218,8 @@ public class GameManager : MonoBehaviour
         {
             var jetpack = player.GetComponent<JetpackAbility>();
             if (jetpack) jetpack.StopVFX();
-        }
-
+        }        
+        
         OnPlayerDeath();
     }
 
@@ -238,13 +248,15 @@ public class GameManager : MonoBehaviour
 
         if (playerAnimator)
             playerAnimator.SetBool("Dead", true);
+        
+        camShake?.Shake(2.5f, 3f);
 
         // Wait for the Death Animation to Finish
         float timer = 0f;
         if (playerAnimator)
         {
             yield return null;
-            while (timer < 3f)
+            while (timer < 1f)
             {
                 var state = playerAnimator.GetCurrentAnimatorStateInfo(0);
                 if (state.IsName("Death") && state.normalizedTime >= 1f)
@@ -254,8 +266,6 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
-        else
-            yield return new WaitForSeconds(fallbackDeathAnimSeconds);
 
         if (ui) ui.ShowGameOver();
         Time.timeScale = 0f;

@@ -27,9 +27,12 @@ public class JetpackAbility : MonoBehaviour
     public int CurrentCharges => charges;
     public int MaxCharges => maxCharges;
 
-    Rigidbody2D rb;
-    PlayerMovement movement;
-    PlayerAudio playerAudio;
+    [SerializeField, InspectorReadOnly] Rigidbody2D rb;
+    [SerializeField, InspectorReadOnly] PlayerMovement movement;
+    [SerializeField, InspectorReadOnly] PlayerAudio playerAudio;
+
+    [SerializeField, InspectorReadOnly] CamShake camShake;
+
     int charges;
     float cooldownTimer;
     float vfxTimer;
@@ -60,6 +63,9 @@ public class JetpackAbility : MonoBehaviour
             playerAudio = GetComponent<PlayerAudio>();
             playerAudio.Init();
         }
+
+        if(!camShake)
+            camShake = FindFirstObjectByType<CamShake>(FindObjectsInactive.Include);
     }
 
     void Update()
@@ -118,7 +124,10 @@ public class JetpackAbility : MonoBehaviour
             v.y = 0f;
 
         if (v.y < boostUpSpeed)
+        {
             v.y = boostUpSpeed;
+            camShake?.Shake(0.5f, 1f);
+        }            
 
         rb.linearVelocity = v;
 

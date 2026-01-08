@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7811835823868786138}
   - component: {fileID: 8227951859222297594}
   - component: {fileID: 1310719187444713491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,9 +263,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2463500742757723289}
   - component: {fileID: 3072883598556868076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformPrefab
-  m_TagString: Untagged
+  m_TagString: Platforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

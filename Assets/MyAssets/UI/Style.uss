@@ -1,0 +1,54 @@
+.unity-button {
+    background-color: rgba(32, 191, 250, 0.78);
+    border-left-color: rgba(46, 146, 183, 0.78);
+    border-right-color: rgba(46, 146, 183, 0.78);
+    border-top-color: rgba(46, 146, 183, 0.78);
+    border-bottom-color: rgba(46, 146, 183, 0.78);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition-timing-function: ease-in;
+}
+
+.unity-button:hover {
+    background-color: rgba(121, 208, 241, 0.78);
+    border-left-color: rgba(32, 191, 250, 0.78);
+    border-right-color: rgba(32, 191, 250, 0.78);
+    border-top-color: rgba(32, 191, 250, 0.78);
+    border-bottom-color: rgba(32, 191, 250, 0.78);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    scale: 1.1 1;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out-back;
+}
+
+.unity-button:active {
+    background-color: rgba(46, 146, 183, 0.78);
+    border-left-color: rgba(33, 98, 123, 0.78);
+    border-right-color: rgba(33, 98, 123, 0.78);
+    border-top-color: rgba(33, 98, 123, 0.78);
+    border-bottom-color: rgba(33, 98, 123, 0.78);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    scale: 1.1 1;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out-back;
+}

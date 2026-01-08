@@ -1,0 +1,31 @@
+.gamelogo {
+    background-image: url("project://database/Assets/MyAssets/Sprites/Game%20Logo.aseprite?fileID=-6478132495607845577&guid=48f031481ae180743b8df07c00b119cd&type=3#Game Logo");
+    background-position-y: top 0%;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-bottom: 2%;
+    height: 33%;
+    width: 90%;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.subtext-container {
+    align-self: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    transition-property: scale;
+    scale: 1 1;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out-sine;
+}
+
+.subtext-container-scaled {
+    align-self: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    scale: 1.2 1.2;
+    transition-property: scale;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-sine;
+}

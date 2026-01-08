@@ -584,8 +584,7 @@ public class PlatformManager : MonoBehaviour
             hasLaser = true,
             laserTransform = go.transform
         });
-
-        Debug.Log($"[PlatformManager/LaserSpawn] Spawned Laser at: {pos} with Lenght: {lenghtWorld}");
+        
         return true;
     }
 

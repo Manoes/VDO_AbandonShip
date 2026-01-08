@@ -23,7 +23,8 @@ public class Health : MonoBehaviour
     bool invuln;
     Coroutine blinkCo;
 
-    private PlayerAudio playerAudio;
+    [SerializeField, InspectorReadOnly] PlayerAudio playerAudio;
+    [SerializeField, InspectorReadOnly] CamShake camShake;
 
     void Awake()
     {
@@ -36,6 +37,9 @@ public class Health : MonoBehaviour
             playerAudio = GetComponent<PlayerAudio>();
             playerAudio.Init();
         }
+
+        if(!camShake)
+            camShake = FindFirstObjectByType<CamShake>(FindObjectsInactive.Include);
     }
 
     void Update()
@@ -63,6 +67,8 @@ public class Health : MonoBehaviour
 
         if(CurrentHP <= 0)
             GameManager.Instance.KillPlayer();
+        
+        camShake?.Shake(1.1f, 2f);
         
         playerAudio.PlayHurtSound();
 

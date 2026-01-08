@@ -162,6 +162,8 @@ GameObject:
   - component: {fileID: 60413544}
   - component: {fileID: 60413543}
   - component: {fileID: 60413546}
+  - component: {fileID: 60413548}
+  - component: {fileID: 60413547}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -275,6 +277,36 @@ MonoBehaviour:
   yOffset: 0.8
   lockX: 1
   fixedX: 0
+--- !u!114 &60413547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60413542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 10
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &60413548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60413542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f92b68539b6cc742a1ff1c6cf81bf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 60413544}
 --- !u!1 &119158637
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +507,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  player: {fileID: 0}
+  cam: {fileID: 0}
+  deathWall: {fileID: 0}
+  playerHealth: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerJetpack: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  playerAnimation: {fileID: 0}
+  platformManager: {fileID: 0}
+  camShake: {fileID: 0}
 --- !u!114 &152811382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4580,7 +4623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  parallaxEffect: 0.8
+  parallaxEffect: 0.9
   wrapMargin: 0.5
 --- !u!1 &906945390
 GameObject:
@@ -28415,7 +28458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  parallaxEffect: 0.6
+  parallaxEffect: 0.8
   wrapMargin: 0.5
 --- !u!1 &1320010475
 GameObject:
@@ -28802,10 +28845,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.120056495
+    x: 0
     y: 0
-    width: 0.7608287
-    height: 1
+    width: 0.99999994
+    height: 0.9988636
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -28921,7 +28964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  parallaxEffect: 0.3
+  parallaxEffect: 0.5
   wrapMargin: 0.5
 --- !u!1 &1397691424
 GameObject:
@@ -41245,17 +41288,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathWall
       objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: maxvolume
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: minvolume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: silentDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381644375714477321, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: fullVolumeDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3980576069223808276, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1226403674}
+    - target: {fileID: 3980576069223808276, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980576069223808276, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: desiredGap
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980576069223808276, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: catchUpStrength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6464615215390015589, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464615215390015589, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50
+      value: -14.8
       objectReference: {fileID: 0}
     - target: {fileID: 6464615215390015589, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41289,6 +41368,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7281708017974403840, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281708017974403840, guid: 88dce7c0e7c05f94f99991f028500f10, type: 3}
+      propertyPath: MinDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41305,6 +41392,10 @@ PrefabInstance:
     - target: {fileID: 212640277065319752, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 212640277065319752, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1193858732356952151, guid: c9173a2469d08dd4dafc3af05b7e2ba5, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
