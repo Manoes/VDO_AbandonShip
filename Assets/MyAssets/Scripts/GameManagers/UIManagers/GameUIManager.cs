@@ -1,11 +1,18 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
- 
+
+    [Header("UI Animations")]
+    [SerializeField] private float breatheOffset = 6f;
+    [SerializeField] private float breatheDuration = 3.5f;
+
+    Tween breatheTween;
+
     // --- Root Element ---
     private VisualElement root;
 
@@ -19,6 +26,7 @@ public class GameUIManager : MonoBehaviour
 
     // --- Game Over - Container Ref ---
     private VisualElement gameOverContainer;
+    private VisualElement gameOverHighScoreContainer;
 
     // --- Game Over - Labels ---
     private Label gameOverScoreLabel;
@@ -51,6 +59,7 @@ public class GameUIManager : MonoBehaviour
         CacheHUDRefs();
         CacheGameOverRefs();
         HideGameOver();
+        HideNewHighScore();
     }
 
     void CacheHUDRefs()
@@ -106,6 +115,35 @@ public class GameUIManager : MonoBehaviour
                 GameManager.Instance.PlayUIButtonSFX();
                 MenuPressed?.Invoke();
             };
+        
+        // Game Over Label
+        var gameOverLabel = gameOverContainer.Q<Label>("GameOver");
+        if(gameOverLabel != null)
+            StartBeathing(gameOverLabel);
+        
+        var gameOverNewHighScoreLabel = gameOverContainer.Q<Label>("NewHighScoreLabel"); 
+        gameOverHighScoreContainer = gameOverContainer.Q<VisualElement>("NewHighScore");
+        if(gameOverNewHighScoreLabel != null)
+            StartBeathing(gameOverNewHighScoreLabel);
+    }
+
+    void StartBeathing(VisualElement element)
+    {
+        float y = 0f;
+
+        breatheTween = DOTween.To(
+            () => y,
+            value => 
+            {
+                y = value;
+                element.style.translate = new Translate(0f, y, 0f);
+            },
+            breatheOffset,
+            breatheDuration
+        )
+        .SetEase(Ease.InOutSine)
+        .SetLoops(-1, LoopType.Yoyo)
+        .SetUpdate(true);
     }
 
     // --- HUD API ---
@@ -166,6 +204,18 @@ public class GameUIManager : MonoBehaviour
     {
         if(gameOverContainer != null)
             gameOverContainer.AddToClassList("hide");
+    }
+
+    public void ShowNewHighScore()
+    {
+        if(gameOverHighScoreContainer != null)
+            gameOverHighScoreContainer.RemoveFromClassList("hide");
+    }
+
+    public void HideNewHighScore()
+    {
+        if(gameOverHighScoreContainer != null)
+            gameOverHighScoreContainer.AddToClassList("hide");
     }
 
 }

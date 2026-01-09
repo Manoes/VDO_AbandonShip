@@ -268,6 +268,8 @@ public class GameManager : MonoBehaviour
         }
 
         if (ui) ui.ShowGameOver();
+        if (ui && Score >= HighScore)
+            ui.ShowNewHighScore();
         Time.timeScale = 0f;
     }
 

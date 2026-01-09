@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3588123053384704941, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+  m_Sprite: {fileID: 4064296123398219523, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -181,10 +181,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  desiredGap: 6
+  deathwallDelay: 2
+  killGracePeriod: 2
+  desiredGap: 4
   minSpeed: 1
-  maxSpeed: 2
-  catchUpStrength: 0.8
+  maxSpeed: 3
+  catchUpStrength: 1
+  clampDuringGrace: 1
 --- !u!1 &1984143445098098968
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,11 +487,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  fullVolumeDistance: 6
-  silentDistance: 60
-  audioSource: {fileID: 7281708017974403840}
-  minvolume: 0.15
-  maxvolume: 1
+  fullVolumeDistance: 1
+  silentDistance: 10
+  audioSource: {fileID: 0}
+  minvolume: 0
+  maxvolume: 0.12
   curve:
     serializedVersion: 2
     m_Curve:
@@ -534,8 +537,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 26
   DopplerLevel: 0
-  MinDistance: 60
-  MaxDistance: 120
+  MinDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -686,7 +689,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6806145413149167712, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
+  m_Sprite: {fileID: 315493188080879336, guid: e659da3d94db7d44a8902afb81e8c5e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
