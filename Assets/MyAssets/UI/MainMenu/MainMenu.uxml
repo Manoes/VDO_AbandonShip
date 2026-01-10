@@ -1,21 +1,52 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/MyAssets/UI/Style.uss?fileID=7433441132597879392&amp;guid=0f58f8d9b64a4b04895d3f9191698119&amp;type=3#Style" />
     <Style src="project://database/Assets/MyAssets/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=6862700d983f10841936259eaca1503b&amp;type=3#MainMenu" />
+    <Style src="project://database/Assets/MyAssets/UI/InGame/InGame.uss?fileID=7433441132597879392&amp;guid=5835dbeb6b5961c41bc3ca371cd4c544&amp;type=3#InGame" />
     <ui:VisualElement name="RootContainer" style="flex-grow: 1; margin-top: 0%; margin-right: 0%; margin-bottom: 0%; margin-left: 0%; width: 100%; align-self: center; align-items: center; height: 100%; padding-top: 3%; padding-right: 3%; padding-bottom: 3%; padding-left: 3%; max-width: 640px; max-height: 360px;">
-        <ui:VisualElement name="GameLogo" class="gamelogo" />
-        <ui:VisualElement name="MainMenu" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=6676305759664737368&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Panel_2&quot;); -unity-slice-left: 5; -unity-slice-top: 5; -unity-slice-right: 5; -unity-slice-bottom: 5; width: 35%; flex-shrink: 1; align-items: center; align-self: center;">
-            <ui:VisualElement name="MenuContainer" style="flex-grow: 1; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%; width: 100%; height: 100%;">
-                <ui:VisualElement name="SubTextContainer" class="subtext-container">
-                    <ui:Label text="ESCAPE THE EXPLODING SHIP!" name="SubText" style="height: 100%; -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); color: rgb(255, 255, 255); font-size: 20%; -unity-text-align: middle-center; margin-top: 0%; margin-right: 0%; margin-bottom: 0%; margin-left: 0%; padding-top: 0%; padding-right: 0%; padding-bottom: 0%; padding-left: 0%; white-space: pre-wrap; -unity-font-style: bold;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 85%; align-self: center; justify-content: center; font-size: 50%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); height: 50%;">
-                    <ui:Button text="PLAY" name="Play" />
-                    <ui:Button text="QUIT GAME" name="QuitGame" />
+        <ui:VisualElement name="MainMenuContainer" style="flex-grow: 0; flex-shrink: 0; width: 100%; height: 100%; align-self: center; align-items: center;">
+            <ui:VisualElement name="GameLogo" class="gamelogo" />
+            <ui:VisualElement name="MainMenu" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=6676305759664737368&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Panel_2&quot;); -unity-slice-left: 5; -unity-slice-top: 5; -unity-slice-right: 5; -unity-slice-bottom: 5; width: 35%; flex-shrink: 1; align-items: center; align-self: center;">
+                <ui:VisualElement name="MenuContainer" style="flex-grow: 1; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%; width: 100%; height: 100%;">
+                    <ui:VisualElement name="SubTextContainer" class="subtext-container">
+                        <ui:Label text="ESCAPE THE EXPLODING SHIP!" name="SubText" style="height: 100%; -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); color: rgb(255, 255, 255); font-size: 20%; -unity-text-align: middle-center; margin-top: 0%; margin-right: 0%; margin-bottom: 0%; margin-left: 0%; padding-top: 0%; padding-right: 0%; padding-bottom: 0%; padding-left: 0%; white-space: pre-wrap; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 85%; align-self: center; justify-content: center; font-size: 50%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); height: 50%;">
+                        <ui:Button text="PLAY" name="Play" style="flex-shrink: 1; flex-grow: 1; font-size: 20%;" />
+                        <ui:Button text="HIGHSCORES" name="HighScores" style="flex-shrink: 1; font-size: 20%;" />
+                        <ui:Button text="QUIT GAME" name="QuitGame" style="flex-grow: 1; flex-shrink: 1; font-size: 20%;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="HighScoresContainer" class="hide" style="flex-grow: 1; position: absolute; top: 5%; bottom: 10%; left: 10%; right: 10%; background-image: url(&quot;project://database/Assets/MyAssets/Sprites/UI.aseprite?fileID=6676305759664737368&amp;guid=09fe715744fcbea4db987261f8dfa3e0&amp;type=3#Panel_2&quot;); -unity-slice-left: 10; -unity-slice-top: 10; -unity-slice-right: 10; -unity-slice-bottom: 10; padding-top: 2%; padding-right: 2%; padding-bottom: 2%; padding-left: 2%; justify-content: space-between;">
+            <ui:Label text="TOP 5 HIGHSCORES" name="HighscoresTitle" style="align-self: center; font-size: 25%; color: rgb(226, 216, 29); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold;" />
+            <ui:VisualElement name="HighScoresLabels" style="flex-grow: 1; flex-direction: row; margin-bottom: 1%;">
+                <ui:VisualElement name="NumbersContainer" style="flex-grow: 1; justify-content: space-between; font-size: 50%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold; -unity-text-align: middle-left;">
+                    <ui:Label text="1" name="1" />
+                    <ui:Label text="2" name="2" />
+                    <ui:Label text="3" name="3" />
+                    <ui:Label text="4" name="4" />
+                    <ui:Label text="5" name="5" />
+                </ui:VisualElement>
+                <ui:VisualElement name="NamesContainer" style="flex-grow: 1; justify-content: space-between; font-size: 50%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold; -unity-text-align: middle-left;">
+                    <ui:Label text="AAA" name="Name1" />
+                    <ui:Label text="AAA" name="Name2" />
+                    <ui:Label text="AAA" name="Name3" />
+                    <ui:Label text="AAA" name="Name4" />
+                    <ui:Label text="AAA" name="Name5" />
+                </ui:VisualElement>
+                <ui:VisualElement name="TopHighScoresContainer" style="flex-grow: 1; justify-content: space-between; font-size: 50%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold;">
+                    <ui:Label text="00009999" name="TopHighScore1" />
+                    <ui:Label text="00009999" name="TopHighScore2" />
+                    <ui:Label text="00009999" name="TopHighScore3" />
+                    <ui:Label text="00009999" name="TopHighScore4" />
+                    <ui:Label text="00009999" name="TopHighScore5" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Button text="BACK TO MENU" name="BackToMainMenu" style="flex-shrink: 1; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 60%; align-self: center; height: 10%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold; font-size: 20%;" />
+        </ui:VisualElement>
         <ui:VisualElement name="BuildVersionContainer" style="flex-grow: 1; position: absolute; bottom: 2%; left: 2%; width: 20%; height: 1s; -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); font-size: 35%; color: rgb(255, 255, 255); -unity-text-align: lower-left; justify-content: flex-end;">
-            <ui:Label text="V 0.8.2 (Alpha Build)" name="BuildVersion" emoji-fallback-support="false" />
+            <ui:Label text="V 1.0.0 (Demo Build)" name="BuildVersion" emoji-fallback-support="false" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

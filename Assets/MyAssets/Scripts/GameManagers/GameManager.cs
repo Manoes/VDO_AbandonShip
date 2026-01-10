@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -12,21 +13,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] private float scoreEventInterval = 0.1f;
-    const string HighScoreKey = "HIGHSCORE";
 
     [Header("UI")]
     [SerializeField] private GameUIManager ui;
-    [SerializeField] private float fallbackDeathAnimSeconds = 0.7f;
 
     [Header("Sound SFX")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip buttonPresSFX;
 
-    // Getters (and Setters -> Private)
-    public float Score { get; private set; }
-    public float HighScore { get; private set; }
-
-    public UnityEvent<float, float> OnScoreChanged;
+    public UnityEvent<float, float> OnScoreChanged = new UnityEvent<float, float>();
 
     // References 
     [SerializeField, InspectorReadOnly] Transform player;
@@ -46,6 +41,16 @@ public class GameManager : MonoBehaviour
     float scoreEventTimer;
     bool isDyingOrGameOver;
     bool scoreRunning = true;
+    bool inGameScene;   
+
+    // Getters (and Setters -> Private)
+    public float Score { get; private set; }
+    public HighScoreService HighScores {get; private set;}
+    public int FinalScore {get; private set;}
+    public int RuntimeHighScore {get; private set;}
+    public int SavedTopScore {get; private set;}    
+    public bool PendingIsNewBest {get; private set;}  
+    public bool PendingIsHighScore {get; private set;}   
 
     void Awake()
     {
@@ -57,13 +62,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        HighScore = PlayerPrefs.GetFloat(HighScoreKey, 0f);
+        OnScoreChanged ??= new UnityEvent<float, float>();
+        HighScores = new HighScoreService();
     }
 
     void OnEnable()
-    {
+    {           
+        OnScoreChanged ??= new UnityEvent<float, float>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-
         BindUI(ui);
     }
 
@@ -93,15 +99,42 @@ public class GameManager : MonoBehaviour
 
     public void PlayUIButtonSFX()
     {        
-        audioSource.PlayOneShot(buttonPresSFX);
+        if(!audioSource)
+            audioSource = gameObject.GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
+
+        if(buttonPresSFX)
+            audioSource.PlayOneShot(buttonPresSFX);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        BindUI(FindFirstObjectByType<GameUIManager>());
+        inGameScene = scene.name == "Game";
+        
+        // Always Stop Score unless we are in the Game Scene
+        scoreRunning = inGameScene;
+        isDyingOrGameOver = false;
+
+        // Always Refresh Highscores from Disk
+        HighScoreSystem.Reload();
+        var top = HighScoreSystem.HighScoreService.GetTop();
+        SavedTopScore = (top.Count > 0) ? top[0].score : 0;
 
         Score = 0f;
         scoreEventTimer = scoreEventInterval;
+        RuntimeHighScore = SavedTopScore;
+        PendingIsHighScore = false;
+        PendingIsNewBest = false;
+
+        BindUI(FindFirstObjectByType<GameUIManager>(FindObjectsInactive.Include));
+        
+        // Push Initial Score to UI
+        if(ui)
+            ui.SetScoreLabels(Score, RuntimeHighScore / 10f);
+        
+        OnScoreChanged?.Invoke(Score, RuntimeHighScore / 10f);
+        StartCoroutine(NotifyScoreNextFrame());
+
+        if(!inGameScene) return;
 
         cam = Camera.main;
         if (!cam)
@@ -116,15 +149,13 @@ public class GameManager : MonoBehaviour
         scoreRunning = true;
 
         if (ui)
-            ui.HideGameOver();
+            ui.HideGameOverUI();
         
         if(!audioSource)
             audioSource = gameObject.AddComponent<AudioSource>();
         
         if(camShake == null)
             camShake = FindFirstObjectByType<CamShake>(FindObjectsInactive.Include);
-        else
-            print("[GameManager] Can't find CamShake in Scene");
 
         if (playerGO)
         {
@@ -155,10 +186,6 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(EnablePlayerAfterPhysicsStep());
-
-        // Push Initial Score to UI
-        OnScoreChanged?.Invoke(Score, HighScore);
-        StartCoroutine(NotifyScoreNextFrame());
     }
 
     IEnumerator EnablePlayerAfterPhysicsStep()
@@ -180,27 +207,30 @@ public class GameManager : MonoBehaviour
     IEnumerator NotifyScoreNextFrame()
     {
         yield return null;
-        OnScoreChanged?.Invoke(Score, HighScore);
+        OnScoreChanged?.Invoke(Score, RuntimeHighScore / 10f);
     }
 
     void Update()
     {
+        if(!inGameScene) return;
+
         if (scoreRunning)
             Score += Time.deltaTime;
 
-        // Update Highscore Life
-        if (Score > HighScore)
-        {
-            HighScore = Score;
-            PlayerPrefs.SetFloat(HighScoreKey, HighScore);
-        }
+        int score10 = Mathf.FloorToInt(Score * 10f);
+        RuntimeHighScore = Mathf.Max(SavedTopScore, score10);
+
+        // Update Highscore Live
+        if (score10 > RuntimeHighScore)
+            RuntimeHighScore = score10;
 
         // Update UI
         scoreEventTimer -= Time.deltaTime;
         if (scoreEventTimer <= 0f)
         {
             scoreEventTimer = Mathf.Max(0.02f, scoreEventInterval);
-            OnScoreChanged?.Invoke(Score, HighScore);
+            ui.SetScoreLabels(Score, RuntimeHighScore / 10f);
+            OnScoreChanged?.Invoke(Score, RuntimeHighScore / 10f);
         }
 
         if (!player || !cam) return;
@@ -212,19 +242,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void KillPlayer(string reason = "")
-    {
-        // Stop any Lingering Particles on the Current Player before Load
-        if (player)
-        {
-            var jetpack = player.GetComponent<JetpackAbility>();
-            if (jetpack) jetpack.StopVFX();
-        }        
-        
-        OnPlayerDeath();
-    }
-
-    void OnPlayerDeath()
-    {
+    {    
         if (isDyingOrGameOver) return;
         StartCoroutine(DeathSequence());
     }
@@ -249,6 +267,12 @@ public class GameManager : MonoBehaviour
         if (playerAnimator)
             playerAnimator.SetBool("Dead", true);
         
+        // Freeze Score + Store Final Displayed Score
+        FinalScore = Mathf.FloorToInt(Score * 10f);
+        PendingIsHighScore = HighScoreSystem.HighScoreService.IsHighScore(FinalScore);
+
+        PendingIsNewBest = FinalScore > SavedTopScore;
+        
         camShake?.Shake(2.5f, 3f);
 
         // Wait for the Death Animation to Finish
@@ -267,10 +291,29 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (ui) ui.ShowGameOver();
-        if (ui && Score >= HighScore)
-            ui.ShowNewHighScore();
+        // Show UI
+        if (ui)
+        {
+            ui.ShowGameOverUI();
+
+            if (PendingIsHighScore && PendingIsNewBest)
+                ui.ShowNewHighScore();
+        }
+        
         Time.timeScale = 0f;
+    }
+
+    public void SubmitHighScore(string name)
+    {
+        if(!PendingIsHighScore) return;
+
+        HighScoreSystem.HighScoreService.AddHighScore(name, FinalScore);
+        PendingIsHighScore = false;
+
+        var top = HighScoreSystem.HighScoreService.GetTop();
+        RuntimeHighScore = (top.Count > 0) ? top[0].score : RuntimeHighScore;
+
+        OnScoreChanged?.Invoke(Score, RuntimeHighScore / 10f);
     }
 
     void RestartRun()

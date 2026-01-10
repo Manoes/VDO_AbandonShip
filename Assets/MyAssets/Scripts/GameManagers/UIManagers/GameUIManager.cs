@@ -12,6 +12,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private float breatheDuration = 3.5f;
 
     Tween breatheTween;
+    ArcadeNameEntryUI nameEntry;
 
     // --- Root Element ---
     private VisualElement root;
@@ -32,6 +33,14 @@ public class GameUIManager : MonoBehaviour
     private Label gameOverScoreLabel;
     private Label gameOverHighscoreLabel;
 
+    // --- Game Over - New High Score Button ---
+    private Button saveHighScoreButton;
+    private VisualElement saveNewHighScoreContainer;
+    private Label saveNewHighScoreLabel;
+    private Label namePreviewLabel;
+    private Button cancelNewHighScoreButton;
+    private Button saveNewHighScoreButton;
+
     // --- Game Over - Button Actions ---
     public event Action RestartPressed;
     public event Action MenuPressed;
@@ -43,7 +52,7 @@ public class GameUIManager : MonoBehaviour
         if (gameManager)
         {
             gameManager.OnScoreChanged.AddListener(SetScoreLabels);
-            SetScoreLabels(gameManager.Score, gameManager.HighScore);
+            SetScoreLabels(gameManager.Score, gameManager.RuntimeHighScore / 10f);
         }
     }
 
@@ -55,11 +64,21 @@ public class GameUIManager : MonoBehaviour
 
     void Awake()
     {
-        root = document.rootVisualElement;        
+        root = document.rootVisualElement;    
+
+        nameEntry = GetComponent<ArcadeNameEntryUI>();
+        if(nameEntry != null)
+        {
+            nameEntry.OnSubmit += HandleNameSubmit;
+        }
+
         CacheHUDRefs();
         CacheGameOverRefs();
-        HideGameOver();
+        CacheNameEntryRefs();
+
+        HideGameOverUI();
         HideNewHighScore();
+        HideNameEntryUI();
     }
 
     void CacheHUDRefs()
@@ -98,8 +117,11 @@ public class GameUIManager : MonoBehaviour
         // --- Game Over - Labels ---
         gameOverScoreLabel = gameOverContainer.Q<Label>("ScoreLabel");
         gameOverHighscoreLabel = gameOverContainer.Q<Label>("HighScoreLabel");
+        saveNewHighScoreContainer = root.Q<VisualElement>("SaveNewHighScoreContainer");
 
         // --- Game Over - Buttons ---
+
+        // Restart Game
         var restartButton = gameOverContainer.Q<Button>("Restart");
         if(restartButton != null)
             restartButton.clicked += () => 
@@ -108,6 +130,7 @@ public class GameUIManager : MonoBehaviour
                 RestartPressed?.Invoke();
             };
 
+        // Back to Menu
         var menuButton = gameOverContainer.Q<Button>("BackToMenu");
         if(menuButton != null)
             menuButton.clicked += () => 
@@ -116,15 +139,50 @@ public class GameUIManager : MonoBehaviour
                 MenuPressed?.Invoke();
             };
         
+        // Show New High Score UI
+        saveHighScoreButton = gameOverContainer.Q<Button>("SaveHighScore");
+        if(saveHighScoreButton != null)
+            saveHighScoreButton.clicked += () => 
+            {   
+                GameManager.Instance.PlayUIButtonSFX();
+                ShowNameEntryUI();
+            };
+        
         // Game Over Label
         var gameOverLabel = gameOverContainer.Q<Label>("GameOver");
         if(gameOverLabel != null)
             StartBeathing(gameOverLabel);
         
+        // New High Score UI Elements (Show Only when New High Score Achieved)
         var gameOverNewHighScoreLabel = gameOverContainer.Q<Label>("NewHighScoreLabel"); 
         gameOverHighScoreContainer = gameOverContainer.Q<VisualElement>("NewHighScore");
         if(gameOverNewHighScoreLabel != null)
-            StartBeathing(gameOverNewHighScoreLabel);
+            StartBeathing(gameOverNewHighScoreLabel);   
+    }
+
+    private void CacheNameEntryRefs()
+    {
+        saveNewHighScoreContainer = root.Q<VisualElement>("SaveNewHighScoreContainer");
+        if(saveNewHighScoreContainer == null) return;
+
+        saveNewHighScoreLabel = saveNewHighScoreContainer.Q<Label>("NewHighScore");
+        namePreviewLabel = saveNewHighScoreContainer.Q<Label>("NamePreview");
+        
+        saveNewHighScoreButton = saveNewHighScoreContainer.Q<Button>("SaveNewHighScore");
+        cancelNewHighScoreButton = saveNewHighScoreContainer.Q<Button>("CancelHighScore"); 
+
+        // Cancel New High Score Button        
+        if(cancelNewHighScoreButton != null)
+            cancelNewHighScoreButton.clicked += () =>
+            {
+                GameManager.Instance.PlayUIButtonSFX();
+                HideNameEntryUI();
+                ShowGameOverUI();
+            };
+        
+        // Bind Name Entry UI to UI Elements
+        if(nameEntry != null)
+            nameEntry.BindUI(namePreviewLabel, saveNewHighScoreButton);
     }
 
     void StartBeathing(VisualElement element)
@@ -190,17 +248,21 @@ public class GameUIManager : MonoBehaviour
 
         if(gameOverScoreLabel != null) gameOverScoreLabel.text = scoreText;
         if(gameOverHighscoreLabel != null) gameOverHighscoreLabel.text = highscoreText;
+
+        // Save New High Score
+        if(saveNewHighScoreLabel != null && GameManager.Instance != null)
+            saveNewHighScoreLabel.text = GameManager.Instance.FinalScore.ToString("D8");   
     }
 
     // --- Game Over API ---
 
-    public void ShowGameOver()
+    public void ShowGameOverUI()
     {
         if(gameOverContainer != null)
             gameOverContainer.RemoveFromClassList("hide");
     }
 
-    public void HideGameOver()
+    public void HideGameOverUI()
     {
         if(gameOverContainer != null)
             gameOverContainer.AddToClassList("hide");
@@ -210,12 +272,49 @@ public class GameUIManager : MonoBehaviour
     {
         if(gameOverHighScoreContainer != null)
             gameOverHighScoreContainer.RemoveFromClassList("hide");
+        
+        if(saveHighScoreButton != null)
+            saveHighScoreButton.RemoveFromClassList("hide");
     }
 
     public void HideNewHighScore()
     {
         if(gameOverHighScoreContainer != null)
             gameOverHighScoreContainer.AddToClassList("hide");
+        
+        if(saveHighScoreButton != null)
+            saveHighScoreButton.AddToClassList("hide");
     }
 
+    void ShowNameEntryUI()
+    {
+        HideGameOverUI();
+
+        if(saveNewHighScoreContainer != null)
+            saveNewHighScoreContainer.RemoveFromClassList("hide");
+
+        if(nameEntry != null)
+            nameEntry.SetActive(true);
+    }
+
+    void HideNameEntryUI()
+    {
+        if(saveNewHighScoreContainer != null)
+            saveNewHighScoreContainer.AddToClassList("hide");
+        
+        if(nameEntry != null)
+            nameEntry.SetActive(false);
+    }
+
+    void HandleNameSubmit(string name)
+    {
+        // Save Score into JSON Table
+        var gameManager = GameManager.Instance;
+        if(gameManager != null)
+            gameManager.SubmitHighScore(name);
+        
+        HideNameEntryUI();
+        HideNewHighScore();
+        ShowGameOverUI();
+    }
 }
