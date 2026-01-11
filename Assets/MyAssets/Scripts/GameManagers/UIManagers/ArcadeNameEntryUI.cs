@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 
 public class ArcadeNameEntryUI : MonoBehaviour
 {
+    public enum Mode { Editing, Buttons }
+
     [Header("Config")]
     [SerializeField] private int nameLength = 3;
     [SerializeField] private string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -13,15 +15,18 @@ public class ArcadeNameEntryUI : MonoBehaviour
     // Visual Elements
     Label nameLabel;
     Button saveButton;
+    VisualElement navBlockRoot;
 
     char[] characters;
     int cursorIndex;
     bool isActive;
+    private Mode mode = Mode.Editing;
 
     float nextRepeatTime;
     int repeatDirection;
 
     public event Action<string> OnSubmit;
+    public event Action<Mode> OnModeChanged;
 
     void Awake()
     {
@@ -35,15 +40,34 @@ public class ArcadeNameEntryUI : MonoBehaviour
     public void BindUI(Label label, Button saveBttn = null)
     {
         nameLabel = label;
-        saveBttn = saveButton;
+        saveButton = saveBttn;
 
         if (saveBttn != null)
         {
-            saveBttn.clicked -= Submit;
-            saveBttn.clicked += Submit;
+            saveButton.clicked -= Submit;
+            saveButton.clicked += Submit;
         }
 
         UpdateVisuals();
+    }
+
+    public void BindNavBlockRoot(VisualElement root)
+    {
+        navBlockRoot = root;
+        if(navBlockRoot == null) return;
+
+        navBlockRoot.RegisterCallback<NavigationMoveEvent>(BlockNav, TrickleDown.TrickleDown);
+        navBlockRoot.RegisterCallback<NavigationSubmitEvent>(BlockNav, TrickleDown.TrickleDown);
+        navBlockRoot.RegisterCallback<NavigationCancelEvent>(BlockNav, TrickleDown.TrickleDown);
+    }
+
+    void BlockNav(EventBase evt)
+    {
+        if(!isActive) return;
+        if(mode != Mode.Editing) return;
+
+        evt.StopImmediatePropagation();
+        evt.StopPropagation();
     }
 
     public void SetActive(bool active)
@@ -55,6 +79,8 @@ public class ArcadeNameEntryUI : MonoBehaviour
             cursorIndex = 0;
             nextRepeatTime = 0f;
             repeatDirection = 0;
+
+            SetMode(Mode.Editing);
             UpdateVisuals();
         }
         else
@@ -63,11 +89,29 @@ public class ArcadeNameEntryUI : MonoBehaviour
         }
     }
 
+    void SetMode(Mode newMode)
+    {
+        if(mode == newMode) return;
+        mode = newMode;
+        OnModeChanged?.Invoke(mode);
+    }
+
+    
+
     public string CurrentName => new string(characters);
 
     void Update()
     {
         if (!isActive) return;
+
+        // If we are in Buttons Mode, do NOT change Letters anymore
+        if(mode == Mode.Buttons)
+        {
+            if(Input.GetButtonDown("Submit"))
+                Submit();
+            
+            return;
+        }
 
         // Joystick Axes 
         float x = Input.GetAxisRaw("Horizontal");
@@ -92,7 +136,18 @@ public class ArcadeNameEntryUI : MonoBehaviour
 
         // Confirm / Save
         if (Input.GetButtonDown("Jump"))
-            MoveCursor(+1);
+        {
+            if(cursorIndex >= nameLength - 1)
+            {
+                SetMode(Mode.Buttons);
+
+                saveButton?.Focus();
+            }
+            else
+            {
+                 MoveCursor(+1);
+            }
+        }           
 
         if (Input.GetButtonDown("Submit"))
             Submit();

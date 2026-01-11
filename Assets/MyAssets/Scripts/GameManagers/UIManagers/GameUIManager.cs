@@ -70,6 +70,10 @@ public class GameUIManager : MonoBehaviour
         if(nameEntry != null)
         {
             nameEntry.OnSubmit += HandleNameSubmit;
+
+            nameEntry.BindNavBlockRoot(root);
+
+            nameEntry.OnModeChanged += HandleNameEntryModeChanged;
         }
 
         CacheHUDRefs();
@@ -79,6 +83,20 @@ public class GameUIManager : MonoBehaviour
         HideGameOverUI();
         HideNewHighScore();
         HideNameEntryUI();
+    }
+
+    void HandleNameEntryModeChanged(ArcadeNameEntryUI.Mode mode)
+    {
+        if(mode == ArcadeNameEntryUI.Mode.Editing)
+        {
+            SetUIFocusLocked(true);
+        }
+        else
+        {
+            SetUIFocusLocked(false);
+
+            saveNewHighScoreButton?.Focus();
+        }
     }
 
     void CacheHUDRefs()
@@ -286,12 +304,28 @@ public class GameUIManager : MonoBehaviour
             saveHighScoreButton.AddToClassList("hide");
     }
 
+    void SetUIFocusLocked(bool locked)
+    {
+        // Anything you don't want Highlighted during Name-Entry
+        SetFocusabe(saveNewHighScoreButton, !locked);
+        SetFocusabe(cancelNewHighScoreButton, !locked);
+    }
+
+    static void SetFocusabe(VisualElement element, bool focusable)
+    {
+        if (element == null) return;
+        element.focusable = focusable;
+        element.tabIndex = focusable ? 0 : -1;
+    }
+
     void ShowNameEntryUI()
     {
         HideGameOverUI();
 
         if(saveNewHighScoreContainer != null)
             saveNewHighScoreContainer.RemoveFromClassList("hide");
+        
+        SetUIFocusLocked(true);
 
         if(nameEntry != null)
             nameEntry.SetActive(true);
@@ -304,6 +338,8 @@ public class GameUIManager : MonoBehaviour
         
         if(nameEntry != null)
             nameEntry.SetActive(false);
+        
+        SetUIFocusLocked(false);
     }
 
     void HandleNameSubmit(string name)
