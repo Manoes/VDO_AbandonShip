@@ -46,7 +46,7 @@
             <ui:Button text="BACK TO MENU" name="BackToMainMenu" style="flex-shrink: 1; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 60%; align-self: center; height: 10%; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); -unity-font-style: bold; font-size: 20%;" />
         </ui:VisualElement>
         <ui:VisualElement name="BuildVersionContainer" style="flex-grow: 1; position: absolute; bottom: 2%; left: 2%; width: 20%; height: 1s; -unity-font-definition: url(&quot;project://database/Assets/MyAssets/UI/Font/Pix32.ttf?fileID=12800000&amp;guid=0868916b5709ab343839a06dbbcbfce7&amp;type=3#Pix32&quot;); font-size: 35%; color: rgb(255, 255, 255); -unity-text-align: lower-left; justify-content: flex-end;">
-            <ui:Label text="V 1.0.0 (Demo Build)" name="BuildVersion" emoji-fallback-support="false" />
+            <ui:Label text="V 1.0.1 (Demo Build)" name="BuildVersion" emoji-fallback-support="false" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
