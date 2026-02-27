@@ -27,6 +27,12 @@ public class MainMenuUIManager : MonoBehaviour
     Label[] highScoreLabels;
     Label[] nameLabels;   
 
+    // Buttons
+    private Button playButton;
+    private Button quitButton;
+    private Button showHighScoresButton;
+    private Button backButton;
+
 
     void Awake()
     {
@@ -61,12 +67,12 @@ public class MainMenuUIManager : MonoBehaviour
         };
 
         // Buttons - Main Menu
-        var playButton = mainMenuContainer.Q<Button>("Play");
-        var quitButton = mainMenuContainer.Q<Button>("QuitGame");
-        var showHighScoresButton = mainMenuContainer.Q<Button>("HighScores");
+        playButton = mainMenuContainer.Q<Button>("Play");
+        quitButton = mainMenuContainer.Q<Button>("QuitGame");
+        showHighScoresButton = mainMenuContainer.Q<Button>("HighScores");
 
         // Labels and Button - HighScores
-        var backButton = highScoresContainer.Q<Button>("BackToMainMenu");
+        backButton = highScoresContainer.Q<Button>("BackToMainMenu");
 
         if(playButton != null)
             playButton.clicked += () => StartCoroutine(PlayAndStartGame());
@@ -108,6 +114,17 @@ public class MainMenuUIManager : MonoBehaviour
         .SetUpdate(true);
     }
 
+    private void FocusButton(Button button)
+    {
+        if(button == null) return;
+
+        button.focusable = true;
+        document.rootVisualElement.schedule.Execute(() =>
+        {
+            button.Focus();
+        }).ExecuteLater(0);
+    }
+
     IEnumerator PlayAndStartGame()
     {
         PlayUISound();
@@ -133,6 +150,7 @@ public class MainMenuUIManager : MonoBehaviour
     {
         mainMenuContainer.RemoveFromClassList("hide");
         highScoresContainer.AddToClassList("hide");
+        FocusButton(playButton);
     }
 
     void ShowHighScores()
@@ -148,6 +166,7 @@ public class MainMenuUIManager : MonoBehaviour
         PlayUISound();
         mainMenuContainer.RemoveFromClassList("hide");
         highScoresContainer.AddToClassList("hide");
+        FocusButton(playButton);
     }
 
     IEnumerator PlayAndQuitGame()

@@ -135,7 +135,7 @@ public class ArcadeNameEntryUI : MonoBehaviour
         else repeatDirection = 0;
 
         // Confirm / Save
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Submit"))
         {
             if(cursorIndex >= nameLength - 1)
             {

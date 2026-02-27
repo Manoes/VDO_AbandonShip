@@ -220,10 +220,6 @@ public class GameManager : MonoBehaviour
         int score10 = Mathf.FloorToInt(Score * 10f);
         RuntimeHighScore = Mathf.Max(SavedTopScore, score10);
 
-        // Update Highscore Live
-        if (score10 > RuntimeHighScore)
-            RuntimeHighScore = score10;
-
         // Update UI
         scoreEventTimer -= Time.deltaTime;
         if (scoreEventTimer <= 0f)
@@ -269,7 +265,7 @@ public class GameManager : MonoBehaviour
         
         // Freeze Score + Store Final Displayed Score
         FinalScore = Mathf.FloorToInt(Score * 10f);
-        PendingIsHighScore = HighScoreSystem.HighScoreService.IsHighScore(FinalScore);
+        PendingIsHighScore = HighScores.IsHighScore(FinalScore);
 
         PendingIsNewBest = FinalScore > SavedTopScore;
         
@@ -293,11 +289,11 @@ public class GameManager : MonoBehaviour
 
         // Show UI
         if (ui)
-        {
-            ui.ShowGameOverUI();
-
-            if (PendingIsHighScore && PendingIsNewBest)
+        {  
+            if (PendingIsHighScore)
                 ui.ShowNewHighScore();
+            else
+                ui.ShowGameOverUI();
         }
         
         Time.timeScale = 0f;
@@ -307,10 +303,10 @@ public class GameManager : MonoBehaviour
     {
         if(!PendingIsHighScore) return;
 
-        HighScoreSystem.HighScoreService.AddHighScore(name, FinalScore);
+        HighScores.AddHighScore(name, FinalScore);
         PendingIsHighScore = false;
 
-        var top = HighScoreSystem.HighScoreService.GetTop();
+        var top = HighScores.GetTop();
         RuntimeHighScore = (top.Count > 0) ? top[0].score : RuntimeHighScore;
 
         OnScoreChanged?.Invoke(Score, RuntimeHighScore / 10f);

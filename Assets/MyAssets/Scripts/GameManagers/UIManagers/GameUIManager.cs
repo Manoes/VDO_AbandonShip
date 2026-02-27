@@ -45,6 +45,10 @@ public class GameUIManager : MonoBehaviour
     public event Action RestartPressed;
     public event Action MenuPressed;
 
+    // Buttons
+    private Button restartButton;
+    private Button menuButton;
+
     void OnEnable()
     {
         var gameManager = GameManager.Instance;
@@ -95,7 +99,7 @@ public class GameUIManager : MonoBehaviour
         {
             SetUIFocusLocked(false);
 
-            saveNewHighScoreButton?.Focus();
+            FocusButton(saveNewHighScoreButton);
         }
     }
 
@@ -140,7 +144,7 @@ public class GameUIManager : MonoBehaviour
         // --- Game Over - Buttons ---
 
         // Restart Game
-        var restartButton = gameOverContainer.Q<Button>("Restart");
+        restartButton = gameOverContainer.Q<Button>("Restart");
         if(restartButton != null)
             restartButton.clicked += () => 
             {   
@@ -149,7 +153,7 @@ public class GameUIManager : MonoBehaviour
             };
 
         // Back to Menu
-        var menuButton = gameOverContainer.Q<Button>("BackToMenu");
+        menuButton = gameOverContainer.Q<Button>("BackToMenu");
         if(menuButton != null)
             menuButton.clicked += () => 
             {   
@@ -222,6 +226,20 @@ public class GameUIManager : MonoBehaviour
         .SetUpdate(true);
     }
 
+    public void FocusButton(Button button)
+    {
+        if(button == null) return;
+
+        button.focusable = true;
+        document.rootVisualElement.schedule.Execute(() =>
+        {
+            button.Focus();
+
+            var focused = button.panel?.focusController?.focusedElement as VisualElement;
+            print($"[Button Focus] Focused Element: {(focused != null ? focused.name : "NULL")}");
+        }).ExecuteLater(0);
+    }
+
     // --- HUD API ---
 
     // --- Fuel ---
@@ -278,6 +296,8 @@ public class GameUIManager : MonoBehaviour
     {
         if(gameOverContainer != null)
             gameOverContainer.RemoveFromClassList("hide");
+
+        FocusButton(restartButton);
     }
 
     public void HideGameOverUI()
@@ -288,11 +308,19 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowNewHighScore()
     {
+        if(gameOverContainer != null)
+            gameOverContainer.RemoveFromClassList("hide");
+
         if(gameOverHighScoreContainer != null)
-            gameOverHighScoreContainer.RemoveFromClassList("hide");
+            gameOverHighScoreContainer.RemoveFromClassList("hide");            
         
         if(saveHighScoreButton != null)
             saveHighScoreButton.RemoveFromClassList("hide");
+        
+        document.rootVisualElement.schedule.Execute(() =>
+        {
+            FocusButton(saveHighScoreButton);
+        }).ExecuteLater(0);
     }
 
     public void HideNewHighScore()
